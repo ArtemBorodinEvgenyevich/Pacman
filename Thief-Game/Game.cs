@@ -9,13 +9,16 @@ namespace Thief_Game
         //Монстры уровня
         private List<Monster> Monsters;
         //Pacman Player
+        private Pacman Player;
 
         public Game()
         {
             Monsters = new List<Monster>();
-
             Monsters.Add(new Monster(0, 0, 10));
             //Инициализация карты, игрока, монстров...
+
+            Player = new Pacman(10, 10, 10);
+
         }
 
         private void LoadPattern()

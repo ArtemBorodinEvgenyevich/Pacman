@@ -12,10 +12,15 @@ namespace Thief_Game
     {
         Monster Blinky;
 
+        Pacman Pacman;
+
         public Scene()
         {
             Blinky = new Monster(0, 0, 10);
             Blinky.SetView(null);
+
+            Pacman = new Pacman(10, 10, 10);
+            Pacman.SetView(null);
 
             var ll = new LevelLoader();
             var scene = ll.ParseFile();
