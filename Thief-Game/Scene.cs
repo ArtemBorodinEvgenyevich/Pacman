@@ -10,51 +10,43 @@ namespace Thief_Game
 {
     public partial class Scene : Form
     {
-        float x = 0f;
-        float y = 0f;
+        Monster Blinky;
 
         public Scene()
         {
+            Blinky = new Monster(0, 0, 10);
+            Blinky.SetView(@"C:\C#\Thief-Game\Thief-Game\Source\Blinky.png");
+
             KeyPress += (sender, e) =>
             {
-                //MessageBox.Show("Press");
-
                 switch (e.KeyChar)
                 {
                     case 'w':
-                        y -= 10;
+                        Blinky.MoveUp();
                         break;
                     case 's':
-                        y += 10;
+                        Blinky.MoveDown();
                         break;
                     case 'a':
-                        x -= 10;
+                        Blinky.MoveLeft();
                         break;
                     case 'd':
-                        x += 10;
+                        Blinky.MoveRight();
                         break;
                 }
 
                 Invalidate();
             };
 
-            Paint += (sender, e) =>
-            {
-                //Image blinky = Image.FromFile(@"C:\C#\Thief-Game\Thief-Game\Source\Blinky.png");
-
-                //var graphic = e.Graphics;
-
-                //graphic.DrawImage(blinky, 10f, 10f);
-            };
+            //Происходит событие, предварительная обработка, отправка в Game
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Image blinky = Image.FromFile(@"C:\C#\Thief-Game\Thief-Game\Source\Blinky.png");
+            //var graphic = e.Graphics;
+            //graphic.DrawImage(Blinky.View, Blinky.CurrentPositionX, Blinky.CurrentPositionY);
 
-            var graphic = e.Graphics;
-
-            graphic.DrawImage(blinky, x, y);
+            Blinky.Redraw(e.Graphics);
         }
     }
 }
