@@ -3,6 +3,9 @@
 namespace Thief_Game
 {
     //Lev
+    /// <summary>
+    /// Класс загрузчика уровня игры
+    /// </summary>
     class LevelLoader
     {
         private const char WallSign = '#';

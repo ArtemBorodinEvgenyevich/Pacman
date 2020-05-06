@@ -4,6 +4,9 @@ using System.IO;
 namespace Thief_Game
 {
     //Lev
+    /// <summary>
+    /// Класс инициализации противника
+    /// </summary>
     class Monster : IMovable
     {
         //Позиция монстра на карте

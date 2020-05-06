@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace Thief_Game
 {
+    /// <summary>
+    /// Класс инициализации программы
+    /// </summary>
     static class Program
     {
         /// <summary>

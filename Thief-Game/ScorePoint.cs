@@ -1,6 +1,9 @@
 ﻿namespace Thief_Game
 {
     //Lev
+    /// <summary>
+    /// Класс инициализации игровых очков
+    /// </summary>
     class ScorePoint
     {
         public readonly int X;

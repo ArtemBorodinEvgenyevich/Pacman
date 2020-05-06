@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace Thief_Game
 {
+    /// <summary>
+    /// Класс формы окна
+    /// </summary>
     public class Scene : Form
     {
         Monster Blinky;

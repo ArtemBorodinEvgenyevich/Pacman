@@ -4,6 +4,7 @@ using System.IO;
 namespace Thief_Game
 {
     //Lev
+    // Класс загрузки спрайта противника
     static class MonsterViewLoader
     {
         /// <summary>

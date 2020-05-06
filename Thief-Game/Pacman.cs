@@ -3,6 +3,9 @@
 namespace Thief_Game
 {
     // Artem
+    /// <summary>
+    /// Класс инициализации игрового персонажа
+    /// </summary>
     class Pacman : IMovable
     {
         private int X;

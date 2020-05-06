@@ -5,6 +5,9 @@ namespace Thief_Game
 {
     // Artem
     // Save and process path info
+    /// <summary>
+    /// Класс с путями дирректорий проекта
+    /// </summary>
     class PathInfo
     {
         public static string WorkingDir = Environment.CurrentDirectory;
