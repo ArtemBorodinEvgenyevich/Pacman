@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.IO;
 
 namespace Thief_Game
 {
@@ -16,7 +17,7 @@ namespace Thief_Game
 
         public Wall(int x, int y)
         {
-            View = Image.FromFile(@"C:\C#\Thief-Game\Thief-Game\Source\Wall.png");
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Wall.png"));
 
             X = x;
             Y = y;
