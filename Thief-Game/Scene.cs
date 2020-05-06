@@ -15,7 +15,10 @@ namespace Thief_Game
         public Scene()
         {
             Blinky = new Monster(0, 0, 10);
-            Blinky.SetView(@"C:\C#\Thief-Game\Thief-Game\Source\Blinky.png");
+            Blinky.SetView(null);
+
+            var ll = new LevelLoader();
+            var scene = ll.ParseFile();
 
             KeyPress += (sender, e) =>
             {
