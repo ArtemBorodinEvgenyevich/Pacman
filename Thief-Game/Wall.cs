@@ -10,17 +10,18 @@ namespace Thief_Game
 {
     class Wall
     {
-        public readonly int X;
-        public readonly int Y;
+        public readonly int CurrentPositionX;
+        public readonly int CurrentPositionY;
 
+        //make static
         public readonly Image View;
 
         public Wall(int x, int y)
         {
             View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Wall.png"));
 
-            X = x;
-            Y = y;
+            CurrentPositionX = x;
+            CurrentPositionY = y;
         }
     }
 }

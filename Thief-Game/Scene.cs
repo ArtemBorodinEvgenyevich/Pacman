@@ -16,9 +16,13 @@ namespace Thief_Game
 
         Pacman Pacman;
 
+        Map Map;
+
         public Scene()
         {
             SetupWindow();
+
+            Map = new Map();
 
             Blinky = new Monster(0, 0, 10);
             Blinky.SetView(null);
@@ -47,15 +51,19 @@ namespace Thief_Game
             {
                 case 'w':
                     Blinky.MoveUp();
+                    //Pacman.MoveUp();
                     break;
                 case 's':
                     Blinky.MoveDown();
+                    //Pacman.MoveDown();
                     break;
                 case 'a':
                     Blinky.MoveLeft();
+                    //Pacman.MoveLeft();
                     break;
                 case 'd':
                     Blinky.MoveRight();
+                    //Pacman.MoveRight();
                     break;
             }
 
@@ -67,7 +75,7 @@ namespace Thief_Game
         /// </summary>
         private void SetupWindow()
         {
-            ClientSize = new Size(Dimensions.WindowWidth, Dimensions.WindowHeight);
+            ClientSize = new Size(Dimensions.WindowWidthPixels, Dimensions.WindowHeightPixels);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
         }
@@ -79,7 +87,9 @@ namespace Thief_Game
 
             //e.Graphics.DrawImage(Blinky.View, 0f, 0f, 15f, 15f);
 
-            Blinky.Redraw(e.Graphics);
+            //Blinky.Redraw(e.Graphics);
+            Map.ReDraw(e.Graphics);
+            //Pacman.Redraw(e.Graphics);
         }
     }
 }

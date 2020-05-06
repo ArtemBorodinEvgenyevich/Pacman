@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.IO;
 
 namespace Thief_Game
 {
@@ -59,7 +60,7 @@ namespace Thief_Game
 
             this.speed = speed;
 
-            View = null;
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Blinky.png"));
 
             destinationX = 0;
             destinationY = 0;

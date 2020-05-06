@@ -11,10 +11,13 @@ namespace Thief_Game
     /// </summary>
     class Dimensions
     {
-        public const int SpriteWidth = 15;
-        public const int SpriteHeight = 15;
+        public const int SpriteWidthPixels = 30;
+        public const int SpriteHeightPixels = 30;
 
-        public const int WindowWidth = 300;
-        public const int WindowHeight = 330;
+        public const int MapWidthSquare = 20;
+        public const int MapHeightSquare = 22;
+
+        public const int WindowWidthPixels = 600;
+        public const int WindowHeightPixels = 660;
     }
 }
