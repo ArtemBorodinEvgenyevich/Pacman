@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace Thief_Game
 {
-    class Monster
+    class Monster: IMovable
     {
         //Позиция монстра на карте
         private int X;
@@ -100,7 +100,15 @@ namespace Thief_Game
 
         public void Redraw(Graphics graphics)
         {
+            //Отрисовка монстра во время движения
             graphics.DrawImage(View, CurrentPositionX, CurrentPositionY);
+        }
+
+        public void Respawn()
+        {
+            //Если монстр погиб, то его надо возродить
+            X = StartX;
+            Y = StartY;
         }
     }
 

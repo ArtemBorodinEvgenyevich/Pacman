@@ -12,7 +12,16 @@ namespace Thief_Game
 
         public Game()
         {
+            Monsters = new List<Monster>();
+
+            Monsters.Add(new Monster(0, 0, 10));
             //Инициализация карты, игрока, монстров...
+        }
+
+        private void LoadPattern()
+        {
+            //загрузка файла
+            // инициализация массива на основе этого файла
         }
 
         //Произошло событие, через этот класс влияем на все модели
