@@ -14,6 +14,7 @@ namespace Thief_Game
 
         private List<Wall> Walls;
         private List<Monster> Monsters;
+        private Pacman Pacman;
 
         public Map()
         {
@@ -24,6 +25,7 @@ namespace Thief_Game
 
             InitWalls(pattern);
             InitMonsters(pattern);
+            InitPlayer(pattern);
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -44,15 +46,30 @@ namespace Thief_Game
             }
         }
 
-        public void InitPlayer()
+        public void InitPlayer(LevelPattern pattern)
         {
             //При инициализации уровня создаем игрока
+            Pacman = new Pacman(pattern.Player.x, pattern.Player.y, 10);
         }
 
         //Произошло измнение - перерисовали карту
         //Optimize!
         //Есть лишние перерисовки
         public void ReDraw(Graphics graphics)
+        {
+            for (int i = 0; i < Monsters.Count; i++)
+            {
+                var monster = Monsters[i];
+                var posX = (float)(monster.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(monster.CurrentPositionY * Dimensions.SpriteHeightPixels);
+
+                graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+
+            graphics.DrawImage(Pacman.View, Pacman.CurrentPositionX, Pacman.CurrentPositionY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+        }
+
+        public void Draw(Graphics graphics)
         {
             for (int i = 0; i < Walls.Count; i++)
             {
@@ -61,15 +78,6 @@ namespace Thief_Game
                 var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
 
                 graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
-            }
-
-            for (int i = 0; i < Monsters.Count; i++)
-            {
-                var monster = Monsters[i];
-                var posX = (float)(monster.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(monster.CurrentPositionY * Dimensions.SpriteHeightPixels);
-
-                graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
         }
     }
