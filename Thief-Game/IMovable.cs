@@ -1,12 +1,6 @@
-﻿//Lev
-
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace Thief_Game
+﻿namespace Thief_Game
 {
+    //Lev
     //Наследует все, что может двигаться, игрок, монстры
     interface IMovable
     {

@@ -1,12 +1,8 @@
-﻿//Lev
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Thief_Game
 {
+    //Lev
     class LevelPattern
     {
         //Списки координат точек появления объектов

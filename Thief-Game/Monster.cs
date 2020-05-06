@@ -1,14 +1,10 @@
-﻿//Lev
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 
 namespace Thief_Game
 {
-    class Monster: IMovable
+    //Lev
+    class Monster : IMovable
     {
         //Позиция монстра на карте
         private int X;
@@ -37,7 +33,7 @@ namespace Thief_Game
 
         //Monster's behavior
         Behaviors currentBehavior;
-        
+
         //Monster view
         public Image View;
 
@@ -67,7 +63,7 @@ namespace Thief_Game
 
             currentBehavior = Behaviors.DISPERSING;
         }
-        
+
         public void MoveUp()
         {
             //Maybe virtual

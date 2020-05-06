@@ -1,12 +1,9 @@
-﻿//Lev
-
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace Thief_Game
 {
+    //Lev
     class Map
     {
         //Есть массив с точками, где могут находится объекты
@@ -50,7 +47,7 @@ namespace Thief_Game
         {
             //При инициализации уровня создаем монстров
 
-            foreach(var monster in pattern.MonsterSpawns)
+            foreach (var monster in pattern.MonsterSpawns)
             {
                 Monsters.Add(new Monster(monster.x, monster.y, 10));
             }
@@ -64,7 +61,7 @@ namespace Thief_Game
         //Произошло измнение - перерисовали карту
         public void ReDraw(Graphics graphics)
         {
-            for(int i = 0; i < Walls.Count; i++) 
+            for (int i = 0; i < Walls.Count; i++)
             {
                 var wall = Walls[i];
                 var posX = (float)(wall.CurrentPositionX * Dimensions.SpriteWidthPixels);
@@ -73,7 +70,7 @@ namespace Thief_Game
                 graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
-            for(int i = 0; i < Monsters.Count; i++)
+            for (int i = 0; i < Monsters.Count; i++)
             {
                 var monster = Monsters[i];
                 var posX = (float)(monster.CurrentPositionX * Dimensions.SpriteWidthPixels);

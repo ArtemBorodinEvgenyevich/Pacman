@@ -1,10 +1,8 @@
-﻿//Lev
-
-using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Thief_Game
 {
+    //Lev
     class LevelLoader
     {
         private const char WallSign = '#';
@@ -44,7 +42,7 @@ namespace Thief_Game
 
                 line = reader.ReadLine();
 
-                for(int i = 0; i < line.Length; i++)
+                for (int i = 0; i < line.Length; i++)
                 {
                     switch (line[i])
                     {

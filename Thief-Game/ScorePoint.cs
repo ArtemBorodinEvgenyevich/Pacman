@@ -1,11 +1,6 @@
-﻿//Lev
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Thief_Game
+﻿namespace Thief_Game
 {
+    //Lev
     class ScorePoint
     {
         public readonly int X;
@@ -21,6 +16,9 @@ namespace Thief_Game
             IsActive = true;
         }
 
+        /// <summary>
+        /// Действия, при съедении точки
+        /// </summary>
         public void Eat()
         {
             IsActive = false;
