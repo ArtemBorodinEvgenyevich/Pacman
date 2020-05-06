@@ -71,28 +71,28 @@ namespace Thief_Game
         {
             //Maybe virtual
             //Изменение координат
-            Y -= 10;
+            Y -= 15;
         }
 
         public void MoveLeft()
         {
             //Maybe virtual
             //Изменение координат
-            X -= 10;
+            X -= 15;
         }
 
         public void MoveRight()
         {
             //Maybe virtual
             //Изменение координат
-            X += 10;
+            X += 15;
         }
 
         public void MoveDown()
         {
             //Maybe virtual
             //Изменение координат
-            Y += 10;
+            Y += 15;
         }
 
         public void ChangeBehavior()
@@ -115,7 +115,7 @@ namespace Thief_Game
         public void Redraw(Graphics graphics)
         {
             //Отрисовка монстра во время движения
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 15f, 15f);
         }
 
         public void Respawn()

@@ -70,39 +70,13 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Поднимаемся на count уровней по файловой системе вверх
-        /// </summary>
-        /// <param name="count">На сколько надо подняться</param>
-        /// <param name="path">Стартовая точка</param>
-        /// <returns>Куда мы попали</returns> 
-        private string GoUpFolder(int count, string path)
-        {
-            for(int i = 0; i < count; i++)
-            {
-                path = Path.GetDirectoryName(path);
-            }
-
-            return path;
-        }
-
-        /// <summary>
-        /// Заходим в папку с ресурсами игры
-        /// </summary>
-        /// <param name="path">Откуда пытаемся зайти</param>
-        /// <returns>Куда мы попали</returns>
-        private string GoToSource(string path)
-        {
-            return path = PathInfo.SourceDir;
-        }
-
-        /// <summary>
         /// Находим сам файл-паттерн
         /// </summary>
         /// <param name="path">Папка, где лежит файл</param>
         /// <returns>Путь к файлу</returns>
         private string GoToLevelPattern_ptrn()
         {
-            return path = Path.Combine(PathInfo.SourceDir, "LevelPattern.ptrn");
+            return Path.Combine(PathInfo.SourceDir, "LevelPattern.ptrn");
         }
     }
 }

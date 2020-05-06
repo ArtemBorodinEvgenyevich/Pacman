@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace Thief_Game
@@ -11,19 +12,36 @@ namespace Thief_Game
         //Есть массив с точками, где могут находится объекты
         //True = Wall
         //False = Empty
-        private bool[,] PositionsMap;
+        private (int x, int y)[,] PositionsMap;
 
-        public const int MapWidth = 17;
-        public const int MapHeight = 20;
+        public const int MapWidth = 20;
+        public const int MapHeight = 22;
 
-        public const int SpriteWidth = 70;
-        public const int SpriteHeight = 75;
+        public const int SpriteDefaultWidth = 70;
+        public const int SpriteDefaultHeight = 75;
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
         //PositionMap[1, 2] = (70, 150)
+        private int SpriteWidth = 15;
+        private int SpriteHeight = 15;
+
+        private List<Wall> Walls;
 
         public Map()
         {
-            PositionsMap = new bool[MapWidth, MapHeight];
+            PositionsMap = new (int x, int y)[MapWidth, MapHeight];
+
+            var pattern = new LevelLoader().ParseFile();
+
+            Walls = new List<Wall>();
+            InitWalls(pattern);
+        }
+
+        private void InitWalls(LevelPattern pattern)
+        {
+            foreach (var wall in pattern.Walls)
+            {
+                Walls.Add(new Wall(wall.x * SpriteWidth, wall.y * SpriteHeight));
+            }
         }
 
         public void InitMonsters()
