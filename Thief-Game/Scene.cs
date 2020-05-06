@@ -20,6 +20,8 @@ namespace Thief_Game
             var ll = new LevelLoader();
             var scene = ll.ParseFile();
 
+            KeyPreview = true;
+            
             KeyPress += (sender, e) =>
             {
                 switch (e.KeyChar)
