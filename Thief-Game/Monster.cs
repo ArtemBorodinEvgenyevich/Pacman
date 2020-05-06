@@ -38,6 +38,12 @@ namespace Thief_Game
         //Monster view
         public Image View;
 
+        /// <summary>
+        /// Базовый класс монстра
+        /// </summary>
+        /// <param name="startX">Стартовая позиция</param>
+        /// <param name="startY"></param>
+        /// <param name="speed"></param>
         public Monster(int startX, int startY, int speed)
         {
             //Если будем делать другие типы монстров, то они появятся, как
@@ -101,7 +107,7 @@ namespace Thief_Game
         public void SetView(string path)
         {
             //Изменение внешнего вида монстра
-            View = Image.FromFile(path);
+            View = MonsterViewLoader.LoadImage("Blinky.png");
         }
 
         public void Redraw(Graphics graphics)
