@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.IO;
+using System;
 
 namespace Thief_Game
 {
@@ -34,7 +36,7 @@ namespace Thief_Game
 
             this.Speed = speed;
 
-            View = null;
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, "Pacman.png"));
 
             DirectionX = 0;
             DirectionY = 0;
@@ -68,7 +70,7 @@ namespace Thief_Game
 
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 15f, 15f);
         }
 
         public void Respawn()
