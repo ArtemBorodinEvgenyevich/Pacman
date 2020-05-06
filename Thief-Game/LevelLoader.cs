@@ -94,7 +94,7 @@ namespace Thief_Game
         /// <returns>Куда мы попали</returns>
         private string GoToSource(string path)
         {
-            return path = Path.Combine(path, "Source");
+            return path = PathInfo.SourceDir;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Thief_Game
         /// <returns>Путь к файлу</returns>
         private string GoToLevelPattern_ptrn(string path)
         {
-            return path = Path.Combine(path, "LevelPattern.ptrn");
+            return path = Path.Combine(PathInfo.SourceDir, "LevelPattern.ptrn");
         }
     }
 }
