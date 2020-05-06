@@ -8,9 +8,7 @@ namespace Thief_Game
 {
     static class MonsterViewLoader
     {
-        private static string WorkingDir = Environment.CurrentDirectory;
-        private static string ProjectDir = Directory.GetParent(WorkingDir).Parent.Parent.FullName;
-        private static string SourceDir = Path.Combine(ProjectDir, @"Source");
+        
 
         /// <summary>
         /// Загрузить картинку монстра
@@ -23,7 +21,7 @@ namespace Thief_Game
             //Определять какой файл грузить на основании
             //класса, который запросил картинку
             //Переделать, когда будет реализовано наследование монстров
-            var path = Path.Combine(SourceDir, fileName);
+            var path = Path.Combine(PathInfo.SourceDir, fileName);
             return Image.FromFile(path);
         }
     }
