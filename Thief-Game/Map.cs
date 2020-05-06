@@ -6,11 +6,6 @@ namespace Thief_Game
     //Lev
     class Map
     {
-        //Есть массив с точками, где могут находится объекты
-        //True = Wall
-        //False = Empty
-        //private GameObjects[,] PositionsMap;
-
         //remove
         public const int SpriteDefaultWidth = 70;
         public const int SpriteDefaultHeight = 75;
@@ -22,8 +17,6 @@ namespace Thief_Game
 
         public Map()
         {
-            //PositionsMap = new GameObjects[Dimensions.MapWidthSquare, Dimensions.MapHeightSquare];
-
             var pattern = new LevelLoader().ParseFile();
 
             Walls = new List<Wall>();
@@ -35,18 +28,16 @@ namespace Thief_Game
 
         private void InitWalls(LevelPattern pattern)
         {
+            //При инициализации уровня создаем стены
             foreach (var wall in pattern.Walls)
             {
                 Walls.Add(new Wall(wall.x, wall.y));
-
-                //PositionsMap[wall.x, wall.y] = GameObjects.WALL;
             }
         }
 
         public void InitMonsters(LevelPattern pattern)
         {
             //При инициализации уровня создаем монстров
-
             foreach (var monster in pattern.MonsterSpawns)
             {
                 Monsters.Add(new Monster(monster.x, monster.y, 10));
@@ -59,6 +50,8 @@ namespace Thief_Game
         }
 
         //Произошло измнение - перерисовали карту
+        //Optimize!
+        //Есть лишние перерисовки
         public void ReDraw(Graphics graphics)
         {
             for (int i = 0; i < Walls.Count; i++)

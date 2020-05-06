@@ -7,7 +7,6 @@ namespace Thief_Game
     {
         //Списки координат точек появления объектов
         public List<(int x, int y)> Walls;
-        //public Player
         public List<(int x, int y)> MonsterSpawns;
         public (int x, int y) Player;
 

@@ -3,7 +3,6 @@
     //Lev
     class Game
     {
-        //Pacman Player
         private Pacman Player;
 
         public Game()
