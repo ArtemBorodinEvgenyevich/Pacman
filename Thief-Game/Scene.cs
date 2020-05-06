@@ -20,6 +20,8 @@ namespace Thief_Game
         {
             SetupWindow();
 
+            DoubleBuffered = true;
+
             Map = new Map();
 
             Blinky = new Monster(0, 0, 10);
@@ -86,7 +88,9 @@ namespace Thief_Game
             //e.Graphics.DrawImage(Blinky.View, 0f, 0f, 15f, 15f);
 
             //Blinky.Redraw(e.Graphics);
+            Map.Draw(e.Graphics);
             Map.ReDraw(e.Graphics);
+
             //Pacman.Redraw(e.Graphics);
         }
     }
