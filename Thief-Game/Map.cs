@@ -66,7 +66,14 @@ namespace Thief_Game
                 graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
-            graphics.DrawImage(Pacman.View, Pacman.CurrentPositionX, Pacman.CurrentPositionY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            /*
+            graphics.DrawImage(
+                Pacman.View, 
+                Pacman.CurrentPositionX, 
+                Pacman.CurrentPositionY, 
+                Dimensions.SpriteWidthPixels, 
+                Dimensions.SpriteHeightPixels);
+                */
         }
 
         public void Draw(Graphics graphics)
