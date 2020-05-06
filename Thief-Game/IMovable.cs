@@ -2,6 +2,9 @@
 {
     //Lev
     //Наследует все, что может двигаться, игрок, монстры
+    /// <summary>
+    /// Интерфейс управления персонажем.    
+    /// </summary>
     interface IMovable
     {
         public void MoveUp();

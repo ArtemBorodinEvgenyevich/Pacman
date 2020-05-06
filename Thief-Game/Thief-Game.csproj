@@ -7,4 +7,9 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\docs\Thief-Game.xml</DocumentationFile>
+    <OutputPath>bin\docs\</OutputPath>
+  </PropertyGroup>
+
 </Project>

@@ -4,6 +4,9 @@ using System.IO;
 namespace Thief_Game
 {
     //Lev
+    /// <summary>
+    /// Класс загрузки спрайтов и инициализации игровых препятствий
+    /// </summary>
     class Wall
     {
         public readonly int CurrentPositionX;

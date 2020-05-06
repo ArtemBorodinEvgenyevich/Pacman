@@ -4,6 +4,9 @@ using System.Drawing;
 namespace Thief_Game
 {
     //Lev
+    /// <summary>
+    /// Класс инициализации игрового уровня
+    /// </summary>
     class Map
     {
         //remove
