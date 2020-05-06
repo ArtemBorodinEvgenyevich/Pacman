@@ -17,7 +17,7 @@ namespace Thief_Game
         public const int SpriteWidth = 70;
         public const int SpriteHeight = 75;
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
-        //(70, 150)
+        //PositionMap[1, 2] = (70, 150)
 
         public Map()
         {
