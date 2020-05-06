@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Thief_Game
 {
+    // Artem
     // Save and process path info
     class PathInfo
     {

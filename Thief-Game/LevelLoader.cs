@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Thief_Game
 {
+    //Lev
     class LevelLoader
     {
         private const char WallSign = '#';
@@ -15,11 +15,7 @@ namespace Thief_Game
         /// </summary>
         public LevelLoader()
         {
-            var pathToSource = Environment.CurrentDirectory;
-
-            pathToSource = GoUpFolder(3, pathToSource);
-            pathToSource = GoToSource(pathToSource);
-            PathToPattern = GoToLevelPattern_ptrn(pathToSource);
+            PathToPattern = GoToLevelPattern_ptrn();
         }
 
         /// <summary>
@@ -46,7 +42,7 @@ namespace Thief_Game
 
                 line = reader.ReadLine();
 
-                for(int i = 0; i < line.Length; i++)
+                for (int i = 0; i < line.Length; i++)
                 {
                     switch (line[i])
                     {
@@ -72,39 +68,13 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Поднимаемся на count уровней по файловой системе вверх
-        /// </summary>
-        /// <param name="count">На сколько надо подняться</param>
-        /// <param name="path">Стартовая точка</param>
-        /// <returns>Куда мы попали</returns> 
-        private string GoUpFolder(int count, string path)
-        {
-            for(int i = 0; i < count; i++)
-            {
-                path = Path.GetDirectoryName(path);
-            }
-
-            return path;
-        }
-
-        /// <summary>
-        /// Заходим в папку с ресурсами игры
-        /// </summary>
-        /// <param name="path">Откуда пытаемся зайти</param>
-        /// <returns>Куда мы попали</returns>
-        private string GoToSource(string path)
-        {
-            return path = PathInfo.SourceDir;
-        }
-
-        /// <summary>
         /// Находим сам файл-паттерн
         /// </summary>
         /// <param name="path">Папка, где лежит файл</param>
         /// <returns>Путь к файлу</returns>
-        private string GoToLevelPattern_ptrn(string path)
+        private string GoToLevelPattern_ptrn()
         {
-            return path = Path.Combine(PathInfo.SourceDir, "LevelPattern.ptrn");
+            return Path.Combine(PathInfo.SourceDir, "LevelPattern.ptrn");
         }
     }
 }

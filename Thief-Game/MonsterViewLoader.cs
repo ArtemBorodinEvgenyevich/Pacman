@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
-using System.Text;
 
 namespace Thief_Game
 {
+    //Lev
     static class MonsterViewLoader
     {
-        
-
         /// <summary>
         /// Загрузить картинку монстра
         /// </summary>
