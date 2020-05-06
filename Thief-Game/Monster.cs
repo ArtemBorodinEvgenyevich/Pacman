@@ -40,6 +40,8 @@ namespace Thief_Game
 
         public Monster(int startX, int startY, int speed)
         {
+            //Если будем делать другие типы монстров, то они появятся, как
+            //наследники этого класса
             //Init
             StartX = startX;
             StartY = startY;
@@ -59,24 +61,28 @@ namespace Thief_Game
         
         public void MoveUp()
         {
+            //Maybe virtual
             //Изменение координат
             Y -= 10;
         }
 
         public void MoveLeft()
         {
+            //Maybe virtual
             //Изменение координат
             X -= 10;
         }
 
         public void MoveRight()
         {
+            //Maybe virtual
             //Изменение координат
             X += 10;
         }
 
         public void MoveDown()
         {
+            //Maybe virtual
             //Изменение координат
             Y += 10;
         }
