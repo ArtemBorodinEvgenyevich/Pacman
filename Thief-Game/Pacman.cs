@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Thief_Game
 {
@@ -15,7 +12,7 @@ namespace Thief_Game
 
         public static int StartX;
         public static int StartY;
-        
+
         public int DirectionX;
         public int DirectionY;
 
@@ -63,7 +60,7 @@ namespace Thief_Game
         {
             Y += 10;
         }
-        
+
         public void SetView(string path)
         {
             View = PacmanViewLoader.LoadImage("Pacman.png");

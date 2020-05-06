@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
+using System.IO;
 
 namespace Thief_Game
 {
-    class Monster: IMovable
+    //Lev
+    class Monster : IMovable
     {
         //Позиция монстра на карте
         private int X;
@@ -34,8 +33,7 @@ namespace Thief_Game
 
         //Monster's behavior
         Behaviors currentBehavior;
-        
-        //Monster view
+
         public Image View;
 
         /// <summary>
@@ -57,73 +55,96 @@ namespace Thief_Game
 
             this.speed = speed;
 
-            View = null;
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Blinky.png"));
 
             destinationX = 0;
             destinationY = 0;
 
             currentBehavior = Behaviors.DISPERSING;
         }
-        
+
+        /// <summary>
+        /// Изменение координат
+        /// Maybe Virtual
+        /// </summary>
         public void MoveUp()
         {
-            //Maybe virtual
-            //Изменение координат
-            Y -= 10;
+            Y -= 15;
         }
 
+        /// <summary>
+        /// Изменение координат
+        /// Maybe Virtual
+        /// </summary>
         public void MoveLeft()
         {
-            //Maybe virtual
-            //Изменение координат
-            X -= 10;
+            X -= 15;
         }
 
+        /// <summary>
+        /// Изменение координат
+        /// Maybe Virtual
+        /// </summary>
         public void MoveRight()
         {
-            //Maybe virtual
-            //Изменение координат
-            X += 10;
+            X += 15;
         }
 
+        /// <summary>
+        /// Изменение координат
+        /// Maybe Virtual
+        /// </summary>
         public void MoveDown()
         {
-            //Maybe virtual
-            //Изменение координат
-            Y += 10;
+            Y += 15;
         }
 
+        /// <summary>
+        /// Изменение поведения монстра
+        /// </summary>
         public void ChangeBehavior()
         {
-            //Изменение поведения монстра
         }
 
+        /// <summary>
+        /// Вычисляем, куда будет двигатся монстр
+        /// Может быть тут и использовать MoveUp() и др.
+        /// </summary>
         public void FindPath()
         {
-            //Вычисляем куда будет монстр двигаться 
-            //Мб, тут будем использовать MoveUp() и др.
         }
 
+        /// <summary>
+        /// Изменение внешнего вида монстра
+        /// </summary>
+        /// <param name="path">Путь к файлу</param>
         public void SetView(string path)
         {
-            //Изменение внешнего вида монстра
             View = MonsterViewLoader.LoadImage("Blinky.png");
         }
 
+        /// <summary>
+        /// Отрисовка монстра во время движения
+        /// </summary>
+        /// <param name="graphics"></param>
         public void Redraw(Graphics graphics)
         {
-            //Отрисовка монстра во время движения
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 15f, 15f);
         }
 
+        /// <summary>
+        /// Если монстр погиб, то его надо возродить
+        /// </summary>
         public void Respawn()
         {
-            //Если монстр погиб, то его надо возродить
             X = StartX;
             Y = StartY;
         }
     }
 
+    /// <summary>
+    /// Типы поведения
+    /// </summary>
     enum Behaviors
     {
         PURSUITING,

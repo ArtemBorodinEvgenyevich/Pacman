@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Thief_Game
+﻿namespace Thief_Game
 {
+    //Lev
     class WorldStat
     {
         //Информация о мире
