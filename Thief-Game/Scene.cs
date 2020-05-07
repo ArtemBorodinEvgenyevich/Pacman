@@ -1,5 +1,6 @@
 ﻿//Lev
 
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -16,13 +17,26 @@ namespace Thief_Game
 
         Map Map;
 
-        public Scene()
+        Action<Graphics> DrawMap;
+        Action PacmanMoveUp;
+        Action PacmanMoveDown;
+        Action PacmanMoveRight;
+        Action PacmanMoveLeft;
+
+        //Протащить делегаты - реакции на нажатие кнопок
+        public Scene(Action<Graphics> DrawMap, Action PacmanMoveUp, Action PacmanMoveDown, Action PacmanMoveRight, Action PacmanMoveLeft)
         {
+            this.DrawMap = DrawMap;
+            this.PacmanMoveUp = PacmanMoveUp;
+            this.PacmanMoveDown = PacmanMoveDown;
+            this.PacmanMoveLeft = PacmanMoveLeft;
+            this.PacmanMoveRight = PacmanMoveRight;
+
             SetupWindow();
 
             DoubleBuffered = true;
 
-            Map = new Map();
+            //Map = new Map();
 
             //Blinky = new Monster(0, 0, 10);
             //Blinky.SetView(null);
@@ -30,8 +44,8 @@ namespace Thief_Game
             //Pacman = new Pacman(10, 10, 10);
             //Pacman.SetView(null);
 
-            var ll = new LevelLoader();
-            var scene = ll.ParseFile();
+            //var ll = new LevelLoader();
+            //var scene = ll.ParseFile();
 
             KeyPreview = true;
 
@@ -52,22 +66,26 @@ namespace Thief_Game
                 case 'w':
                     //Blinky.MoveUp();
                     //Pacman.MoveUp();
-                    Map.MovePacmanUp();
+                    //Map.MovePacmanUp();
+                    PacmanMoveUp();
                     break;
                 case 's':
                     //Blinky.MoveDown();
                     //Pacman.MoveDown();
-                    Map.MovePacmanDown();
+                    //Map.MovePacmanDown();
+                    PacmanMoveDown();
                     break;
                 case 'a':
                     //Blinky.MoveLeft();
                     //Pacman.MoveLeft();
-                    Map.MovePacmanLeft();
+                    //Map.MovePacmanLeft();
+                    PacmanMoveLeft();
                     break;
                 case 'd':
                     //Blinky.MoveRight();
                     //Pacman.MoveRight();
-                    Map.MovePacmanRight();
+                    //Map.MovePacmanRight();
+                    PacmanMoveRight();
                     break;
             }
 
@@ -91,8 +109,9 @@ namespace Thief_Game
 
             //e.Graphics.DrawImage(Blinky.View, 0f, 0f, 15f, 15f);
 
-            Map.Draw(e.Graphics);
-            Map.ReDraw(e.Graphics);
+            //Map.Draw(e.Graphics);
+            //Map.ReDraw(e.Graphics);
+            DrawMap(e.Graphics);
             //Blinky.Redraw(e.Graphics);
 
             //Pacman.Redraw(e.Graphics);

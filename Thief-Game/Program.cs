@@ -20,7 +20,8 @@ namespace Thief_Game
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new MainMenu());
-            Application.Run(new Scene());
+            //Application.Run(new Scene());
+            var game = new Game();
         }
     }
 }

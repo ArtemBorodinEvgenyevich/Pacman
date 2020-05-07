@@ -29,6 +29,9 @@ namespace Thief_Game
             MaximizeBox = false;
         }
 
+        /// <summary>
+        /// Инициализация кнопок
+        /// </summary>
         private void InitButtons()
         { 
             NewGame = new Button();

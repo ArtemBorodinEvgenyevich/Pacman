@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Thief_Game
 {
@@ -30,6 +31,8 @@ namespace Thief_Game
             InitWalls(pattern);
             InitMonsters(pattern);
             InitPlayer(pattern);
+
+            Application.Run(new Scene(Draw, Pacman.MoveUp, Pacman.MoveDown, Pacman.MoveRight, Pacman.MoveLeft));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -62,10 +65,18 @@ namespace Thief_Game
         public void MovePacmanLeft() => Pacman.MoveLeft();
 
         //Произошло измнение - перерисовали карту
-        //Optimize!
-        //Есть лишние перерисовки
-        public void ReDraw(Graphics graphics)
+        public void Draw(Graphics graphics)
         {
+            //Unite
+            for (int i = 0; i < Walls.Count; i++)
+            {
+                var wall = Walls[i];
+                var posX = (float)(wall.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
+
+                graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+
             for (int i = 0; i < Monsters.Count; i++)
             {
                 var monster = Monsters[i];
@@ -76,23 +87,11 @@ namespace Thief_Game
             }
 
             graphics.DrawImage(
-                Pacman.View, 
-                Pacman.CurrentPositionX, 
-                Pacman.CurrentPositionY, 
-                Dimensions.SpriteWidthPixels, 
+                Pacman.View,
+                Pacman.CurrentPositionX,
+                Pacman.CurrentPositionY,
+                Dimensions.SpriteWidthPixels,
                 Dimensions.SpriteHeightPixels);
-        }
-
-        public void Draw(Graphics graphics)
-        {
-            for (int i = 0; i < Walls.Count; i++)
-            {
-                var wall = Walls[i];
-                var posX = (float)(wall.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
-
-                graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
-            }
         }
     }
 
