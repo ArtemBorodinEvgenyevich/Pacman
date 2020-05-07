@@ -19,6 +19,7 @@ namespace Thief_Game
         private List<Monster> Monsters;
         private Pacman Pacman;
 
+        //Я нигде не использую IMovable
         public Map()
         {
             var pattern = new LevelLoader().ParseFile();
@@ -55,6 +56,11 @@ namespace Thief_Game
             Pacman = new Pacman(pattern.Player.x, pattern.Player.y, 10);
         }
 
+        public void MovePacmanDown() => Pacman.MoveDown();
+        public void MovePacmanUp() => Pacman.MoveUp();
+        public void MovePacmanRight() => Pacman.MoveRight();
+        public void MovePacmanLeft() => Pacman.MoveLeft();
+
         //Произошло измнение - перерисовали карту
         //Optimize!
         //Есть лишние перерисовки
@@ -69,14 +75,12 @@ namespace Thief_Game
                 graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
-            /*
             graphics.DrawImage(
                 Pacman.View, 
                 Pacman.CurrentPositionX, 
                 Pacman.CurrentPositionY, 
                 Dimensions.SpriteWidthPixels, 
                 Dimensions.SpriteHeightPixels);
-                */
         }
 
         public void Draw(Graphics graphics)

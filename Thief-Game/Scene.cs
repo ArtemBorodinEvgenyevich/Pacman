@@ -10,9 +10,9 @@ namespace Thief_Game
     /// </summary>
     public class Scene : Form
     {
-        Monster Blinky;
+        //Monster Blinky;
 
-        Pacman Pacman;
+        //Pacman Pacman;
 
         Map Map;
 
@@ -24,11 +24,11 @@ namespace Thief_Game
 
             Map = new Map();
 
-            Blinky = new Monster(0, 0, 10);
-            Blinky.SetView(null);
+            //Blinky = new Monster(0, 0, 10);
+            //Blinky.SetView(null);
 
-            Pacman = new Pacman(10, 10, 10);
-            Pacman.SetView(null);
+            //Pacman = new Pacman(10, 10, 10);
+            //Pacman.SetView(null);
 
             var ll = new LevelLoader();
             var scene = ll.ParseFile();
@@ -50,20 +50,24 @@ namespace Thief_Game
             switch (keyPressEventArgs.KeyChar)
             {
                 case 'w':
-                    Blinky.MoveUp();
+                    //Blinky.MoveUp();
                     //Pacman.MoveUp();
+                    Map.MovePacmanUp();
                     break;
                 case 's':
-                    Blinky.MoveDown();
+                    //Blinky.MoveDown();
                     //Pacman.MoveDown();
+                    Map.MovePacmanDown();
                     break;
                 case 'a':
-                    Blinky.MoveLeft();
+                    //Blinky.MoveLeft();
                     //Pacman.MoveLeft();
+                    Map.MovePacmanLeft();
                     break;
                 case 'd':
-                    Blinky.MoveRight();
+                    //Blinky.MoveRight();
                     //Pacman.MoveRight();
+                    Map.MovePacmanRight();
                     break;
             }
 
@@ -87,9 +91,9 @@ namespace Thief_Game
 
             //e.Graphics.DrawImage(Blinky.View, 0f, 0f, 15f, 15f);
 
-            //Blinky.Redraw(e.Graphics);
             Map.Draw(e.Graphics);
             Map.ReDraw(e.Graphics);
+            //Blinky.Redraw(e.Graphics);
 
             //Pacman.Redraw(e.Graphics);
         }
