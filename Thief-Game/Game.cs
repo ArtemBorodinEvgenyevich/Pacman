@@ -13,7 +13,5 @@ namespace Thief_Game
             var worldStat = new WorldStat();
             var map = new Map();
         }
-
-        //Произошло событие, через этот класс влияем на все модели
     }
 }

@@ -18,20 +18,14 @@ namespace Thief_Game
         Map Map;
 
         Action<Graphics> DrawMap;
-        Action PacmanMoveUp;
-        Action PacmanMoveDown;
-        Action PacmanMoveRight;
-        Action PacmanMoveLeft;
+        IMovable Pacman;
 
         //Протащить делегаты - реакции на нажатие кнопок
-        public Scene(Action<Graphics> DrawMap, Action PacmanMoveUp, Action PacmanMoveDown, Action PacmanMoveRight, Action PacmanMoveLeft)
+        public Scene(Action<Graphics> DrawMap, IMovable Pacman)
         {
             this.DrawMap = DrawMap;
-            this.PacmanMoveUp = PacmanMoveUp;
-            this.PacmanMoveDown = PacmanMoveDown;
-            this.PacmanMoveLeft = PacmanMoveLeft;
-            this.PacmanMoveRight = PacmanMoveRight;
-
+            this.Pacman = Pacman;
+            
             SetupWindow();
 
             DoubleBuffered = true;
@@ -69,25 +63,25 @@ namespace Thief_Game
                     //Blinky.MoveUp();
                     //Pacman.MoveUp();
                     //Map.MovePacmanUp();
-                    PacmanMoveUp();
+                    Pacman.MoveUp();
                     break;
                 case 's':
                     //Blinky.MoveDown();
                     //Pacman.MoveDown();
                     //Map.MovePacmanDown();
-                    PacmanMoveDown();
+                    Pacman.MoveDown();
                     break;
                 case 'a':
                     //Blinky.MoveLeft();
                     //Pacman.MoveLeft();
                     //Map.MovePacmanLeft();
-                    PacmanMoveLeft();
+                    Pacman.MoveLeft();
                     break;
                 case 'd':
                     //Blinky.MoveRight();
                     //Pacman.MoveRight();
                     //Map.MovePacmanRight();
-                    PacmanMoveRight();
+                    Pacman.MoveRight();
                     break;
             }
 

@@ -5,7 +5,7 @@
     /// <summary>
     /// Интерфейс управления персонажем.    
     /// </summary>
-    interface IMovable
+    public interface IMovable
     {
         public void MoveUp();
         public void MoveLeft();

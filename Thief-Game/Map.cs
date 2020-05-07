@@ -29,7 +29,7 @@ namespace Thief_Game
             InitMonsters(pattern);
             InitPlayer(pattern);
 
-            Application.Run(new Scene(Draw, Pacman.MoveUp, Pacman.MoveDown, Pacman.MoveRight, Pacman.MoveLeft));
+            Application.Run(new Scene(Draw, Pacman));
         }
 
         private void InitWalls(LevelPattern pattern)
