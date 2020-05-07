@@ -14,11 +14,12 @@ namespace Thief_Game
         [STAThread]
         static void Main()
         {
-            var map = new Map();
+            //var map = new Map();
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new MainMenu());
             Application.Run(new Scene());
         }
     }
