@@ -35,7 +35,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, Pacman));
+            Application.Run(new Scene(Draw));
         }
 
         private void InitWalls(LevelPattern pattern)
