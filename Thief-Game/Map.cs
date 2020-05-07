@@ -43,7 +43,7 @@ namespace Thief_Game
             //При инициализации уровня создаем стены
             foreach (var wall in pattern.Walls)
             {
-                Walls.Add(new Wall(wall.X, wall.Y));
+                Walls.Add(wall);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Thief_Game
             //При инициализации уровня создаем монстров
             foreach (var monster in pattern.MonsterSpawns)
             {
-                Monsters.Add(new Monster(monster.X, monster.Y, 10));
+                Monsters.Add(monster);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Thief_Game
         {
             foreach(var energizer in pattern.Energizers)
             {
-                Energizers.Add(new Energizer(energizer.X, energizer.Y));
+                Energizers.Add(energizer);
             }
         }
 

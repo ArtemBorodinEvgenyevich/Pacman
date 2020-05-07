@@ -9,10 +9,9 @@ namespace Thief_Game
     public class LevelPattern
     {
         //Списки координат точек появления объектов
-        public List<(int X, int Y)> Walls;
-        public List<(int X, int Y)> MonsterSpawns;
-        public (int X, int Y) Player;
-        public List<(int X, int Y)> Energizers;
+        public List<Wall> Walls;
+        public List<Monster> MonsterSpawns;
+        public List<Energizer> Energizers;
         public List<SmallPoint> SmallPoints;
 
         /// <summary>
@@ -20,9 +19,9 @@ namespace Thief_Game
         /// </summary>
         public LevelPattern()
         {
-            Walls = new List<(int x, int y)>();
-            MonsterSpawns = new List<(int x, int y)>();
-            Energizers = new List<(int x, int y)>();
+            Walls = new List<Wall>();
+            MonsterSpawns = new List<Monster>();
+            Energizers = new List<Energizer>();
             SmallPoints = new List<SmallPoint>();
         }
 
@@ -33,7 +32,7 @@ namespace Thief_Game
         /// <param name="y">Координата по оси У</param>
         public void AddWall(int x, int y)
         {
-            Walls.Add((x, y));
+            Walls.Add(new Wall(x, y));
         }
 
         /// <summary>
@@ -43,7 +42,7 @@ namespace Thief_Game
         /// <param name="y">Координата по оси У</param>
         public void AddMonsterSpawn(int x, int y)
         {
-            MonsterSpawns.Add((x, y));
+            MonsterSpawns.Add(new Monster(x, y, 10));
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace Thief_Game
         /// <param name="y">Координата по оси У</param>
         public void AddEnergizer(int x, int y)
         {
-            Energizers.Add((x, y));
+            Energizers.Add(new Energizer(x, y));
         }
 
         /// <summary>

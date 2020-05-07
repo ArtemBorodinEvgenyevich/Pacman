@@ -7,7 +7,7 @@ namespace Thief_Game
     /// <summary>
     /// Класс инициализации противника
     /// </summary>
-    class Monster : IMovable
+    public class Monster : IMovable
     {
         //Позиция монстра на карте
         private int X;

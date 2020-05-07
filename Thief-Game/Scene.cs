@@ -12,12 +12,10 @@ namespace Thief_Game
     public class Scene : Form
     {
         Action<Graphics> DrawMap;
-        IMovable Pacman;
 
-        public Scene(Action<Graphics> DrawMap, IMovable Pacman)
+        public Scene(Action<Graphics> DrawMap)
         {
             this.DrawMap = DrawMap;
-            this.Pacman = Pacman;
             
             SetupWindow();
 
@@ -36,16 +34,16 @@ namespace Thief_Game
             switch (keyPressEventArgs.KeyChar)
             {
                 case 'w':
-                    Pacman.MoveUp();
+                    //Pacman.MoveUp();
                     break;
                 case 's':
-                    Pacman.MoveDown();
+                    //Pacman.MoveDown();
                     break;
                 case 'a':
-                    Pacman.MoveLeft();
+                    //Pacman.MoveLeft();
                     break;
                 case 'd':
-                    Pacman.MoveRight();
+                    //Pacman.MoveRight();
                     break;
             }
 
