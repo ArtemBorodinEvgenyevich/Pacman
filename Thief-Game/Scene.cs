@@ -61,6 +61,8 @@ namespace Thief_Game
         /// <param name="keyPressEventArgs"></param>
         private void KeyPressListner(object sender, KeyPressEventArgs keyPressEventArgs)
         {
+            //Уйти от английской раскладки
+            //IsKeyDown
             switch (keyPressEventArgs.KeyChar)
             {
                 case 'w':

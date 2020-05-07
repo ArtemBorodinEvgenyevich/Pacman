@@ -10,9 +10,6 @@ namespace Thief_Game
     /// </summary>
     class Map
     {
-        //remove
-        public const int SpriteDefaultWidth = 70;
-        public const int SpriteDefaultHeight = 75;
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
         //PositionMap[1, 2] = (70, 150)
 

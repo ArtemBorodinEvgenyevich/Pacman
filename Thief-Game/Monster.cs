@@ -50,6 +50,8 @@ namespace Thief_Game
             //Если будем делать другие типы монстров, то они появятся, как
             //наследники этого класса
             //Init
+
+            //For autopilot use timer
             StartX = startX;
             StartY = startY;
 
