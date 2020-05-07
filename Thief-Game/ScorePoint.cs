@@ -1,4 +1,7 @@
-﻿namespace Thief_Game
+﻿using System.Drawing;
+using System.IO;
+
+namespace Thief_Game
 {
     //Lev
     /// <summary>
@@ -6,25 +9,26 @@
     /// </summary>
     class ScorePoint
     {
-        public readonly int X;
-        public readonly int Y;
-        public bool IsActive;
+        private int X;
+        private int Y;
+        public int CurrentPositionX
+        {
+            get => X;
+        }
+        public int CurrentPositionY
+        {
+            get => Y;
+        }
         public const int Score = 10;
+        public readonly Image View;
 
         public ScorePoint(int x, int y)
         {
             //Точки, которые дают очки
             X = x;
             Y = y;
-            IsActive = true;
-        }
 
-        /// <summary>
-        /// Действия, при съедении точки
-        /// </summary>
-        public void Eat()
-        {
-            IsActive = false;
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Coin.png"));
         }
     }
 }

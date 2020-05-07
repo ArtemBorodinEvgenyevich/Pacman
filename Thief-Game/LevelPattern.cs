@@ -6,12 +6,12 @@ namespace Thief_Game
     /// <summary>
     /// Класс инициализаци элементов уровня по заданному паттерну
     /// </summary>
-    class LevelPattern
+    public class LevelPattern
     {
         //Списки координат точек появления объектов
-        public List<(int x, int y)> Walls;
-        public List<(int x, int y)> MonsterSpawns;
-        public (int x, int y) Player;
+        public List<(int X, int Y)> Walls;
+        public List<(int X, int Y)> MonsterSpawns;
+        public (int X, int Y) Player;
 
         /// <summary>
         /// Класс, который описывает все объекты на уровне

@@ -37,7 +37,7 @@ namespace Thief_Game
             //При инициализации уровня создаем стены
             foreach (var wall in pattern.Walls)
             {
-                Walls.Add(new Wall(wall.x, wall.y));
+                Walls.Add(new Wall(wall.X, wall.Y));
             }
         }
 
@@ -46,14 +46,14 @@ namespace Thief_Game
             //При инициализации уровня создаем монстров
             foreach (var monster in pattern.MonsterSpawns)
             {
-                Monsters.Add(new Monster(monster.x, monster.y, 10));
+                Monsters.Add(new Monster(monster.X, monster.Y, 10));
             }
         }
 
         public void InitPlayer(LevelPattern pattern)
         {
             //При инициализации уровня создаем игрока
-            Pacman = new Pacman(pattern.Player.x, pattern.Player.y, 10);
+            Pacman = new Pacman(pattern.Player.X, pattern.Player.Y, 10);
         }
 
         public void MovePacmanDown() => Pacman.MoveDown();
