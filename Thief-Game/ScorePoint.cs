@@ -7,7 +7,7 @@ namespace Thief_Game
     /// <summary>
     /// Класс инициализации игровых очков
     /// </summary>
-    class ScorePoint
+    public class ScorePoint
     {
         private int X;
         private int Y;
@@ -32,14 +32,14 @@ namespace Thief_Game
         }
     }
 
-    class Energizer: ScorePoint
+    public class Energizer: ScorePoint
     {
         public Energizer(int x, int y): base(x, y, 10, @"Energizer.png")
         {
         }
     }
 
-    class SmallPoint: ScorePoint
+    public class SmallPoint: ScorePoint
     {
         public SmallPoint(int x, int y): base(x, y, 50, @"Coin.png")
         {

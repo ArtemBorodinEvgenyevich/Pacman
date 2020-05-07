@@ -57,6 +57,12 @@ namespace Thief_Game
                             Pacman.StartX = x * Dimensions.SpriteWidthPixels;
                             Pacman.StartY = y * Dimensions.SpriteHeightPixels;
                             break;
+                        case LevelParser.ScorePointSpawnSign:
+                            pattern.AddSmallPoint(x, y);
+                            break;
+                        case LevelParser.EnergizerSpawnSign:
+                            pattern.AddEnergizer(x, y);
+                            break;
                     }
 
                     x++;

@@ -16,6 +16,8 @@ namespace Thief_Game
         private List<Wall> Walls;
         private List<Monster> Monsters;
         private Pacman Pacman;
+        private List<SmallPoint> Points;
+        private List<Energizer> Energizers;
 
         //Я нигде не использую IMovable
         public Map()
@@ -24,10 +26,14 @@ namespace Thief_Game
 
             Walls = new List<Wall>();
             Monsters = new List<Monster>();
+            Points = new List<SmallPoint>();
+            Energizers = new List<Energizer>();
 
             InitWalls(pattern);
             InitMonsters(pattern);
             InitPlayer(pattern);
+            InitSmallPoints(pattern);
+            InitEnergizers(pattern);
 
             Application.Run(new Scene(Draw, Pacman));
         }
@@ -56,6 +62,22 @@ namespace Thief_Game
             Pacman = new Pacman(Pacman.StartX, Pacman.StartY, 10);
         }
 
+        public void InitSmallPoints(LevelPattern pattern)
+        {
+            foreach(var point in pattern.SmallPoints)
+            {
+                Points.Add(point);
+            }
+        }
+
+        public void InitEnergizers(LevelPattern pattern)
+        {
+            foreach(var energizer in pattern.Energizers)
+            {
+                Energizers.Add(new Energizer(energizer.X, energizer.Y));
+            }
+        }
+
         public void MovePacmanDown() => Pacman.MoveDown();
         public void MovePacmanUp() => Pacman.MoveUp();
         public void MovePacmanRight() => Pacman.MoveRight();
@@ -81,6 +103,24 @@ namespace Thief_Game
                 var posY = (float)(monster.CurrentPositionY * Dimensions.SpriteHeightPixels);
 
                 graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+
+            for (int i = 0; i < Energizers.Count; i++)
+            {
+                var energizer = Energizers[i];
+                var posX = (float)(energizer.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(energizer.CurrentPositionY * Dimensions.SpriteHeightPixels);
+
+                graphics.DrawImage(energizer.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                var point = Points[i];
+                var posX = (float)(point.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(point.CurrentPositionY * Dimensions.SpriteHeightPixels);
+
+                graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
             graphics.DrawImage(
