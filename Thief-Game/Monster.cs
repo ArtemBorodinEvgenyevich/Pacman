@@ -50,6 +50,8 @@ namespace Thief_Game
             //Если будем делать другие типы монстров, то они появятся, как
             //наследники этого класса
             //Init
+
+            //For autopilot use timer
             StartX = startX;
             StartY = startY;
 
@@ -72,7 +74,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveUp()
         {
-            Y -= 15;
+            Y -= Dimensions.StepY;
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveLeft()
         {
-            X -= 15;
+            X -= Dimensions.StepX;
         }
 
         /// <summary>
@@ -90,7 +92,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveRight()
         {
-            X += 15;
+            X += Dimensions.StepX;
         }
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveDown()
         {
-            Y += 15;
+            Y += Dimensions.StepY;
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace Thief_Game
         /// <param name="graphics"></param>
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 15f, 15f);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
         }
 
         /// <summary>

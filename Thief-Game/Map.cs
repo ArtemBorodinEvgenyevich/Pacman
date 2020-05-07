@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Thief_Game
 {
@@ -9,9 +10,6 @@ namespace Thief_Game
     /// </summary>
     class Map
     {
-        //remove
-        public const int SpriteDefaultWidth = 70;
-        public const int SpriteDefaultHeight = 75;
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
         //PositionMap[1, 2] = (70, 150)
 
@@ -19,6 +17,7 @@ namespace Thief_Game
         private List<Monster> Monsters;
         private Pacman Pacman;
 
+        //Я нигде не использую IMovable
         public Map()
         {
             var pattern = new LevelLoader().ParseFile();
@@ -29,6 +28,8 @@ namespace Thief_Game
             InitWalls(pattern);
             InitMonsters(pattern);
             InitPlayer(pattern);
+
+            Application.Run(new Scene(Draw, Pacman.MoveUp, Pacman.MoveDown, Pacman.MoveRight, Pacman.MoveLeft));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -55,11 +56,24 @@ namespace Thief_Game
             Pacman = new Pacman(pattern.Player.x, pattern.Player.y, 10);
         }
 
+        public void MovePacmanDown() => Pacman.MoveDown();
+        public void MovePacmanUp() => Pacman.MoveUp();
+        public void MovePacmanRight() => Pacman.MoveRight();
+        public void MovePacmanLeft() => Pacman.MoveLeft();
+
         //Произошло измнение - перерисовали карту
-        //Optimize!
-        //Есть лишние перерисовки
-        public void ReDraw(Graphics graphics)
+        public void Draw(Graphics graphics)
         {
+            //Unite
+            for (int i = 0; i < Walls.Count; i++)
+            {
+                var wall = Walls[i];
+                var posX = (float)(wall.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
+
+                graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+
             for (int i = 0; i < Monsters.Count; i++)
             {
                 var monster = Monsters[i];
@@ -69,26 +83,12 @@ namespace Thief_Game
                 graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
-            /*
             graphics.DrawImage(
-                Pacman.View, 
-                Pacman.CurrentPositionX, 
-                Pacman.CurrentPositionY, 
-                Dimensions.SpriteWidthPixels, 
+                Pacman.View,
+                Pacman.CurrentPositionX,
+                Pacman.CurrentPositionY,
+                Dimensions.SpriteWidthPixels,
                 Dimensions.SpriteHeightPixels);
-                */
-        }
-
-        public void Draw(Graphics graphics)
-        {
-            for (int i = 0; i < Walls.Count; i++)
-            {
-                var wall = Walls[i];
-                var posX = (float)(wall.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
-
-                graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
-            }
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Thief_Game.Constants;
 
 namespace Thief_Game
 {
@@ -8,9 +9,6 @@ namespace Thief_Game
     /// </summary>
     class LevelLoader
     {
-        private const char WallSign = '#';
-        private const char MonsterSpawnSign = 'S';
-        private const char PacmanSpawnSign = 'P';
         private string PathToPattern;
 
         /// <summary>
@@ -49,13 +47,13 @@ namespace Thief_Game
                 {
                     switch (line[i])
                     {
-                        case WallSign:
+                        case LevelParser.WallSign:
                             pattern.AddWall(x, y);
                             break;
-                        case MonsterSpawnSign:
+                        case LevelParser.MonsterSpawnSign:
                             pattern.AddMonsterSpawn(x, y);
                             break;
-                        case PacmanSpawnSign:
+                        case LevelParser.PacmanSpawnSign:
                             pattern.Player.x = x;
                             pattern.Player.y = y;
                             break;
