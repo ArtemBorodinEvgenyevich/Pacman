@@ -53,7 +53,7 @@ namespace Thief_Game
         public void InitPlayer(LevelPattern pattern)
         {
             //При инициализации уровня создаем игрока
-            Pacman = new Pacman(pattern.Player.X, pattern.Player.Y, 10);
+            Pacman = new Pacman(Pacman.StartX, Pacman.StartY, 10);
         }
 
         public void MovePacmanDown() => Pacman.MoveDown();

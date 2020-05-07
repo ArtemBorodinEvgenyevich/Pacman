@@ -19,16 +19,30 @@ namespace Thief_Game
         {
             get => Y;
         }
-        public const int Score = 10;
+        public readonly int Score;
         public readonly Image View;
 
-        public ScorePoint(int x, int y)
+        public ScorePoint(int x, int y, int score, string fileName)
         {
             //Точки, которые дают очки
             X = x;
             Y = y;
+            Score = score;
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, fileName));
+        }
+    }
 
-            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Coin.png"));
+    class Energizer: ScorePoint
+    {
+        public Energizer(int x, int y): base(x, y, 10, @"Energizer.png")
+        {
+        }
+    }
+
+    class SmallPoint: ScorePoint
+    {
+        public SmallPoint(int x, int y): base(x, y, 50, @"Coin.png")
+        {
         }
     }
 }
