@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Thief_Game.Constants
 {
+    //Lev
+    /// <summary>
+    /// Constans for LevelLoader
+    /// </summary>
     class LevelParser
     {
         public const char WallSign = '#';
