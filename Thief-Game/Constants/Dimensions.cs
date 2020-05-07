@@ -12,11 +12,15 @@
 
         //Размеры карты квадратах 
         //квадрат имеет размеры SpriteWidthPixels х SpriteHeightPixels
-        public const int MapWidthSquare = 20;
+        public const int MapWidthSquare = 19;
         public const int MapHeightSquare = 22;
 
         //Размеры окна в пикселях
-        public const int WindowWidthPixels = 600;
-        public const int WindowHeightPixels = 660;
+        public const int WindowWidthPixels = SpriteWidthPixels * MapWidthSquare;
+        public const int WindowHeightPixels = SpriteHeightPixels * MapHeightSquare;
+
+        //Шаг пакмана и монстров
+        public const int StepX = SpriteWidthPixels / 2;
+        public const int StepY = SpriteHeightPixels / 2;
     }
 }

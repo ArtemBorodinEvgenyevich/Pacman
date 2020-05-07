@@ -1,4 +1,6 @@
-﻿namespace Thief_Game
+﻿using System.Windows.Forms;
+
+namespace Thief_Game
 {
     //Lev
     /// <summary>
@@ -6,17 +8,10 @@
     /// </summary>
     class Game
     {
-        private Pacman Player;
-
         public Game()
         {
-            Player = new Pacman(10, 10, 10);
-        }
-
-        private void LoadPattern()
-        {
-            //загрузка файла
-            // инициализация массива на основе этого файла
+            var worldStat = new WorldStat();
+            var map = new Map();
         }
 
         //Произошло событие, через этот класс влияем на все модели

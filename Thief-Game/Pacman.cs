@@ -45,12 +45,12 @@ namespace Thief_Game
 
         public void MoveDown()
         {
-            Y -= 10;
+            Y += 10;
         }
 
         public void MoveLeft()
         {
-            X += 10;
+            X -= 10;
         }
 
         public void MoveRight()
@@ -60,7 +60,7 @@ namespace Thief_Game
 
         public void MoveUp()
         {
-            Y += 10;
+            Y -= 10;
         }
 
         public void SetView(string path)
