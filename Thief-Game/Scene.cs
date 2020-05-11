@@ -19,7 +19,25 @@ namespace Thief_Game
             
             SetupWindow();
 
-            KeyPress += KeyPressListner;
+            //KeyPress += KeyPressListner;
+            KeyDown += KeyPressListner2;
+        }
+
+        /// <summary>
+        /// Обработка нажатий на клавиатуре
+        /// Если пакман будет работать, то удалить метод KeyPressListner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="keyEventArgs"></param>
+        private void KeyPressListner2(object sender, KeyEventArgs keyEventArgs)
+        {
+            switch (keyEventArgs.KeyValue)
+            {
+                //68: right
+                //65: left
+                //case 83: down
+                //87: up
+            }
         }
 
         /// <summary>
@@ -31,6 +49,7 @@ namespace Thief_Game
         {
             //Уйти от английской раскладки
             //IsKeyDown
+            
             switch (keyPressEventArgs.KeyChar)
             {
                 case 'w':
