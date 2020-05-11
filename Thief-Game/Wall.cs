@@ -7,7 +7,7 @@ namespace Thief_Game
     /// <summary>
     /// Класс загрузки спрайтов и инициализации игровых препятствий
     /// </summary>
-    class Wall
+    public class Wall
     {
         public readonly int CurrentPositionX;
         public readonly int CurrentPositionY;
