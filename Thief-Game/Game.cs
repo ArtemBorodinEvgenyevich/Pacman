@@ -10,8 +10,8 @@ namespace Thief_Game
     {
         public Game()
         {
-            var mainMenu = new MainMenu();
-            Application.Run(mainMenu);
+            //var mainMenu = new MainMenu();
+            //Application.Run(mainMenu);
 
             var worldStat = new WorldStat();
             var map = new Map();
