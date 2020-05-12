@@ -22,7 +22,7 @@ namespace Thief_Game
         private GameMode Mode;
         private Action<Graphics> Redraw;
 
-        public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft)
+        public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft, Action<Graphics> Redraw)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
@@ -31,6 +31,7 @@ namespace Thief_Game
             this.MoveUp = MoveUp;
             this.MoveLeft = MoveLeft;
             this.MoveRight = MoveRight;
+            this.Redraw = Redraw;
             
             SetupWindow();
             
