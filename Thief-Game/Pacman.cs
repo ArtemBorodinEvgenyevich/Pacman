@@ -70,7 +70,7 @@ namespace Thief_Game
 
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 15f, 15f);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 30, 30);
         }
 
         public void Respawn()

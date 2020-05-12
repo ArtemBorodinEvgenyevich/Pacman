@@ -20,6 +20,7 @@ namespace Thief_Game
         private Button NewGameBTN;
         private Button ExitBTN;
         private GameMode Mode;
+        private Action<Graphics> Redraw;
 
         public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft)
         {
@@ -137,6 +138,7 @@ namespace Thief_Game
         protected override void OnPaint(PaintEventArgs e)
         {
             DrawMap(e.Graphics);
+            Redraw(e.Graphics);
 
             if (Mode == GameMode.MENU)
                 DrawButtonsBackground(e.Graphics);
