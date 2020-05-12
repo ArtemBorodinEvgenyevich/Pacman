@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Thief_Game.Constants;
 
 namespace Thief_Game
 {
@@ -11,18 +12,25 @@ namespace Thief_Game
     /// </summary>
     public class Scene : Form
     {
-        Action<Graphics> DrawMap;
-        Action PacmanMove;
+        private Action<Graphics> DrawMap;
+        private Action MoveUp;
+        private Action MoveDown;
+        private Action MoveLeft;
+        private Action MoveRight;
         private Button NewGameBTN;
         private Button ExitBTN;
         private GameMode Mode;
         private Action<Graphics> Redraw;
 
-        public Scene(Action<Graphics> DrawMap, Action Move, Action<Graphics> Redraw)
+        public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft, Action<Graphics> Redraw)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
-            this.PacmanMove = Move;
+
+            this.MoveDown = MoveDown;
+            this.MoveUp = MoveUp;
+            this.MoveLeft = MoveLeft;
+            this.MoveRight = MoveRight;
             this.Redraw = Redraw;
             
             SetupWindow();
@@ -31,7 +39,7 @@ namespace Thief_Game
                 InitButtons();
 
             //KeyPress += KeyPressListner;
-            KeyDown += KeyPressListner2;
+            KeyDown += KeyPressListner;
         }
 
         /// <summary>
@@ -40,51 +48,28 @@ namespace Thief_Game
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="keyEventArgs"></param>
-        private void KeyPressListner2(object sender, KeyEventArgs keyEventArgs)
+        private void KeyPressListner(object sender, KeyEventArgs keyEventArgs)
         {
             if (Mode == GameMode.GAME)
             {
                 switch (keyEventArgs.KeyValue)
                 {
-                    case 68:
-                        PacmanMove();
-                        Invalidate();
+                    case KeyCodes.KeyDown:
+                        MoveDown();
                         break;
-                    //68: right
-                    //65: left
-                    //case 83: down
-                    //87: up
+                    case KeyCodes.KeyUp:
+                        MoveUp();
+                        break;
+                    case KeyCodes.KeyRight:
+                        MoveRight();
+                        break;
+                    case KeyCodes.KeyLeft:
+                        MoveLeft();
+                        break;
                 }
-            }
-        }
 
-        /// <summary>
-        /// Обработка нажатий на клавиаутуру
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="keyPressEventArgs"></param>
-        private void KeyPressListner(object sender, KeyPressEventArgs keyPressEventArgs)
-        {
-            //Уйти от английской раскладки
-            //IsKeyDown
-            
-            switch (keyPressEventArgs.KeyChar)
-            {
-                case 'w':
-                    //Pacman.MoveUp();
-                    break;
-                case 's':
-                    //Pacman.MoveDown();
-                    break;
-                case 'a':
-                    //Pacman.MoveLeft();
-                    break;
-                case 'd':
-                    //Pacman.MoveRight();
-                    break;
+                Invalidate();
             }
-
-            Invalidate();
         }
 
         /// <summary>
