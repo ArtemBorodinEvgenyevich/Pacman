@@ -44,22 +44,22 @@ namespace Thief_Game
 
         public void MoveDown()
         {
-            Y += 10;
+            Y += Dimensions.StepY;
         }
 
         public void MoveLeft()
         {
-            X -= 10;
+            X -= Dimensions.StepX;
         }
 
         public void MoveRight()
         {
-            X += 10;
+            X += Dimensions.StepX;
         }
 
         public void MoveUp()
         {
-            Y -= 10;
+            Y -= Dimensions.StepY;
         }
 
         public void SetView(string path)
