@@ -42,7 +42,6 @@ namespace Thief_Game
             DirectionY = 0;
         }
 
-
         public void MoveDown()
         {
             Y += 10;

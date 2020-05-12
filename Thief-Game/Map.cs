@@ -35,7 +35,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw));
+            Application.Run(new Scene(Draw, MovePacmanRight, ReDraw));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -82,6 +82,7 @@ namespace Thief_Game
         public void MovePacmanUp() => Pacman.MoveUp();
         public void MovePacmanRight() => Pacman.MoveRight();
         public void MovePacmanLeft() => Pacman.MoveLeft();
+        public void ReDraw(Graphics graphics) => Pacman.Redraw(graphics);
 
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)

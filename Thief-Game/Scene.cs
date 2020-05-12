@@ -12,14 +12,18 @@ namespace Thief_Game
     public class Scene : Form
     {
         Action<Graphics> DrawMap;
+        Action PacmanMove;
         private Button NewGameBTN;
         private Button ExitBTN;
         private GameMode Mode;
+        private Action<Graphics> Redraw;
 
-        public Scene(Action<Graphics> DrawMap)
+        public Scene(Action<Graphics> DrawMap, Action Move, Action<Graphics> Redraw)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
+            this.PacmanMove = Move;
+            this.Redraw = Redraw;
             
             SetupWindow();
             
@@ -42,6 +46,11 @@ namespace Thief_Game
             {
                 switch (keyEventArgs.KeyValue)
                 {
+                    case 68:
+                        MessageBox.Show("S");
+                        PacmanMove();
+                        Invalidate();
+                        break;
                     //68: right
                     //65: left
                     //case 83: down
@@ -146,6 +155,7 @@ namespace Thief_Game
         protected override void OnPaint(PaintEventArgs e)
         {
             DrawMap(e.Graphics);
+            Redraw(e.Graphics);
 
             if (Mode == GameMode.MENU)
                 DrawButtonsBackground(e.Graphics);
