@@ -47,7 +47,6 @@ namespace Thief_Game
                 switch (keyEventArgs.KeyValue)
                 {
                     case 68:
-                        MessageBox.Show("S");
                         PacmanMove();
                         Invalidate();
                         break;
