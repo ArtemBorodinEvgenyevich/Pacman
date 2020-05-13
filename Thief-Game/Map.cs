@@ -98,7 +98,10 @@ namespace Thief_Game
 
                 if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
                     && (Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels))
+                {
                     moveFlag = false;
+                    break;
+                }
             }
             if (moveFlag)
                 Pacman.MoveDown();
