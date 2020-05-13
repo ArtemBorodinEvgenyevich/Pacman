@@ -147,12 +147,4 @@ namespace Thief_Game
             }
         }
     }
-
-    enum GameObjects
-    {
-        FLOOR,
-        PLAYER,
-        MONSTER,
-        WALL
-    }
 }
