@@ -62,12 +62,6 @@ namespace Thief_Game
             Y -= Dimensions.StepY;
         }
 
-        public void SetView(string path)
-        {
-            // FIXME: Не отрисовывает персоножа на уровне.
-            View = PacmanViewLoader.LoadImage("Pacman.png");
-        }
-
         public void Redraw(Graphics graphics)
         {
             graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 30, 30);
