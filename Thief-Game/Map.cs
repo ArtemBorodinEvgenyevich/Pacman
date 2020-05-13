@@ -110,7 +110,6 @@ namespace Thief_Game
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)
         {
-            //Unite
             for (int i = 0; i < Walls.Count; i++)
             {
                 var wall = Walls[i];
@@ -146,13 +145,6 @@ namespace Thief_Game
 
                 graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
-
-            graphics.DrawImage(
-                Pacman.View,
-                Pacman.CurrentPositionX,
-                Pacman.CurrentPositionY,
-                Dimensions.SpriteWidthPixels,
-                Dimensions.SpriteHeightPixels);
         }
     }
 
