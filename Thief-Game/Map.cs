@@ -91,10 +91,6 @@ namespace Thief_Game
                     wall.CurrentPositionX * Dimensions.SpriteWidthPixels, 
                     wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
                 var same = pacValues == wallValues;
-                var str = String.Format("Pacman X: {0} | Wall X: {1} \n" +
-                    "Pacman Y: {2} | Wall Y: {3}\n" +
-                    "Equal: {4}", pacValues.Item1, wallValues.Item1, pacValues.Item2, wallValues.Item2, same);
-                Console.WriteLine(str);
 
                 if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
                     && (Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels))
