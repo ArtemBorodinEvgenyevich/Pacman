@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace Thief_Game
 {
@@ -78,16 +79,37 @@ namespace Thief_Game
             }
         }
 
-        public void MovePacmanDown() => Pacman.MoveDown();
+        // FIXME: Координаты стен и пакмана, не совпадают, когда они визуально находятся в одном месте.
+        public void MovePacmanDown()
+        {
+            bool moveFlag = true;
+            // FIXME: убрать мусор с выводом координат
+            var pacValues = Tuple.Create(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+            foreach (Wall wall in Walls)
+            {
+                var wallValues = Tuple.Create(
+                    wall.CurrentPositionX * Dimensions.SpriteWidthPixels, 
+                    wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
+                var same = pacValues == wallValues;
+
+                if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveDown();
+        }
         public void MovePacmanUp() => Pacman.MoveUp();
         public void MovePacmanRight() => Pacman.MoveRight();
         public void MovePacmanLeft() => Pacman.MoveLeft();
         public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
-
+        
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)
         {
-            //Unite
             for (int i = 0; i < Walls.Count; i++)
             {
                 var wall = Walls[i];
@@ -123,21 +145,6 @@ namespace Thief_Game
 
                 graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
-
-            graphics.DrawImage(
-                Pacman.View,
-                Pacman.CurrentPositionX,
-                Pacman.CurrentPositionY,
-                Dimensions.SpriteWidthPixels,
-                Dimensions.SpriteHeightPixels);
         }
-    }
-
-    enum GameObjects
-    {
-        FLOOR,
-        PLAYER,
-        MONSTER,
-        WALL
     }
 }
