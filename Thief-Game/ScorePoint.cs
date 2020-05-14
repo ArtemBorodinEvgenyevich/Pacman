@@ -1,30 +1,48 @@
-﻿namespace Thief_Game
+﻿using System.Drawing;
+using System.IO;
+
+namespace Thief_Game
 {
     //Lev
     /// <summary>
     /// Класс инициализации игровых очков
     /// </summary>
-    class ScorePoint
+    public class ScorePoint
     {
-        public readonly int X;
-        public readonly int Y;
-        public bool IsActive;
-        public const int Score = 10;
+        private int X;
+        private int Y;
+        public int CurrentPositionX
+        {
+            get => X;
+        }
+        public int CurrentPositionY
+        {
+            get => Y;
+        }
+        public readonly int Score;
+        public readonly Image View;
 
-        public ScorePoint(int x, int y)
+        public ScorePoint(int x, int y, int score, string fileName)
         {
             //Точки, которые дают очки
             X = x;
             Y = y;
-            IsActive = true;
+            Score = score;
+            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, fileName));
         }
+    }
 
-        /// <summary>
-        /// Действия, при съедении точки
-        /// </summary>
-        public void Eat()
+    public class Energizer: ScorePoint
+    {
+        public Energizer(int x, int y): base(x, y, 10, @"Energizer.png")
         {
-            IsActive = false;
+        }
+    }
+
+    public class SmallPoint: ScorePoint
+    {
+        public SmallPoint(int x, int y): base(x, y, 50, @"Coin.png")
+        {
         }
     }
 }

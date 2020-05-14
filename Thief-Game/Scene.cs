@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Thief_Game.Constants;
 
 namespace Thief_Game
 {
@@ -11,87 +12,64 @@ namespace Thief_Game
     /// </summary>
     public class Scene : Form
     {
-        //Monster Blinky;
+        private Action<Graphics> DrawMap;
+        private Action MoveUp;
+        private Action MoveDown;
+        private Action MoveLeft;
+        private Action MoveRight;
+        private Button NewGameBTN;
+        private Button ExitBTN;
+        private GameMode Mode;
+        private Action<Graphics> Redraw;
 
-        //Pacman Pacman;
-
-        Map Map;
-
-        Action<Graphics> DrawMap;
-        Action PacmanMoveUp;
-        Action PacmanMoveDown;
-        Action PacmanMoveRight;
-        Action PacmanMoveLeft;
-
-        //Протащить делегаты - реакции на нажатие кнопок
-        public Scene(Action<Graphics> DrawMap, Action PacmanMoveUp, Action PacmanMoveDown, Action PacmanMoveRight, Action PacmanMoveLeft)
+        public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft, Action<Graphics> Redraw)
         {
+            Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
-            this.PacmanMoveUp = PacmanMoveUp;
-            this.PacmanMoveDown = PacmanMoveDown;
-            this.PacmanMoveLeft = PacmanMoveLeft;
-            this.PacmanMoveRight = PacmanMoveRight;
 
+            this.MoveDown = MoveDown;
+            this.MoveUp = MoveUp;
+            this.MoveLeft = MoveLeft;
+            this.MoveRight = MoveRight;
+            this.Redraw = Redraw;
+            
             SetupWindow();
+            
+            if(Mode == GameMode.MENU)
+                InitButtons();
 
-            DoubleBuffered = true;
-
-            //Map = new Map();
-
-            //Blinky = new Monster(0, 0, 10);
-            //Blinky.SetView(null);
-
-            //Pacman = new Pacman(10, 10, 10);
-            //Pacman.SetView(null);
-
-            //var ll = new LevelLoader();
-            //var scene = ll.ParseFile();
-
-            KeyPreview = true;
-
-            KeyPress += KeyPressListner;
-
-            //Происходит событие, предварительная обработка, отправка в Game
+            //KeyPress += KeyPressListner;
+            KeyDown += KeyPressListner;
         }
 
         /// <summary>
-        /// Обработка нажатий на клавиаутуру
+        /// Обработка нажатий на клавиатуре
+        /// Если пакман будет работать, то удалить метод KeyPressListner
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="keyPressEventArgs"></param>
-        private void KeyPressListner(object sender, KeyPressEventArgs keyPressEventArgs)
+        /// <param name="keyEventArgs"></param>
+        private void KeyPressListner(object sender, KeyEventArgs keyEventArgs)
         {
-            //Уйти от английской раскладки
-            //IsKeyDown
-            switch (keyPressEventArgs.KeyChar)
+            if (Mode == GameMode.GAME)
             {
-                case 'w':
-                    //Blinky.MoveUp();
-                    //Pacman.MoveUp();
-                    //Map.MovePacmanUp();
-                    PacmanMoveUp();
-                    break;
-                case 's':
-                    //Blinky.MoveDown();
-                    //Pacman.MoveDown();
-                    //Map.MovePacmanDown();
-                    PacmanMoveDown();
-                    break;
-                case 'a':
-                    //Blinky.MoveLeft();
-                    //Pacman.MoveLeft();
-                    //Map.MovePacmanLeft();
-                    PacmanMoveLeft();
-                    break;
-                case 'd':
-                    //Blinky.MoveRight();
-                    //Pacman.MoveRight();
-                    //Map.MovePacmanRight();
-                    PacmanMoveRight();
-                    break;
-            }
+                switch (keyEventArgs.KeyValue)
+                {
+                    case KeyCodes.KeyDown:
+                        MoveDown();
+                        break;
+                    case KeyCodes.KeyUp:
+                        MoveUp();
+                        break;
+                    case KeyCodes.KeyRight:
+                        MoveRight();
+                        break;
+                    case KeyCodes.KeyLeft:
+                        MoveLeft();
+                        break;
+                }
 
-            Invalidate();
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -102,21 +80,69 @@ namespace Thief_Game
             ClientSize = new Size(Dimensions.WindowWidthPixels, Dimensions.WindowHeightPixels);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            DoubleBuffered = true;
+            KeyPreview = true;
         }
 
+        /// <summary>
+        /// Init buttons
+        /// </summary>
+        private void InitButtons()
+        {
+            var newGameButtonStartX = Dimensions.WindowWidthPixels / 2 - Dimensions.ButtonWidth / 2; 
+            var newGameButtonsStartY = Dimensions.WindowHeightPixels / 2 - Dimensions.ButtonHeight;
+            var exitButtonStartX = newGameButtonStartX;
+            var exitButtonStartY = newGameButtonsStartY + Dimensions.ButtonHeight;
+
+            NewGameBTN = new Button();
+            NewGameBTN.Width = Dimensions.ButtonWidth;
+            NewGameBTN.Height = Dimensions.ButtonHeight;
+            NewGameBTN.Text = "Start new game";
+            NewGameBTN.Location = new Point(newGameButtonStartX, newGameButtonsStartY);
+            NewGameBTN.Click += (sender, args) =>
+            {
+                Controls.Remove(ExitBTN);
+                Controls.Remove(NewGameBTN);
+                Mode = GameMode.GAME;
+                Invalidate();
+            };
+            NewGameBTN.BackColor = Color.WhiteSmoke;
+            Controls.Add(NewGameBTN);
+
+            ExitBTN = new Button();
+            ExitBTN.Width = Dimensions.ButtonWidth;
+            ExitBTN.Height = Dimensions.ButtonHeight;
+            ExitBTN.Text = "Exit";
+            ExitBTN.Location = new Point(exitButtonStartX, exitButtonStartY);
+            ExitBTN.Click += (sender, args) =>
+            {
+                Close();
+            };
+            ExitBTN.BackColor = Color.WhiteSmoke;
+            Controls.Add(ExitBTN);
+        }
+        
+        /// <summary>
+        /// Main menu background
+        /// </summary>
+        /// <param name="graphics"></param>
+        private void DrawButtonsBackground(Graphics graphics)
+        {
+            var startX = NewGameBTN.Location.X - Dimensions.Padding;
+            var startY = NewGameBTN.Location.Y - Dimensions.Padding;
+            var width = Dimensions.Padding * 2 + Dimensions.ButtonWidth;
+            var height = Dimensions.Padding * 2 + Dimensions.ButtonHeight * 2;
+
+            graphics.FillRectangle(Brushes.Chartreuse, startX, startY, width, height);
+        }
+        
         protected override void OnPaint(PaintEventArgs e)
         {
-            //var graphic = e.Graphics;
-            //graphic.DrawImage(Blinky.View, Blinky.CurrentPositionX, Blinky.CurrentPositionY);
-
-            //e.Graphics.DrawImage(Blinky.View, 0f, 0f, 15f, 15f);
-
-            //Map.Draw(e.Graphics);
-            //Map.ReDraw(e.Graphics);
             DrawMap(e.Graphics);
-            //Blinky.Redraw(e.Graphics);
+            Redraw(e.Graphics);
 
-            //Pacman.Redraw(e.Graphics);
+            if (Mode == GameMode.MENU)
+                DrawButtonsBackground(e.Graphics);
         }
     }
 }

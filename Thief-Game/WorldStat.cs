@@ -6,6 +6,7 @@
     /// </summary>
     class WorldStat
     {
+        public int CurrentLevel = 0;
         //Информация о мире
     }
 }

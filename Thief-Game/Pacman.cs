@@ -42,36 +42,29 @@ namespace Thief_Game
             DirectionY = 0;
         }
 
-
         public void MoveDown()
         {
-            Y += 10;
+            Y += Dimensions.StepY;
         }
 
         public void MoveLeft()
         {
-            X -= 10;
+            X -= Dimensions.StepX;
         }
 
         public void MoveRight()
         {
-            X += 10;
+            X += Dimensions.StepX;
         }
 
         public void MoveUp()
         {
-            Y -= 10;
-        }
-
-        public void SetView(string path)
-        {
-            // FIXME: Не отрисовывает персоножа на уровне.
-            View = PacmanViewLoader.LoadImage("Pacman.png");
+            Y -= Dimensions.StepY;
         }
 
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 15f, 15f);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 30, 30);
         }
 
         public void Respawn()

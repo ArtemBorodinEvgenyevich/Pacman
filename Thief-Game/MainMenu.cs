@@ -39,6 +39,7 @@ namespace Thief_Game
             NewGame.Width = 100;
             NewGame.Height = 40;
             NewGame.Location = new Point(Width /2 - NewGame.Width/2, Height / 2 - NewGame.Height/2);
+            NewGame.Click += (s, e) => Close();
             Controls.Add(NewGame);
 
             Exit = new Button();
@@ -46,6 +47,7 @@ namespace Thief_Game
             Exit.Width = 100;
             Exit.Height = 40;
             Exit.Location = new Point(Width / 2 - Exit.Width / 2, Height / 2 + Exit.Height/2);
+            Exit.Click += (s, e) => Application.Exit();
             Controls.Add(Exit);
         }
     }

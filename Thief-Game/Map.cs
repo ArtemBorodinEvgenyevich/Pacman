@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace Thief_Game
 {
@@ -16,6 +17,8 @@ namespace Thief_Game
         private List<Wall> Walls;
         private List<Monster> Monsters;
         private Pacman Pacman;
+        private List<SmallPoint> Points;
+        private List<Energizer> Energizers;
 
         //Я нигде не использую IMovable
         public Map()
@@ -24,12 +27,16 @@ namespace Thief_Game
 
             Walls = new List<Wall>();
             Monsters = new List<Monster>();
+            Points = new List<SmallPoint>();
+            Energizers = new List<Energizer>();
 
             InitWalls(pattern);
             InitMonsters(pattern);
             InitPlayer(pattern);
+            InitSmallPoints(pattern);
+            InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, Pacman.MoveUp, Pacman.MoveDown, Pacman.MoveRight, Pacman.MoveLeft));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -37,7 +44,7 @@ namespace Thief_Game
             //При инициализации уровня создаем стены
             foreach (var wall in pattern.Walls)
             {
-                Walls.Add(new Wall(wall.x, wall.y));
+                Walls.Add(wall);
             }
         }
 
@@ -46,25 +53,98 @@ namespace Thief_Game
             //При инициализации уровня создаем монстров
             foreach (var monster in pattern.MonsterSpawns)
             {
-                Monsters.Add(new Monster(monster.x, monster.y, 10));
+                Monsters.Add(monster);
             }
         }
 
         public void InitPlayer(LevelPattern pattern)
         {
             //При инициализации уровня создаем игрока
-            Pacman = new Pacman(pattern.Player.x, pattern.Player.y, 10);
+            Pacman = new Pacman(Pacman.StartX, Pacman.StartY, 10);
         }
 
-        public void MovePacmanDown() => Pacman.MoveDown();
-        public void MovePacmanUp() => Pacman.MoveUp();
-        public void MovePacmanRight() => Pacman.MoveRight();
-        public void MovePacmanLeft() => Pacman.MoveLeft();
+        public void InitSmallPoints(LevelPattern pattern)
+        {
+            foreach(var point in pattern.SmallPoints)
+            {
+                Points.Add(point);
+            }
+        }
 
+        public void InitEnergizers(LevelPattern pattern)
+        {
+            foreach(var energizer in pattern.Energizers)
+            {
+                Energizers.Add(energizer);
+            }
+        }
+
+        // FIXME: Координаты стен и пакмана, не совпадают, когда они визуально находятся в одном месте.
+        public void MovePacmanDown()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveDown();
+        }
+        public void MovePacmanUp()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionY - Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveUp();
+        }
+        public void MovePacmanRight()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveRight();
+        }
+        public void MovePacmanLeft()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionX - Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveLeft();
+        }
+        public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
+        
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)
         {
-            //Unite
             for (int i = 0; i < Walls.Count; i++)
             {
                 var wall = Walls[i];
@@ -83,20 +163,23 @@ namespace Thief_Game
                 graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
-            graphics.DrawImage(
-                Pacman.View,
-                Pacman.CurrentPositionX,
-                Pacman.CurrentPositionY,
-                Dimensions.SpriteWidthPixels,
-                Dimensions.SpriteHeightPixels);
-        }
-    }
+            for (int i = 0; i < Energizers.Count; i++)
+            {
+                var energizer = Energizers[i];
+                var posX = (float)(energizer.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(energizer.CurrentPositionY * Dimensions.SpriteHeightPixels);
 
-    enum GameObjects
-    {
-        FLOOR,
-        PLAYER,
-        MONSTER,
-        WALL
+                graphics.DrawImage(energizer.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                var point = Points[i];
+                var posX = (float)(point.CurrentPositionX * Dimensions.SpriteWidthPixels);
+                var posY = (float)(point.CurrentPositionY * Dimensions.SpriteHeightPixels);
+
+                graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            }
+        }
     }
 }
