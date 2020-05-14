@@ -11,6 +11,15 @@ namespace Thief_Game
     /// </summary>
     class Map
     {
+        // Enum as flags for CheckWallCollision method.
+        private enum Dimension
+        {
+            mvUp,
+            mvDown,
+            mvRight,
+            mvLeft
+        }
+        
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
         //PositionMap[1, 2] = (70, 150)
 
@@ -79,69 +88,59 @@ namespace Thief_Game
             }
         }
 
-        // FIXME: Координаты стен и пакмана, не совпадают, когда они визуально находятся в одном месте.
         public void MovePacmanDown()
         {
-            bool moveFlag = true;
-            foreach (Wall wall in Walls)
-            {
-                if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
-                {
-                    moveFlag = false;
-                    break;
-                }
-            }
-            if (moveFlag)
+            if (CheckWallCollision(Pacman, Walls, Dimension.mvDown))
                 Pacman.MoveDown();
         }
         public void MovePacmanUp()
         {
-            bool moveFlag = true;
-            foreach (Wall wall in Walls)
-            {
-                if ((Pacman.CurrentPositionY - Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
-                {
-                    moveFlag = false;
-                    break;
-                }
-            }
-            if (moveFlag)
+            //if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))
+            if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))   
                 Pacman.MoveUp();
         }
         public void MovePacmanRight()
         {
-            bool moveFlag = true;
-            foreach (Wall wall in Walls)
-            {
-                if ((Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
-                {
-                    moveFlag = false;
-                    break;
-                }
-            }
-            if (moveFlag)
+            if (CheckWallCollision(Pacman, Walls, Dimension.mvRight))
                 Pacman.MoveRight();
         }
         public void MovePacmanLeft()
         {
+            if (CheckWallCollision(Pacman, Walls, Dimension.mvLeft))
+                Pacman.MoveLeft();
+        }
+        public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
+        
+        private bool CheckWallCollision(Pacman Pacman , List<Wall> Walls, Dimension DimFlag)
+        {
+            int pacmanX = Pacman.CurrentPositionX;
+            int pacmanY = Pacman.CurrentPositionY;
             bool moveFlag = true;
+
+            if (DimFlag == Dimension.mvUp)
+                pacmanY -= Dimensions.StepY;
+            else if (DimFlag == Dimension.mvDown)
+                pacmanY += Dimensions.StepY;
+            else if (DimFlag == Dimension.mvRight)
+                pacmanX += Dimensions.StepX;
+            else
+                pacmanX -= Dimensions.StepX;
+
             foreach (Wall wall in Walls)
             {
-                if ((Pacman.CurrentPositionX - Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
+                int wallX = wall.CurrentPositionX * Dimensions.SpriteHeightPixels;
+                int wallY = wall.CurrentPositionY * Dimensions.SpriteHeightPixels;
+
+                if ((pacmanY == wallY)
+                    && (pacmanX == wallX))
                 {
                     moveFlag = false;
                     break;
                 }
             }
-            if (moveFlag)
-                Pacman.MoveLeft();
+
+            return moveFlag;
         }
-        public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
-        
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)
         {
