@@ -83,17 +83,10 @@ namespace Thief_Game
         public void MovePacmanDown()
         {
             bool moveFlag = true;
-            // FIXME: убрать мусор с выводом координат
-            var pacValues = Tuple.Create(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
             foreach (Wall wall in Walls)
             {
-                var wallValues = Tuple.Create(
-                    wall.CurrentPositionX * Dimensions.SpriteWidthPixels, 
-                    wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
-                var same = pacValues == wallValues;
-
                 if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels))
+                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
                 {
                     moveFlag = false;
                     break;
@@ -102,9 +95,51 @@ namespace Thief_Game
             if (moveFlag)
                 Pacman.MoveDown();
         }
-        public void MovePacmanUp() => Pacman.MoveUp();
-        public void MovePacmanRight() => Pacman.MoveRight();
-        public void MovePacmanLeft() => Pacman.MoveLeft();
+        public void MovePacmanUp()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionY - Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveUp();
+        }
+        public void MovePacmanRight()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveRight();
+        }
+        public void MovePacmanLeft()
+        {
+            bool moveFlag = true;
+            foreach (Wall wall in Walls)
+            {
+                if ((Pacman.CurrentPositionX - Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
+                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+            if (moveFlag)
+                Pacman.MoveLeft();
+        }
         public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
         
         //Произошло измнение - перерисовали карту
