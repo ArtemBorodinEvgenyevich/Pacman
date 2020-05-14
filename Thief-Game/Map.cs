@@ -111,10 +111,10 @@ namespace Thief_Game
         }
         public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
         
-        private bool CheckWallCollision(Pacman Pacman , List<Wall> Walls, Dimension DimFlag)
+        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, Dimension DimFlag)
         {
-            int pacmanX = Pacman.CurrentPositionX;
-            int pacmanY = Pacman.CurrentPositionY;
+            int pacmanX = GameObject.CurrentPositionX;
+            int pacmanY = GameObject.CurrentPositionY;
             bool moveFlag = true;
 
             if (DimFlag == Dimension.mvUp)

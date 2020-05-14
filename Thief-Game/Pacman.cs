@@ -5,10 +5,8 @@ using System;
 namespace Thief_Game
 {
     // Artem
-    class Pacman : IMovable
+    class Pacman : MovableGameObject, IMovable
     {
-        private int X;
-        private int Y;
         private int Speed;
         private int Lifes;
 
@@ -18,25 +16,16 @@ namespace Thief_Game
         public int DirectionX;
         public int DirectionY;
 
-        public int CurrentPositionX => X;
-        public int CurrentPositionY => Y;
         public int CurrentSpeed => Speed;
         public int CurrentLifes => Lifes;
 
-        public Image View;
-
-        public Pacman(int startX, int startY, int speed)
+        public Pacman(int startX, int startY, int speed): base("Pacman.png")
         {
-            StartX = startX;
-            StartY = startY;
-
+            Lifes = 3;
             X = startX;
             Y = startY;
-            Lifes = 3;
 
             this.Speed = speed;
-
-            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, "Pacman.png"));
 
             DirectionX = 0;
             DirectionY = 0;
