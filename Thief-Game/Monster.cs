@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 
 namespace Thief_Game
@@ -58,8 +57,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveUp()
         {
-            //Y -= Dimensions.StepY;
-            Y -= 1;
+            Y -= Dimensions.StepY;
         }
 
         /// <summary>
@@ -68,8 +66,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveLeft()
         {
-            //X -= Dimensions.StepX;
-            X -= 1;
+            X -= Dimensions.StepX;
         }
 
         /// <summary>
@@ -78,8 +75,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveRight()
         {
-            //X += Dimensions.StepX;
-            X += 1;
+            X += Dimensions.StepX;
         }
 
         /// <summary>
@@ -88,8 +84,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveDown()
         {
-            //Y += Dimensions.StepY;
-            Y += 1;
+            Y += Dimensions.StepY;
         }
 
         /// <summary>
@@ -122,7 +117,7 @@ namespace Thief_Game
         /// <param name="graphics"></param>
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX * Dimensions.SpriteWidthPixels, CurrentPositionY * Dimensions.SpriteHeightPixels,30f, 30f);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
         }
 
         /// <summary>

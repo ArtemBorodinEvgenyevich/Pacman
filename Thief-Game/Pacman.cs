@@ -33,27 +33,27 @@ namespace Thief_Game
 
         public void MoveDown()
         {
-            Y += 1;
+            Y += Dimensions.StepY;
         }
 
         public void MoveLeft()
         {
-            X -= 1;
+            X -= Dimensions.StepX;
         }
 
         public void MoveRight()
         {
-            X += 1;
+            X += Dimensions.StepX;
         }
 
         public void MoveUp()
         {
-            Y -= 1;
+            Y -= Dimensions.StepY;
         }
 
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX * Dimensions.SpriteWidthPixels, CurrentPositionY * Dimensions.SpriteHeightPixels, 30, 30);
+            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, 30, 30);
         }
 
         public void Respawn()

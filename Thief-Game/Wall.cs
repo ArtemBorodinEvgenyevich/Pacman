@@ -7,18 +7,10 @@ namespace Thief_Game
     /// <summary>
     /// Класс загрузки спрайтов и инициализации игровых препятствий
     /// </summary>
-    public class Wall: ImmovableGameObject
+    public class Wall
     {
-        private int X;
-        private int Y;
-        public int CurrentPositionX
-        {
-            get => X;
-        }
-        public int CurrentPositionY
-        {
-            get => Y;
-        }
+        public readonly int CurrentPositionX;
+        public readonly int CurrentPositionY;
 
         //make static
         public readonly Image View;
@@ -27,8 +19,8 @@ namespace Thief_Game
         {
             View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Wall.png"));
 
-            X = x;
-            Y = y;
+            CurrentPositionX = x;
+            CurrentPositionY = y;
         }
     }
 }

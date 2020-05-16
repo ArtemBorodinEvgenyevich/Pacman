@@ -1,7 +1,6 @@
 ﻿//Lev
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Thief_Game.Constants;
@@ -13,6 +12,7 @@ namespace Thief_Game
     /// </summary>
     public class Scene : Form
     {
+        private Action<Graphics> DrawMap;
         private Action MoveUp;
         private Action MoveDown;
         private Action MoveLeft;
@@ -22,21 +22,16 @@ namespace Thief_Game
         private GameMode Mode;
         private Action<Graphics> Redraw;
 
-        public Scene(
-            Action MoveUp, 
-            Action MoveDown, 
-            Action MoveRight, 
-            Action MoveLeft, 
-            Action<Graphics> RedrawMap,
-            Action MonstersMove)
+        public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft, Action<Graphics> Redraw)
         {
             Mode = GameMode.MENU;
+            this.DrawMap = DrawMap;
 
             this.MoveDown = MoveDown;
             this.MoveUp = MoveUp;
             this.MoveLeft = MoveLeft;
             this.MoveRight = MoveRight;
-            this.Redraw = RedrawMap;
+            this.Redraw = Redraw;
             
             SetupWindow();
             
@@ -45,15 +40,6 @@ namespace Thief_Game
 
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
-
-            var timer = new Timer();
-            timer.Interval = 1000;
-            timer.Tick += (s, e) =>
-            {
-                MonstersMove();
-                Invalidate();
-            };
-            timer.Start();
         }
 
         /// <summary>
@@ -152,6 +138,7 @@ namespace Thief_Game
         
         protected override void OnPaint(PaintEventArgs e)
         {
+            DrawMap(e.Graphics);
             Redraw(e.Graphics);
 
             if (Mode == GameMode.MENU)
