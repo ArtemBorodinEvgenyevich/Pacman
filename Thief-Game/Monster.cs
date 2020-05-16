@@ -7,22 +7,11 @@ namespace Thief_Game
     /// <summary>
     /// Класс инициализации противника
     /// </summary>
-    public class Monster : IMovable
+    public class Monster : MovableGameObject, IMovable
     {
         //Позиция монстра на карте
-        private int X;
-        private int Y;
-        public int CurrentPositionX
-        {
-            get => X;
-        }
-        public int CurrentPositionY
-        {
-            get => Y;
-        }
+        
         //Start position;
-        public readonly int StartX;
-        public readonly int StartY;
         //Where is the monster going
         public int destinationX;
         public int destinationY;
@@ -31,13 +20,13 @@ namespace Thief_Game
         {
             get => speed;
         }
+        public readonly int StartX;
+        public readonly int StartY;
 
         //Direction - возможно, понадобится для построения траекторий
 
         //Monster's behavior
         Behaviors currentBehavior;
-
-        public Image View;
 
         /// <summary>
         /// Базовый класс монстра
@@ -45,22 +34,16 @@ namespace Thief_Game
         /// <param name="startX">Стартовая позиция</param>
         /// <param name="startY"></param>
         /// <param name="speed"></param>
-        public Monster(int startX, int startY, int speed)
+        public Monster(int startX, int startY, int speed): base(@"Blinky.png")
         {
             //Если будем делать другие типы монстров, то они появятся, как
             //наследники этого класса
-            //Init
-
-            //For autopilot use timer
+            this.speed = speed;
             StartX = startX;
             StartY = startY;
 
             X = startX;
             Y = startY;
-
-            this.speed = speed;
-
-            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Blinky.png"));
 
             destinationX = 0;
             destinationY = 0;
@@ -74,7 +57,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveUp()
         {
-            Y -= Dimensions.StepY;
+            Y -= 1;
         }
 
         /// <summary>
@@ -83,7 +66,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveLeft()
         {
-            X -= Dimensions.StepX;
+            X -= 1;
         }
 
         /// <summary>
@@ -92,7 +75,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveRight()
         {
-            X += Dimensions.StepX;
+            X += 1;
         }
 
         /// <summary>
@@ -101,7 +84,7 @@ namespace Thief_Game
         /// </summary>
         public void MoveDown()
         {
-            Y += Dimensions.StepY;
+            Y += 1;
         }
 
         /// <summary>
@@ -134,7 +117,12 @@ namespace Thief_Game
         /// <param name="graphics"></param>
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX, CurrentPositionY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
+            graphics.DrawImage(
+                View, 
+                CurrentPositionX * Dimensions.SpriteWidthPixels, 
+                CurrentPositionY * Dimensions.SpriteHeightPixels, 
+                Dimensions.SpriteWidthPixels, 
+                Dimensions.SpriteHeightPixels);
         }
 
         /// <summary>

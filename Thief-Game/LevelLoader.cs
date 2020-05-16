@@ -54,8 +54,8 @@ namespace Thief_Game
                             pattern.AddMonsterSpawn(x, y);
                             break;
                         case LevelParser.PacmanSpawnSign:
-                            Pacman.StartX = x * Dimensions.SpriteWidthPixels;
-                            Pacman.StartY = y * Dimensions.SpriteHeightPixels;
+                            Pacman.StartX = x;
+                            Pacman.StartY = y;
                             break;
                         case LevelParser.ScorePointSpawnSign:
                             pattern.AddSmallPoint(x, y);

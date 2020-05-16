@@ -10,7 +10,7 @@ namespace Thief_Game
     /// Класс инициализации игрового уровня
     /// </summary>
     class Map
-    {
+    {   
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
         //PositionMap[1, 2] = (70, 150)
 
@@ -36,7 +36,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -79,69 +79,126 @@ namespace Thief_Game
             }
         }
 
-        // FIXME: Координаты стен и пакмана, не совпадают, когда они визуально находятся в одном месте.
-        public void MovePacmanDown()
+        public void Move()
         {
-            bool moveFlag = true;
-            foreach (Wall wall in Walls)
+            var rnd = new Random();
+
+            for(int i = 0; i < Monsters.Count; i++)
             {
-                if ((Pacman.CurrentPositionY + Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
+                var numb = rnd.Next(0, 4);
+
+                switch (numb)
                 {
-                    moveFlag = false;
-                    break;
+                    case 0:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.DOWN, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            Monsters[i].MoveDown();
+                        break;
+                    case 1:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.UP, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.UP)))
+                            Monsters[i].MoveUp();
+                        break;
+                    case 2:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.LEFT, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.LEFT)))
+                            Monsters[i].MoveLeft();
+                        break;
+                    case 3:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.RIGHT, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.RIGHT)))
+                            Monsters[i].MoveRight();
+                        break;
                 }
             }
-            if (moveFlag)
+        }
+
+        public void MovePacmanDown()
+        {
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.DOWN))
                 Pacman.MoveDown();
         }
         public void MovePacmanUp()
         {
-            bool moveFlag = true;
-            foreach (Wall wall in Walls)
-            {
-                if ((Pacman.CurrentPositionY - Dimensions.StepY == wall.CurrentPositionY * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionX == wall.CurrentPositionX * Dimensions.SpriteWidthPixels))
-                {
-                    moveFlag = false;
-                    break;
-                }
-            }
-            if (moveFlag)
+            //if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.UP))   
                 Pacman.MoveUp();
         }
         public void MovePacmanRight()
         {
-            bool moveFlag = true;
-            foreach (Wall wall in Walls)
-            {
-                if ((Pacman.CurrentPositionX + Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
-                {
-                    moveFlag = false;
-                    break;
-                }
-            }
-            if (moveFlag)
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.RIGHT))
                 Pacman.MoveRight();
         }
         public void MovePacmanLeft()
         {
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.LEFT))
+                Pacman.MoveLeft();
+        }
+        public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
+        
+        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, MoveIntensions DimFlag)
+        {
+            int pacmanX = GameObject.CurrentPositionX;
+            int pacmanY = GameObject.CurrentPositionY;
             bool moveFlag = true;
+
+            if (DimFlag == MoveIntensions.UP)
+                pacmanY -= 1;
+            else if (DimFlag == MoveIntensions.DOWN)
+                pacmanY += 1;
+            else if (DimFlag == MoveIntensions.RIGHT)
+                pacmanX += 1;
+            else
+                pacmanX -= 1;
+
             foreach (Wall wall in Walls)
             {
-                if ((Pacman.CurrentPositionX - Dimensions.StepX == wall.CurrentPositionX * Dimensions.SpriteHeightPixels)
-                    && (Pacman.CurrentPositionY == wall.CurrentPositionY * Dimensions.SpriteWidthPixels))
+                int wallX = wall.CurrentPositionX;
+                int wallY = wall.CurrentPositionY;
+
+                if ((pacmanY == wallY)
+                    && (pacmanX == wallX))
                 {
                     moveFlag = false;
                     break;
                 }
             }
-            if (moveFlag)
-                Pacman.MoveLeft();
+
+            return moveFlag;
         }
-        public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
-        
+
+        private bool CheckMonsterCollision(MovableGameObject GameObject, List<Monster> Monsters, MoveIntensions DimFlag, int except)
+        {
+            int pacmanX = GameObject.CurrentPositionX;
+            int pacmanY = GameObject.CurrentPositionY;
+            bool moveFlag = true;
+
+            if (DimFlag == MoveIntensions.UP)
+                pacmanY -= 1;
+            else if (DimFlag == MoveIntensions.DOWN)
+                pacmanY += 1;
+            else if (DimFlag == MoveIntensions.RIGHT)
+                pacmanX += 1;
+            else
+                pacmanX -= 1;
+
+            for(int i = 0; i < Monsters.Count; i++)
+            {
+                if (i == except) continue;
+
+                int monsterX = Monsters[i].CurrentPositionX;
+                int monsterY = Monsters[i].CurrentPositionY;
+
+                if ((pacmanY == monsterY) && (pacmanX == monsterX))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+
+            return moveFlag;
+        }
+
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)
         {
@@ -152,15 +209,6 @@ namespace Thief_Game
                 var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
 
                 graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
-            }
-
-            for (int i = 0; i < Monsters.Count; i++)
-            {
-                var monster = Monsters[i];
-                var posX = (float)(monster.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(monster.CurrentPositionY * Dimensions.SpriteHeightPixels);
-
-                graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
             for (int i = 0; i < Energizers.Count; i++)
@@ -180,6 +228,11 @@ namespace Thief_Game
 
                 graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
+
+            foreach (var monster in Monsters)
+                monster.Redraw(graphics);
+
+            Pacman.Redraw(graphics);
         }
     }
 }
