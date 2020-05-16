@@ -34,7 +34,7 @@ namespace Thief_Game
         /// <param name="startX">Стартовая позиция</param>
         /// <param name="startY"></param>
         /// <param name="speed"></param>
-        public Monster(int startX, int startY, int speed): base(@"Blinky.png")
+        public Monster(int startX, int startY, int speed, string spriteName): base(spriteName)
         {
             //Если будем делать другие типы монстров, то они появятся, как
             //наследники этого класса
@@ -49,6 +49,14 @@ namespace Thief_Game
             destinationY = 0;
 
             currentBehavior = Behaviors.DISPERSING;
+        }
+
+        /// <summary>
+        /// Алгоритм движения монстра
+        /// </summary>
+        public virtual void Move()
+        {
+
         }
 
         /// <summary>

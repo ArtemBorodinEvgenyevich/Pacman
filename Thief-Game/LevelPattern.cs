@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Thief_Game.Monsters;
 
 namespace Thief_Game
 {
@@ -40,9 +41,23 @@ namespace Thief_Game
         /// </summary>
         /// <param name="x">Координата по оси Х</param>
         /// <param name="y">Координата по оси У</param>
-        public void AddMonsterSpawn(int x, int y)
+        public void AddMonsterSpawn(int x, int y, MonsterTypes type)
         {
-            MonsterSpawns.Add(new Monster(x, y, 10));
+            switch (type)
+            {
+                case MonsterTypes.BLINKY:
+                    MonsterSpawns.Add(new Blinky(x, y, 10));
+                    break;
+                case MonsterTypes.INKY:
+                    MonsterSpawns.Add(new Inky(x, y, 10));
+                    break;
+                case MonsterTypes.PINKY:
+                    MonsterSpawns.Add(new Pinky(x, y, 10));
+                    break;
+                case MonsterTypes.CLYDE:
+                    MonsterSpawns.Add(new Clyde(x, y, 10));
+                    break;
+            }
         }
 
         /// <summary>

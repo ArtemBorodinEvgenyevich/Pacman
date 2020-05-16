@@ -50,8 +50,17 @@ namespace Thief_Game
                         case LevelParser.WallSign:
                             pattern.AddWall(x, y);
                             break;
-                        case LevelParser.MonsterSpawnSign:
-                            pattern.AddMonsterSpawn(x, y);
+                        case LevelParser.BlinkySpawnSign:
+                            pattern.AddMonsterSpawn(x, y, MonsterTypes.BLINKY);
+                            break;
+                        case LevelParser.PinkySpawnSign:
+                            pattern.AddMonsterSpawn(x, y, MonsterTypes.PINKY);
+                            break;
+                        case LevelParser.InkySpawnSign:
+                            pattern.AddMonsterSpawn(x, y, MonsterTypes.INKY);
+                            break;
+                        case LevelParser.ClydeSpawnSign:
+                            pattern.AddMonsterSpawn(x, y, MonsterTypes.CLYDE);
                             break;
                         case LevelParser.PacmanSpawnSign:
                             Pacman.StartX = x;
