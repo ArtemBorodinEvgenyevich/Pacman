@@ -36,7 +36,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -76,6 +76,40 @@ namespace Thief_Game
             foreach(var energizer in pattern.Energizers)
             {
                 Energizers.Add(energizer);
+            }
+        }
+
+        public void Move()
+        {
+            var rnd = new Random();
+
+            for(int i = 0; i < Monsters.Count; i++)
+            {
+                var numb = rnd.Next(0, 4);
+
+                switch (numb)
+                {
+                    case 0:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.DOWN, i)) 
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            Monsters[i].MoveDown();
+                        break;
+                    case 1:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.UP, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            Monsters[i].MoveUp();
+                        break;
+                    case 2:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.LEFT, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            Monsters[i].MoveLeft();
+                        break;
+                    case 3:
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.RIGHT, i))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            Monsters[i].MoveRight();
+                        break;
+                }
             }
         }
 
@@ -148,10 +182,12 @@ namespace Thief_Game
             else
                 pacmanX -= Dimensions.StepX;
 
-            foreach (var monster in Monsters)
+            for(int i = 0; i < Monsters.Count; i++)
             {
-                int monsterX = monster.CurrentPositionX * Dimensions.SpriteHeightPixels;
-                int monsterY = monster.CurrentPositionY * Dimensions.SpriteHeightPixels;
+                if (i == except) continue;
+
+                int monsterX = Monsters[i].CurrentPositionX;
+                int monsterY = Monsters[i].CurrentPositionY;
 
                 if ((pacmanY == monsterY) && (pacmanX == monsterX))
                 {
@@ -175,15 +211,6 @@ namespace Thief_Game
                 graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
 
-            for (int i = 0; i < Monsters.Count; i++)
-            {
-                var monster = Monsters[i];
-                var posX = (float)(monster.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(monster.CurrentPositionY * Dimensions.SpriteHeightPixels);
-
-                graphics.DrawImage(monster.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
-            }
-
             for (int i = 0; i < Energizers.Count; i++)
             {
                 var energizer = Energizers[i];
@@ -201,6 +228,11 @@ namespace Thief_Game
 
                 graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
+
+            foreach (var monster in Monsters)
+                monster.Redraw(graphics);
+
+            Pacman.Redraw(graphics);
         }
     }
 }

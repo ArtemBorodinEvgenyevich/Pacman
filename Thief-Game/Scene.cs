@@ -22,7 +22,14 @@ namespace Thief_Game
         private GameMode Mode;
         private Action<Graphics> Redraw;
 
-        public Scene(Action<Graphics> DrawMap, Action MoveUp, Action MoveDown, Action MoveRight, Action MoveLeft, Action<Graphics> Redraw)
+        public Scene(
+            Action<Graphics> DrawMap, 
+            Action MoveUp, 
+            Action MoveDown, 
+            Action MoveRight, 
+            Action MoveLeft, 
+            Action<Graphics> Redraw, 
+            Action MoveMonster)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
@@ -40,6 +47,15 @@ namespace Thief_Game
 
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
+
+            var timer = new Timer();
+            timer.Interval = 250;
+            timer.Tick += (s, e) =>
+             {
+                 MoveMonster();
+                 Invalidate();
+             };
+            timer.Start();
         }
 
         /// <summary>
