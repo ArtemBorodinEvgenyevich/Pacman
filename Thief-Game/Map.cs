@@ -90,23 +90,23 @@ namespace Thief_Game
                 switch (numb)
                 {
                     case 0:
-                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.DOWN, i)) 
+                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.DOWN, i))
                             && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
                             Monsters[i].MoveDown();
                         break;
                     case 1:
                         if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.UP, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.UP)))
                             Monsters[i].MoveUp();
                         break;
                     case 2:
                         if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.LEFT, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.LEFT)))
                             Monsters[i].MoveLeft();
                         break;
                     case 3:
                         if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.RIGHT, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
+                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.RIGHT)))
                             Monsters[i].MoveRight();
                         break;
                 }
@@ -143,18 +143,18 @@ namespace Thief_Game
             bool moveFlag = true;
 
             if (DimFlag == MoveIntensions.UP)
-                pacmanY -= Dimensions.StepY;
+                pacmanY -= 1;
             else if (DimFlag == MoveIntensions.DOWN)
-                pacmanY += Dimensions.StepY;
+                pacmanY += 1;
             else if (DimFlag == MoveIntensions.RIGHT)
-                pacmanX += Dimensions.StepX;
+                pacmanX += 1;
             else
-                pacmanX -= Dimensions.StepX;
+                pacmanX -= 1;
 
             foreach (Wall wall in Walls)
             {
-                int wallX = wall.CurrentPositionX * Dimensions.SpriteHeightPixels;
-                int wallY = wall.CurrentPositionY * Dimensions.SpriteHeightPixels;
+                int wallX = wall.CurrentPositionX;
+                int wallY = wall.CurrentPositionY;
 
                 if ((pacmanY == wallY)
                     && (pacmanX == wallX))
@@ -174,13 +174,13 @@ namespace Thief_Game
             bool moveFlag = true;
 
             if (DimFlag == MoveIntensions.UP)
-                pacmanY -= Dimensions.StepY;
+                pacmanY -= 1;
             else if (DimFlag == MoveIntensions.DOWN)
-                pacmanY += Dimensions.StepY;
+                pacmanY += 1;
             else if (DimFlag == MoveIntensions.RIGHT)
-                pacmanX += Dimensions.StepX;
+                pacmanX += 1;
             else
-                pacmanX -= Dimensions.StepX;
+                pacmanX -= 1;
 
             for(int i = 0; i < Monsters.Count; i++)
             {
