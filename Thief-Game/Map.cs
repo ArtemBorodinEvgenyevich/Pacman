@@ -10,16 +10,7 @@ namespace Thief_Game
     /// Класс инициализации игрового уровня
     /// </summary>
     class Map
-    {
-        // Enum as flags for CheckWallCollision method.
-        private enum Dimension
-        {
-            mvUp,
-            mvDown,
-            mvRight,
-            mvLeft
-        }
-        
+    {   
         //Монстр с координатами { X = 1, Y = 2 } на форме находится в позиции
         //PositionMap[1, 2] = (70, 150)
 
@@ -90,38 +81,38 @@ namespace Thief_Game
 
         public void MovePacmanDown()
         {
-            if (CheckWallCollision(Pacman, Walls, Dimension.mvDown))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.DOWN))
                 Pacman.MoveDown();
         }
         public void MovePacmanUp()
         {
             //if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))
-            if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))   
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.UP))   
                 Pacman.MoveUp();
         }
         public void MovePacmanRight()
         {
-            if (CheckWallCollision(Pacman, Walls, Dimension.mvRight))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.RIGHT))
                 Pacman.MoveRight();
         }
         public void MovePacmanLeft()
         {
-            if (CheckWallCollision(Pacman, Walls, Dimension.mvLeft))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.LEFT))
                 Pacman.MoveLeft();
         }
         public void Redraw(Graphics graphics) => Pacman.Redraw(graphics);
         
-        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, Dimension DimFlag)
+        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, MoveIntensions DimFlag)
         {
             int pacmanX = GameObject.CurrentPositionX;
             int pacmanY = GameObject.CurrentPositionY;
             bool moveFlag = true;
 
-            if (DimFlag == Dimension.mvUp)
+            if (DimFlag == MoveIntensions.UP)
                 pacmanY -= Dimensions.StepY;
-            else if (DimFlag == Dimension.mvDown)
+            else if (DimFlag == MoveIntensions.DOWN)
                 pacmanY += Dimensions.StepY;
-            else if (DimFlag == Dimension.mvRight)
+            else if (DimFlag == MoveIntensions.RIGHT)
                 pacmanX += Dimensions.StepX;
             else
                 pacmanX -= Dimensions.StepX;
