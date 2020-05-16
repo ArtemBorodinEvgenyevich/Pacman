@@ -21,6 +21,7 @@ namespace Thief_Game
         private Button ExitBTN;
         private GameMode Mode;
         private Action<Graphics> Redraw;
+        private Action<MoveIntensions> CheckPointsCollision;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -29,7 +30,8 @@ namespace Thief_Game
             Action MoveRight, 
             Action MoveLeft, 
             Action<Graphics> Redraw, 
-            Action MoveMonster)
+            Action MoveMonster,
+            Action<MoveIntensions> CheckPointsCollision)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
@@ -39,6 +41,8 @@ namespace Thief_Game
             this.MoveLeft = MoveLeft;
             this.MoveRight = MoveRight;
             this.Redraw = Redraw;
+
+            this.CheckPointsCollision = CheckPointsCollision;
             
             SetupWindow();
             
@@ -71,15 +75,19 @@ namespace Thief_Game
                 switch (keyEventArgs.KeyValue)
                 {
                     case KeyCodes.KeyDown:
+                        CheckPointsCollision(MoveIntensions.DOWN);
                         MoveDown();
                         break;
                     case KeyCodes.KeyUp:
+                        CheckPointsCollision(MoveIntensions.UP);
                         MoveUp();
                         break;
                     case KeyCodes.KeyRight:
+                        CheckPointsCollision(MoveIntensions.RIGHT);
                         MoveRight();
                         break;
                     case KeyCodes.KeyLeft:
+                        CheckPointsCollision(MoveIntensions.LEFT);
                         MoveLeft();
                         break;
                 }

@@ -36,7 +36,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision));
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -197,6 +197,45 @@ namespace Thief_Game
             }
 
             return moveFlag;
+        }
+
+        private void CheckPointsCollision(MoveIntensions DimFlag)
+        {
+            int pacmanX = Pacman.CurrentPositionX;
+            int pacmanY = Pacman.CurrentPositionY;
+
+            if (DimFlag == MoveIntensions.UP)
+                pacmanY -= 1;
+            else if (DimFlag == MoveIntensions.DOWN)
+                pacmanY += 1;
+            else if (DimFlag == MoveIntensions.RIGHT)
+                pacmanX += 1;
+            else
+                pacmanX -= 1;
+
+            for (int i = 0; i < Points.Count; i++)
+            {
+                int monsterX = Points[i].CurrentPositionX;
+                int monsterY = Points[i].CurrentPositionY;
+
+                if ((pacmanY == monsterY) && (pacmanX == monsterX))
+                {
+                    Points.RemoveAt(i);
+                    break;
+                }
+            }
+
+            for(int i = 0; i <  Energizers.Count; i++)
+            {
+                int monsterX = Energizers[i].CurrentPositionX;
+                int monsterY = Energizers[i].CurrentPositionY;
+
+                if ((pacmanY == monsterY) && (pacmanX == monsterX))
+                {
+                    Energizers.RemoveAt(i);
+                    break;
+                }
+            }
         }
 
         //Произошло измнение - перерисовали карту
