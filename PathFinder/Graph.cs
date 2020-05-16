@@ -158,6 +158,11 @@ namespace PathFinder
             return result;
         }
 
+        public bool Contains(int x, int y)
+        {
+            return Nodes.ContainsKey((x, y));
+        }
+
         public Node this [int x, int y]
         {
             get => Nodes[(x, y)];

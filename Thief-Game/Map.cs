@@ -92,7 +92,7 @@ namespace Thief_Game
             }
         }
 
-        public void Move()
+        private void MoveBlinky()
         {
             var isUp = false;
             var isDown = false;
@@ -115,12 +115,51 @@ namespace Thief_Game
                 && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.LEFT)))
                 isLeft = true;
 
-            Monsters[0].Move(isUp, isDown, isLeft, isRight, Pacman.CurrentPositionX, Pacman.CurrentPositionY, LevelScheme);
+            Monsters[0].Move(isUp, isDown, isLeft, isRight, Pacman.CurrentPositionX, Pacman.CurrentPositionY, 0, 0, LevelScheme);
+        }
+
+        private void MovePinky()
+        {
+            var isUp = false;
+            var isDown = false;
+            var isRight = false;
+            var isLeft = false;
+
+            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.UP, 0))
+                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.UP)))
+                isUp = true;
+
+            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.DOWN, 0))
+                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.DOWN)))
+                isDown = true;
+
+            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.RIGHT, 0))
+                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.RIGHT)))
+                isRight = true;
+
+            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.LEFT, 0))
+                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.LEFT)))
+                isLeft = true;
+
+            Monsters[2].Move(
+                isUp, isDown, isLeft, isRight, 
+                Pacman.CurrentPositionX, Pacman.CurrentPositionY, 
+                Pacman.CurrentPositionX - Pacman.previousX, Pacman.CurrentPositionY - Pacman.previousY,
+                LevelScheme);
+        }
+
+        public void Move()
+        {
+            MoveBlinky();
+
+            MovePinky();
 
             var rnd = new Random();
 
             for(int i = 1; i < Monsters.Count; i++)
             {
+                if (i == 2) continue;
+
                 var numb = rnd.Next(0, 4);
 
                 switch (numb)

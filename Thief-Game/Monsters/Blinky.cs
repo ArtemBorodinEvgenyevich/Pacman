@@ -12,7 +12,7 @@ namespace Thief_Game
 
         }
 
-        public override void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY, Graph scheme)
+        public override void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY, int dx0, int dy0, Graph scheme)
         {
             if ((destinationX == X) && (destinationY == Y)) return;
 
