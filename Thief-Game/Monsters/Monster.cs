@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 
 namespace Thief_Game
@@ -54,7 +55,7 @@ namespace Thief_Game
         /// <summary>
         /// Алгоритм движения монстра
         /// </summary>
-        public virtual void Move()
+        public virtual void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY)
         {
 
         }

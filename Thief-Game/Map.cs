@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System;
+using PathFinder;
 
 namespace Thief_Game
 {
@@ -81,9 +82,32 @@ namespace Thief_Game
 
         public void Move()
         {
+            var isUp = false;
+            var isDown = false;
+            var isRight = false;
+            var isLeft = false;
+
+            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.UP, 0))
+                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.UP)))
+                isUp = true;
+
+            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.DOWN, 0))
+                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.DOWN)))
+                isDown = true;
+
+            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.RIGHT, 0))
+                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.RIGHT)))
+                isRight = true;
+
+            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.LEFT, 0))
+                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.LEFT)))
+                isLeft = true;
+
+            Monsters[0].Move(isUp, isDown, isLeft, isRight, Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+
             var rnd = new Random();
 
-            for(int i = 0; i < Monsters.Count; i++)
+            for(int i = 1; i < Monsters.Count; i++)
             {
                 var numb = rnd.Next(0, 4);
 

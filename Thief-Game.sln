@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thief-Game", "Thief-Game\Thief-Game.csproj", "{AED01BA3-492F-49CA-882F-2A831E1EE485}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thief_GameTest", "Thief_GameTest\Thief_GameTest.csproj", "{F40DD37E-19F3-4B32-9027-C909A2E77704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thief_GameTest", "Thief_GameTest\Thief_GameTest.csproj", "{F40DD37E-19F3-4B32-9027-C909A2E77704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder", "PathFinder\PathFinder.csproj", "{36EE8A96-D410-4A71-BF9C-BB8ED4EDF891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F40DD37E-19F3-4B32-9027-C909A2E77704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F40DD37E-19F3-4B32-9027-C909A2E77704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F40DD37E-19F3-4B32-9027-C909A2E77704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EE8A96-D410-4A71-BF9C-BB8ED4EDF891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EE8A96-D410-4A71-BF9C-BB8ED4EDF891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EE8A96-D410-4A71-BF9C-BB8ED4EDF891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EE8A96-D410-4A71-BF9C-BB8ED4EDF891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

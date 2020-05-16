@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Thief_Game.Monsters;
+using PathFinder;
 
 namespace Thief_Game
 {
@@ -14,6 +15,7 @@ namespace Thief_Game
         public List<Monster> MonsterSpawns;
         public List<Energizer> Energizers;
         public List<SmallPoint> SmallPoints;
+        public Graph LevelScheme;
 
         /// <summary>
         /// Класс, который описывает все объекты на уровне
@@ -24,6 +26,7 @@ namespace Thief_Game
             MonsterSpawns = new List<Monster>();
             Energizers = new List<Energizer>();
             SmallPoints = new List<SmallPoint>();
+            LevelScheme = new Graph();
         }
 
         /// <summary>
@@ -78,6 +81,11 @@ namespace Thief_Game
         public void AddSmallPoint(int x, int y)
         {
             SmallPoints.Add(new SmallPoint(x, y));
+        }
+
+        public void AddFloor(int x, int y)
+        {
+            LevelScheme.Add(new Node(x, y));
         }
     }
 }
