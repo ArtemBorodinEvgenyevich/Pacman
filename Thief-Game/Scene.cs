@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
 using Thief_Game.Constants;
 
 namespace Thief_Game
@@ -23,6 +24,7 @@ namespace Thief_Game
         private Action<Graphics> Redraw;
         private Action<MoveIntensions> CheckPointsCollision;
         private Timer MonsterTimer;
+        private Action SerializeStats;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -32,7 +34,8 @@ namespace Thief_Game
             Action MoveLeft, 
             Action<Graphics> Redraw, 
             Action MoveMonster,
-            Action<MoveIntensions> CheckPointsCollision)
+            Action<MoveIntensions> CheckPointsCollision,
+            Action SerializeStats)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
@@ -44,6 +47,8 @@ namespace Thief_Game
             this.Redraw = Redraw;
 
             this.CheckPointsCollision = CheckPointsCollision;
+
+            this.SerializeStats = SerializeStats;
             
             SetupWindow();
             
@@ -52,6 +57,7 @@ namespace Thief_Game
 
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
+            FormClosing += FormCloseListener;
 
             MonsterTimer = new Timer();
             MonsterTimer.Interval = 250;
@@ -95,6 +101,19 @@ namespace Thief_Game
                 Invalidate();
             }
         }
+
+        // Temporary solution. 
+        // TODO: rewrite later...
+        private void FormCloseListener(object sender, FormClosingEventArgs closingEventArgs)
+        {
+            SerializeStats();
+
+            // temporary
+            var NewStats = new WorldStatPickle().DataDeserialize();
+            string score = String.Format("Total Score: {0}", NewStats);
+            var messagebox = MessageBox.Show(score, "Score", MessageBoxButtons.OK);
+        }
+
 
         /// <summary>
         /// Установка размеров окна

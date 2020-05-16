@@ -20,7 +20,10 @@ namespace Thief_Game
         private Pacman Pacman;
         private List<SmallPoint> Points;
         private List<Energizer> Energizers;
+
         private Graph LevelScheme;
+        // temporary
+        private WorldStat WorldStat;
 
         //Я нигде не использую IMovable
         public Map()
@@ -32,6 +35,7 @@ namespace Thief_Game
             Points = new List<SmallPoint>();
             Energizers = new List<Energizer>();
             LevelScheme = pattern.LevelScheme;
+            WorldStat = new WorldStat();
 
             InitWalls(pattern);
             InitMonsters(pattern);
@@ -39,7 +43,13 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats));
+        }
+
+        private void SerializeStats()
+        {
+            var serializer = new WorldStatPickle();
+            serializer.DataSerialize(WorldStat.ScoreTotal);
         }
 
         private void InitWalls(LevelPattern pattern)
@@ -227,6 +237,8 @@ namespace Thief_Game
 
         private void CheckPointsCollision(MoveIntensions DimFlag)
         {
+            // Чего это такое? Какого-то рода костыль?
+            // ---------------------------------------
             int pacmanX = Pacman.CurrentPositionX;
             int pacmanY = Pacman.CurrentPositionY;
 
@@ -238,15 +250,18 @@ namespace Thief_Game
                 pacmanX += 1;
             else
                 pacmanX -= 1;
+            // ---------------------------------------
 
             for (int i = 0; i < Points.Count; i++)
             {
+                // Деньги,конечно, ужастны, но не на столько, чтобы называть их монстрами :)
                 int monsterX = Points[i].CurrentPositionX;
                 int monsterY = Points[i].CurrentPositionY;
 
                 if ((pacmanY == monsterY) && (pacmanX == monsterX))
                 {
                     Points.RemoveAt(i);
+                    WorldStat.ScoreTotal += 1;
                     break;
                 }
             }
@@ -259,6 +274,7 @@ namespace Thief_Game
                 if ((pacmanY == monsterY) && (pacmanX == monsterX))
                 {
                     Energizers.RemoveAt(i);
+                    WorldStat.ScoreTotal += 10;
                     break;
                 }
             }
