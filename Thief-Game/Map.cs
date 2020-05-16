@@ -132,6 +132,37 @@ namespace Thief_Game
 
             return moveFlag;
         }
+
+        private bool CheckMonsterCollision(MovableGameObject GameObject, List<Monster> Monsters, MoveIntensions DimFlag, int except)
+        {
+            int pacmanX = GameObject.CurrentPositionX;
+            int pacmanY = GameObject.CurrentPositionY;
+            bool moveFlag = true;
+
+            if (DimFlag == MoveIntensions.UP)
+                pacmanY -= Dimensions.StepY;
+            else if (DimFlag == MoveIntensions.DOWN)
+                pacmanY += Dimensions.StepY;
+            else if (DimFlag == MoveIntensions.RIGHT)
+                pacmanX += Dimensions.StepX;
+            else
+                pacmanX -= Dimensions.StepX;
+
+            foreach (var monster in Monsters)
+            {
+                int monsterX = monster.CurrentPositionX * Dimensions.SpriteHeightPixels;
+                int monsterY = monster.CurrentPositionY * Dimensions.SpriteHeightPixels;
+
+                if ((pacmanY == monsterY) && (pacmanX == monsterX))
+                {
+                    moveFlag = false;
+                    break;
+                }
+            }
+
+            return moveFlag;
+        }
+
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)
         {
