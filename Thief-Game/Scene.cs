@@ -22,6 +22,7 @@ namespace Thief_Game
         private GameMode Mode;
         private Action<Graphics> Redraw;
         private Action<MoveIntensions> CheckPointsCollision;
+        private Timer MonsterTimer;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -52,14 +53,13 @@ namespace Thief_Game
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
 
-            var timer = new Timer();
-            timer.Interval = 250;
-            timer.Tick += (s, e) =>
+            MonsterTimer = new Timer();
+            MonsterTimer.Interval = 250;
+            MonsterTimer.Tick += (s, e) =>
              {
                  MoveMonster();
                  Invalidate();
              };
-            timer.Start();
         }
 
         /// <summary>
@@ -128,6 +128,7 @@ namespace Thief_Game
                 Controls.Remove(ExitBTN);
                 Controls.Remove(NewGameBTN);
                 Mode = GameMode.GAME;
+                MonsterTimer.Start();
                 Invalidate();
             };
             NewGameBTN.BackColor = Color.WhiteSmoke;

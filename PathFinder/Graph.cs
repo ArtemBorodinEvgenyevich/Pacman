@@ -8,16 +8,19 @@ namespace PathFinder
     {
         public List<Node> GraphNodes;
         public Dictionary<int, Node> IncidentNodes;
+        private Dictionary<(int, int), Node> Nodes;
 
         public Graph()
         {
             GraphNodes = new List<Node>();
             IncidentNodes = new Dictionary<int, Node>();
+            Nodes = new Dictionary<(int, int), Node>();
         }
 
         public void Add(Node newNode)
         {
             IncidentNodes.Add(newNode.Id, newNode);
+            Nodes.Add((newNode.X, newNode.Y), newNode);
 
             if (GraphNodes.Count == 0)
             {
@@ -153,6 +156,11 @@ namespace PathFinder
             }
             result.Reverse();
             return result;
+        }
+
+        public Node this [int x, int y]
+        {
+            get => Nodes[(x, y)];
         }
     }
 

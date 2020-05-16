@@ -20,6 +20,7 @@ namespace Thief_Game
         private Pacman Pacman;
         private List<SmallPoint> Points;
         private List<Energizer> Energizers;
+        private Graph LevelScheme;
 
         //Я нигде не использую IMovable
         public Map()
@@ -30,6 +31,7 @@ namespace Thief_Game
             Monsters = new List<Monster>();
             Points = new List<SmallPoint>();
             Energizers = new List<Energizer>();
+            LevelScheme = pattern.LevelScheme;
 
             InitWalls(pattern);
             InitMonsters(pattern);
@@ -103,7 +105,7 @@ namespace Thief_Game
                 && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.LEFT)))
                 isLeft = true;
 
-            Monsters[0].Move(isUp, isDown, isLeft, isRight, Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+            Monsters[0].Move(isUp, isDown, isLeft, isRight, Pacman.CurrentPositionX, Pacman.CurrentPositionY, LevelScheme);
 
             var rnd = new Random();
 

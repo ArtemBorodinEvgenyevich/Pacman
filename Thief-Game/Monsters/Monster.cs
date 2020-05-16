@@ -1,6 +1,8 @@
-﻿using System;
+﻿using PathFinder;
+using System;
 using System.Drawing;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Thief_Game
 {
@@ -55,9 +57,28 @@ namespace Thief_Game
         /// <summary>
         /// Алгоритм движения монстра
         /// </summary>
-        public virtual void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY)
+        public virtual void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY, Graph scheme)
         {
+            if ((destinationX == X) && (destinationY == Y)) return;
 
+            var start = scheme[X, Y];
+            var finish = scheme[destinationX, destinationY];
+
+            var path = scheme.FindPath(start, finish);
+
+            var step = path[1];
+
+            var dx = step.X - X;
+            var dy = step.Y - Y;
+
+            if ((dx > 0))
+                MoveRight();
+            if ((dx < 0))
+                MoveLeft();
+            if ((dy > 0))
+                MoveDown();
+            if ((dy < 0))
+                MoveUp();
         }
 
         /// <summary>
