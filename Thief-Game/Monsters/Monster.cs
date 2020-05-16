@@ -59,26 +59,23 @@ namespace Thief_Game
         /// </summary>
         public virtual void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY, Graph scheme)
         {
-            if ((destinationX == X) && (destinationY == Y)) return;
+            var rnd = new Random();
 
-            var start = scheme[X, Y];
-            var finish = scheme[destinationX, destinationY];
-
-            var path = scheme.FindPath(start, finish);
-
-            var step = path[1];
-
-            var dx = step.X - X;
-            var dy = step.Y - Y;
-
-            if ((dx > 0))
-                MoveRight();
-            if ((dx < 0))
-                MoveLeft();
-            if ((dy > 0))
-                MoveDown();
-            if ((dy < 0))
-                MoveUp();
+            switch(rnd.Next(0, 4))
+            {
+                case 0:
+                    MoveUp();
+                    break;
+                case 1:
+                    MoveDown();
+                    break;
+                case 2:
+                    MoveLeft();
+                    break;
+                case 3:
+                    MoveRight();
+                    break;
+            }
         }
 
         /// <summary>
