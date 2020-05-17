@@ -1,5 +1,8 @@
-﻿using System.Drawing;
+﻿using PathFinder;
+using System;
+using System.Drawing;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Thief_Game
 {
@@ -34,7 +37,7 @@ namespace Thief_Game
         /// <param name="startX">Стартовая позиция</param>
         /// <param name="startY"></param>
         /// <param name="speed"></param>
-        public Monster(int startX, int startY, int speed): base(@"Blinky.png")
+        public Monster(int startX, int startY, int speed, string spriteName): base(spriteName)
         {
             //Если будем делать другие типы монстров, то они появятся, как
             //наследники этого класса
@@ -50,6 +53,31 @@ namespace Thief_Game
 
             currentBehavior = Behaviors.DISPERSING;
         }
+
+        /// <summary>
+        /// Алгоритм движения монстра
+        /// </summary>
+        public virtual void Move(int destinationX, int destinationY, Graph scheme)
+        {
+            var rnd = new Random();
+
+            switch(rnd.Next(0, 4))
+            {
+                case 0:
+                    MoveUp();
+                    break;
+                case 1:
+                    MoveDown();
+                    break;
+                case 2:
+                    MoveLeft();
+                    break;
+                case 3:
+                    MoveRight();
+                    break;
+            }
+        }
+
 
         /// <summary>
         /// Изменение координат

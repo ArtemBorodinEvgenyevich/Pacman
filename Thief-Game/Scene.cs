@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
 using Thief_Game.Constants;
 
 namespace Thief_Game
@@ -21,6 +22,9 @@ namespace Thief_Game
         private Button ExitBTN;
         private GameMode Mode;
         private Action<Graphics> Redraw;
+        private Action<MoveIntensions> CheckPointsCollision;
+        private Timer MonsterTimer;
+        private Action SerializeStats;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -29,7 +33,9 @@ namespace Thief_Game
             Action MoveRight, 
             Action MoveLeft, 
             Action<Graphics> Redraw, 
-            Action MoveMonster)
+            Action MoveMonster,
+            Action<MoveIntensions> CheckPointsCollision,
+            Action SerializeStats)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
@@ -39,6 +45,10 @@ namespace Thief_Game
             this.MoveLeft = MoveLeft;
             this.MoveRight = MoveRight;
             this.Redraw = Redraw;
+
+            this.CheckPointsCollision = CheckPointsCollision;
+
+            this.SerializeStats = SerializeStats;
             
             SetupWindow();
             
@@ -47,15 +57,15 @@ namespace Thief_Game
 
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
+            FormClosing += FormCloseListener;
 
-            var timer = new Timer();
-            timer.Interval = 250;
-            timer.Tick += (s, e) =>
+            MonsterTimer = new Timer();
+            MonsterTimer.Interval = 250;
+            MonsterTimer.Tick += (s, e) =>
              {
                  MoveMonster();
                  Invalidate();
              };
-            timer.Start();
         }
 
         /// <summary>
@@ -71,15 +81,19 @@ namespace Thief_Game
                 switch (keyEventArgs.KeyValue)
                 {
                     case KeyCodes.KeyDown:
+                        CheckPointsCollision(MoveIntensions.DOWN);
                         MoveDown();
                         break;
                     case KeyCodes.KeyUp:
+                        CheckPointsCollision(MoveIntensions.UP);
                         MoveUp();
                         break;
                     case KeyCodes.KeyRight:
+                        CheckPointsCollision(MoveIntensions.RIGHT);
                         MoveRight();
                         break;
                     case KeyCodes.KeyLeft:
+                        CheckPointsCollision(MoveIntensions.LEFT);
                         MoveLeft();
                         break;
                 }
@@ -87,6 +101,19 @@ namespace Thief_Game
                 Invalidate();
             }
         }
+
+        // Temporary solution. 
+        // TODO: rewrite later...
+        private void FormCloseListener(object sender, FormClosingEventArgs closingEventArgs)
+        {
+            SerializeStats();
+
+            // temporary
+            var NewStats = new WorldStatPickle().DataDeserialize();
+            string score = String.Format("Total Score: {0}", NewStats);
+            var messagebox = MessageBox.Show(score, "Score", MessageBoxButtons.OK);
+        }
+
 
         /// <summary>
         /// Установка размеров окна
@@ -120,6 +147,7 @@ namespace Thief_Game
                 Controls.Remove(ExitBTN);
                 Controls.Remove(NewGameBTN);
                 Mode = GameMode.GAME;
+                MonsterTimer.Start();
                 Invalidate();
             };
             NewGameBTN.BackColor = Color.WhiteSmoke;

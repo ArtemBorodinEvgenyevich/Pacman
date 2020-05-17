@@ -10,6 +10,9 @@ namespace Thief_Game
         private int Speed;
         private int Lifes;
 
+        public int previousX;
+        public int previousY;
+
         public static int StartX;
         public static int StartY;
 
@@ -33,21 +36,33 @@ namespace Thief_Game
 
         public void MoveDown()
         {
+            previousX = X;
+            previousY = Y;
             Y += 1;
         }
 
         public void MoveLeft()
         {
+            previousX = X;
+            previousY = Y;
             X -= 1;
+            if (X < 0)
+                X = Dimensions.WindowWidthPixels / Dimensions.SpriteWidthPixels - 1;
         }
 
         public void MoveRight()
         {
+            previousX = X;
+            previousY = Y;
             X += 1;
+            if (X > Dimensions.WindowWidthPixels / Dimensions.SpriteWidthPixels - 1)
+                X = 0;
         }
 
         public void MoveUp()
         {
+            previousX = X;
+            previousY = Y;
             Y -= 1;
         }
 

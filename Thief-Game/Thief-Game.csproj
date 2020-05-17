@@ -12,4 +12,8 @@
     <OutputPath>bin\docs\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PathFinder\PathFinder.csproj" />
+  </ItemGroup>
+
 </Project>
