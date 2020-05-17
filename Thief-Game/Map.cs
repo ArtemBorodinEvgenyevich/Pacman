@@ -159,37 +159,6 @@ namespace Thief_Game
             MovePinky();
             MoveInky();
             MoveClyde();
-
-            var rnd = new Random();
-
-            for(int i = 4; i < Monsters.Count; i++)
-            {
-                var numb = rnd.Next(0, 4);
-
-                switch (numb)
-                {
-                    case 0:
-                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.DOWN, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.DOWN)))
-                            Monsters[i].MoveDown();
-                        break;
-                    case 1:
-                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.UP, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.UP)))
-                            Monsters[i].MoveUp();
-                        break;
-                    case 2:
-                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.LEFT, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.LEFT)))
-                            Monsters[i].MoveLeft();
-                        break;
-                    case 3:
-                        if ((CheckMonsterCollision(Monsters[i], Monsters, MoveIntensions.RIGHT, i))
-                            && (CheckWallCollision(Monsters[i], Walls, MoveIntensions.RIGHT)))
-                            Monsters[i].MoveRight();
-                        break;
-                }
-            }
         }
 
         public void MovePacmanDown()
@@ -358,16 +327,26 @@ namespace Thief_Game
 
             Pacman.Redraw(graphics);
 
-            //Blinky
+#if DEBUG
+            DrawBlinkyIntension(graphics);
+            DrawPinkyIntension(graphics);
+            DrawInkyIntension(graphics);
+            DrawClydeIntension(graphics);
+#endif
+        }
+
+        private void DrawBlinkyIntension(Graphics graphics)
+        {
             graphics.DrawLine(
                 new Pen(Brushes.Red) { Width = 5 },
-                Monsters[0].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels/2,
-                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels/2,
+                Monsters[0].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
                 Pacman.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
                 Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
-            //Blinky
+        }
 
-            //Pinky
+        private void DrawPinkyIntension(Graphics graphics)
+        {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
             var dy = Pacman.CurrentPositionY - Pacman.previousY;
 
@@ -382,16 +361,16 @@ namespace Thief_Game
 
             graphics.DrawLine(
                 new Pen(Brushes.Pink) { Width = 5 },
-                Monsters[2].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels /2,
+                Monsters[2].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
                 Monsters[2].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
                 (Pacman.CurrentPositionX + dx) * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
                 (Pacman.CurrentPositionY + dy) * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+        }
 
-            //Pinky
-
-            //Inky
-            dx = Pacman.CurrentPositionX - Pacman.previousX;
-            dy = Pacman.CurrentPositionY - Pacman.previousY;
+        private void DrawInkyIntension(Graphics graphics)
+        {
+            var dx = Pacman.CurrentPositionX - Pacman.previousX;
+            var dy = Pacman.CurrentPositionY - Pacman.previousY;
 
             if (dx > 0)
                 dx = 2;
@@ -418,7 +397,30 @@ namespace Thief_Game
                 Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
                 hX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
                 hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
-            //Inky
+        }
+
+        private void DrawClydeIntension(Graphics graphics) 
+        {
+            var clydePos = new Node(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
+            var pacmanPos = new Node(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+
+            var dist = LevelScheme.Distance(clydePos, pacmanPos);
+
+            if (dist < 8)
+            {
+                //left bottom corner
+                graphics.DrawLine(
+                    new Pen(Brushes.Orange),
+                    Monsters[3].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                    Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                    LevelScheme.GetLeftBottomCorner.X * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                    LevelScheme.GetLeftBottomCorner.Y * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+            }
+            else
+            {
+                //pacman
+                Monsters[3].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY, LevelScheme);
+            }
         }
     }
 }
