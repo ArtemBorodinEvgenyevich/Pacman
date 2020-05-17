@@ -410,7 +410,7 @@ namespace Thief_Game
             {
                 //left bottom corner
                 graphics.DrawLine(
-                    new Pen(Brushes.Orange),
+                    new Pen(Brushes.Orange) { Width = 5 },
                     Monsters[3].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
                     Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
                     LevelScheme.GetLeftBottomCorner.X * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
@@ -419,7 +419,12 @@ namespace Thief_Game
             else
             {
                 //pacman
-                Monsters[3].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY, LevelScheme);
+                graphics.DrawLine(
+                    new Pen(Brushes.Orange) { Width = 5 },
+                    Monsters[3].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                    Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                    Pacman.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                    Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
             }
         }
     }
