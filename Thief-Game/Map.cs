@@ -94,60 +94,24 @@ namespace Thief_Game
 
         private void MoveBlinky()
         {
-            var isUp = false;
-            var isDown = false;
-            var isRight = false;
-            var isLeft = false;
-
-            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.UP, 0))
-                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.UP)))
-                isUp = true;
-
-            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.DOWN, 0))
-                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.DOWN)))
-                isDown = true;
-
-            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.RIGHT, 0))
-                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.RIGHT)))
-                isRight = true;
-
-            if ((CheckMonsterCollision(Monsters[0], Monsters, MoveIntensions.LEFT, 0))
-                && (CheckWallCollision(Monsters[0], Walls, MoveIntensions.LEFT)))
-                isLeft = true;
-
-            Monsters[0].Move(isUp, isDown, isLeft, isRight, Pacman.CurrentPositionX, Pacman.CurrentPositionY, 0, 0, LevelScheme);
+            Monsters[0].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY, LevelScheme);
         }
 
         private void MovePinky()
         {
-            var isUp = false;
-            var isDown = false;
-            var isRight = false;
-            var isLeft = false;
+            var dx = Pacman.CurrentPositionX - Pacman.previousX;
+            var dy = Pacman.CurrentPositionY - Pacman.previousY;
 
-            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.UP, 0))
-                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.UP)))
-                isUp = true;
-
-            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.DOWN, 0))
-                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.DOWN)))
-                isDown = true;
-
-            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.RIGHT, 0))
-                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.RIGHT)))
-                isRight = true;
-
-            if ((CheckMonsterCollision(Monsters[2], Monsters, MoveIntensions.LEFT, 0))
-                && (CheckWallCollision(Monsters[2], Walls, MoveIntensions.LEFT)))
-                isLeft = true;
-
-            Monsters[2].Move(
-                isUp, isDown, isLeft, isRight, 
-                Pacman.CurrentPositionX, Pacman.CurrentPositionY, 
-                Pacman.CurrentPositionX - Pacman.previousX, Pacman.CurrentPositionY - Pacman.previousY,
-                LevelScheme);
+            if (dx > 0)
+                Monsters[2].Move(Pacman.CurrentPositionX + 4, Pacman.CurrentPositionY, LevelScheme);
+            else if (dx < 0)
+                Monsters[2].Move(Pacman.CurrentPositionX - 4, Pacman.CurrentPositionY, LevelScheme);
+            else if (dy < 0)
+                Monsters[2].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY - 4, LevelScheme);
+            else
+                Monsters[2].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY + 4, LevelScheme);
         }
-
+        
         public void Move()
         {
             MoveBlinky();

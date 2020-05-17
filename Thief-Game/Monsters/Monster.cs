@@ -57,7 +57,7 @@ namespace Thief_Game
         /// <summary>
         /// Алгоритм движения монстра
         /// </summary>
-        public virtual void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY, int dx, int dy, Graph scheme)
+        public virtual void Move(int destinationX, int destinationY, Graph scheme)
         {
             var rnd = new Random();
 

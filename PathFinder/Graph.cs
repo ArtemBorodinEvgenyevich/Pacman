@@ -158,6 +158,33 @@ namespace PathFinder
             return result;
         }
 
+        public double Distance(Node first, Node second)
+        {
+            var dx = first.X - second.X;
+            var dy = first.Y - second.Y;
+
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        public Node FindNearestNode(int x, int y)
+        {
+            var nodeId = 0;
+            var minLength = double.MaxValue;
+
+            foreach(var node in GraphNodes)
+            {
+                var distance = Distance(node, new Node(x, y));
+
+                if(distance < minLength)
+                {
+                    minLength = distance;
+                    nodeId = node.Id;
+                }
+            }
+
+            return IncidentNodes[nodeId];
+        }
+
         public bool Contains(int x, int y)
         {
             return Nodes.ContainsKey((x, y));

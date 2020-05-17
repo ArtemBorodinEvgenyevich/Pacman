@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Security.Cryptography;
 using System.Text;
 using PathFinder;
@@ -13,55 +14,14 @@ namespace Thief_Game.Monsters
 
         }
 
-        public override void Move(bool isUp, bool isDown, bool isLeft, bool isRight, int destinationX, int destinationY, int dx0, int dy0, Graph scheme)
+        public override void Move(int destinationX, int destinationY, Graph scheme)
         {
             if ((destinationX == X) && (destinationY == Y)) return;
 
-            if (dx0 > 0)
-            {
-                destinationX += 4;
-            }
-            if (dx0 < 0)
-            {
-                destinationX -= 4;
-            }
-            if (dy0 > 0)
-            {
-                destinationY += 4;
-            }
-            if (dy0 < 0)
-            {
-                destinationY -= 4;
-            }
-
-            for(int d = 0; d <= 4; d++)
-            {
-                if (scheme.Contains(destinationX - d, destinationY))
-                {
-                    destinationX -= d;
-                    break;
-                }
-                if (scheme.Contains(destinationX + d, destinationY))
-                {
-                    destinationX += d;
-                    break;
-                }
-                if (scheme.Contains(destinationX, destinationY - d))
-                {
-                    destinationY -= d;
-                    break;
-                }
-                if (scheme.Contains(destinationX, destinationY + d))
-                {
-                    destinationY += d;
-                    break;
-                }
-            }
-
             var start = scheme[X, Y];
-            var finish = scheme[destinationX, destinationY];
+            var destination = scheme.FindNearestNode(destinationX, destinationY);
 
-            var path = scheme.FindPath(start, finish);
+            var path = scheme.FindPath(start, destination);
 
             Node step;
             if (path.Count > 1)
@@ -72,14 +32,14 @@ namespace Thief_Game.Monsters
             var dx = step.X - X;
             var dy = step.Y - Y;
 
-            if ((dx > 0))
-                MoveRight();
-            if ((dx < 0))
+            if ((dx < 0) && (scheme.Contains(X - 1, Y)))
                 MoveLeft();
-            if ((dy > 0))
-                MoveDown();
-            if ((dy < 0))
+            else if ((dx > 0) && (scheme.Contains(X + 1, Y)))
+                MoveRight();
+            else if ((dy < 0) && (scheme.Contains(X, Y - 1)))
                 MoveUp();
+            else if ((dy > 0) && (scheme.Contains(X, Y + 1)))
+                MoveDown();
         }
     }
 }
