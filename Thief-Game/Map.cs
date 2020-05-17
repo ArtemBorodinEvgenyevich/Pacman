@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System;
 using PathFinder;
+using System.Runtime.Intrinsics.X86;
 
 namespace Thief_Game
 {
@@ -111,19 +112,37 @@ namespace Thief_Game
             else
                 Monsters[2].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY + 4, LevelScheme);
         }
+
+        private void MoveInky()
+        {
+            var dx = Pacman.CurrentPositionX - Pacman.previousX;
+            var dy = Pacman.CurrentPositionY - Pacman.previousY;
+
+            if (dx > 0)
+                dx = 2;
+            else if (dx < 0)
+                dx = -2;
+            else if (dy < 0)
+                dy = -2;
+            else
+                dy = 2;
+
+            var hX = (Pacman.CurrentPositionX + dx - Monsters[0].CurrentPositionX) * 2 + Monsters[0].CurrentPositionX;
+            var hY = (Pacman.CurrentPositionY + dy - Monsters[0].CurrentPositionY) * 2 + Monsters[0].CurrentPositionY;
+
+            Monsters[1].Move(hX, hY, LevelScheme);
+        }
         
         public void Move()
         {
             MoveBlinky();
-
             MovePinky();
+            MoveInky();
 
             var rnd = new Random();
 
-            for(int i = 1; i < Monsters.Count; i++)
+            for(int i = 3; i < Monsters.Count; i++)
             {
-                if (i == 2) continue;
-
                 var numb = rnd.Next(0, 4);
 
                 switch (numb)
@@ -317,6 +336,73 @@ namespace Thief_Game
                 monster.Redraw(graphics);
 
             Pacman.Redraw(graphics);
+
+            //Blinky
+            /*
+            graphics.DrawLine(
+                new Pen(Brushes.Red) { Width = 5 },
+                Monsters[0].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels/2,
+                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels/2,
+                Pacman.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+            */
+            //Blinky
+
+            //Pinky
+            /*
+            var dx = Pacman.CurrentPositionX - Pacman.previousX;
+            var dy = Pacman.CurrentPositionY - Pacman.previousY;
+
+            if (dx > 0)
+                dx = 4;
+            else if (dx < 0)
+                dx = -4;
+            else if (dy < 0)
+                dy = -4;
+            else
+                dy = 4;
+
+            graphics.DrawLine(
+                new Pen(Brushes.Pink) { Width = 5 },
+                Monsters[2].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels /2,
+                Monsters[2].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                (Pacman.CurrentPositionX + dx) * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                (Pacman.CurrentPositionY + dy) * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+            */
+            //Pinky
+
+            //Inky
+            /*
+            var dx = Pacman.CurrentPositionX - Pacman.previousX;
+            var dy = Pacman.CurrentPositionY - Pacman.previousY;
+
+            if (dx > 0)
+                dx = 2;
+            else if (dx < 0)
+                dx = -2;
+            else if (dy < 0)
+                dy = -2;
+            else
+                dy = 2;
+
+            var hX = (Pacman.CurrentPositionX + dx - Monsters[0].CurrentPositionX) * 2 + Monsters[0].CurrentPositionX;
+            var hY = (Pacman.CurrentPositionY + dy - Monsters[0].CurrentPositionY) * 2 + Monsters[0].CurrentPositionY;
+
+            graphics.DrawLine(
+                new Pen(Brushes.MediumBlue) { Width = 5 },
+                Monsters[1].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                Monsters[1].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                hX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+
+            graphics.DrawLine(
+                new Pen(Brushes.MediumBlue) { Width = 5 },
+                Monsters[0].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                hX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
+                hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+            */
+            //Inky
         }
     }
 }

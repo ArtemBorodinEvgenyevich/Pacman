@@ -78,6 +78,11 @@ namespace Thief_Game
             }
         }
 
+        public virtual void Move(int startX, int startY, int destinationX, int destinationY, Graph scheme)
+        {
+            Move(destinationX, destinationY, scheme);
+        }
+
         /// <summary>
         /// Изменение координат
         /// Maybe Virtual
