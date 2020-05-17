@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Thief_Game
 {
+    /// <summary>
+    /// Game modes
+    /// </summary>
     enum GameMode
     {
         MENU,
