@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System;
 using PathFinder;
 using System.Runtime.Intrinsics.X86;
+using Thief_Game.Constants;
 
 namespace Thief_Game
 {
@@ -132,16 +133,36 @@ namespace Thief_Game
 
             Monsters[1].Move(hX, hY, LevelScheme);
         }
+
+        private void MoveClyde()
+        {
+            var clydePos = new Node(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
+            var pacmanPos = new Node(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+
+            var dist = LevelScheme.Distance(clydePos, pacmanPos);
+
+            if(dist < 8)
+            {
+                //left bottom corner
+                Monsters[3].Move(LevelScheme.GetLeftBottomCorner.X, LevelScheme.GetLeftBottomCorner.Y, LevelScheme);
+            }
+            else
+            {
+                //pacman
+                Monsters[3].Move(Pacman.CurrentPositionX, Pacman.CurrentPositionY, LevelScheme);
+            }
+        }
         
         public void Move()
         {
             MoveBlinky();
             MovePinky();
             MoveInky();
+            MoveClyde();
 
             var rnd = new Random();
 
-            for(int i = 3; i < Monsters.Count; i++)
+            for(int i = 4; i < Monsters.Count; i++)
             {
                 var numb = rnd.Next(0, 4);
 

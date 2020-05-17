@@ -9,6 +9,11 @@ namespace PathFinder
         public List<Node> GraphNodes;
         public Dictionary<int, Node> IncidentNodes;
         private Dictionary<(int, int), Node> Nodes;
+        private Node LeftBottomCorner;
+        public Node GetLeftBottomCorner
+        {
+            get => LeftBottomCorner;
+        }
 
         public Graph()
         {
@@ -25,9 +30,13 @@ namespace PathFinder
             if (GraphNodes.Count == 0)
             {
                 GraphNodes.Add(newNode);
+                LeftBottomCorner = newNode;
             }
             else
             {
+                if (((newNode.X < LeftBottomCorner.X) && (newNode.X > 0)) || (newNode.Y > LeftBottomCorner.Y))
+                    LeftBottomCorner = newNode;
+
                 GraphNodes.Add(newNode);
 
                 var neighbours = GraphNodes

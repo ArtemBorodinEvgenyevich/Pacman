@@ -17,7 +17,7 @@ namespace Thief_Game.Monsters
             if ((destinationX == X) && (destinationY == Y)) return;
 
             var start = scheme[X, Y];
-            var destination = scheme[destinationX, destinationY];
+            var destination = scheme.FindNearestNode(destinationX, destinationY);
 
             var path = scheme.FindPath(start, destination);
 
