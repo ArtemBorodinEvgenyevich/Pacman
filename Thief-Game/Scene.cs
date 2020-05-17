@@ -62,10 +62,10 @@ namespace Thief_Game
             MonsterTimer = new Timer();
             MonsterTimer.Interval = 250;
             MonsterTimer.Tick += (s, e) =>
-             {
+            {
                  MoveMonster();
                  Invalidate();
-             };
+            };
         }
 
         /// <summary>
