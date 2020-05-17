@@ -17,7 +17,7 @@ namespace Thief_Game
 
         public Wall(int x, int y)
         {
-            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, @"Wall.png"));
+            View = Image.FromFile(Path.Combine(PathInfo.LevelSpritesDir, "Wall.png"));
 
             CurrentPositionX = x;
             CurrentPositionY = y;

@@ -25,9 +25,9 @@ namespace Thief_Game
 
         public Image View;
 
-        public MovableGameObject(string fileName)
+        public MovableGameObject(string path)
         {
-            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, fileName));
+            View = Image.FromFile(path);
         }
     }
 }
