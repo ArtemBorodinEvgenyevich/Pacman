@@ -9,11 +9,23 @@ namespace Thief_Game.Monsters
 {
     public class Pinky: Monster
     {
+        /// <summary>
+        /// Create Pinky (monster, pink)
+        /// </summary>
+        /// <param name="startX">Start position X</param>
+        /// <param name="startY">Start position Y</param>
+        /// <param name="speed">Speen [obstacle]</param>
         public Pinky(int startX, int startY, int speed) : base(startX, startY, speed, @"Pinky.png")
         {
 
         }
 
+        /// <summary>
+        /// Move Pinky to target
+        /// </summary>
+        /// <param name="destinationX">Target position</param>
+        /// <param name="destinationY">Target position</param>
+        /// <param name="scheme">Graph of paths</param>
         public override void Move(int destinationX, int destinationY, Graph scheme)
         {
             if ((destinationX == X) && (destinationY == Y)) return;

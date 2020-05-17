@@ -12,7 +12,7 @@ namespace Thief_Game
         /// </summary>
         /// <param name="fileName">Название картинки (в идеалек объект класса, 
         /// основании которого решаем какую картинку загрузить)</param>
-        /// <returns></returns>
+        /// <returns>Image, which you can draw</returns>
         public static Image LoadImage(string fileName)
         {
             //Определять какой файл грузить на основании

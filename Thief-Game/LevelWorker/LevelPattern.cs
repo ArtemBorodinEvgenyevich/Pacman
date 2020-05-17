@@ -83,6 +83,12 @@ namespace Thief_Game
             SmallPoints.Add(new SmallPoint(x, y));
         }
 
+        /// <summary>
+        /// Добавить координаты коридора (где монстры и пакман
+        /// могут перемещаться)
+        /// </summary>
+        /// <param name="x">Позиция по оси Х</param>
+        /// <param name="y">Позиция по оси Y</param>
         public void AddFloor(int x, int y)
         {
             LevelScheme.Add(new Waypoint(x, y));
