@@ -43,7 +43,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin));
         }
 
         private void SerializeStats()
@@ -261,7 +261,7 @@ namespace Thief_Game
                 if ((pacmanY == monsterY) && (pacmanX == monsterX))
                 {
                     Points.RemoveAt(i);
-                    WorldStat.ScoreTotal += 1;
+                    WorldStat.ScoreTotal += 10;
                     break;
                 }
             }
@@ -274,11 +274,20 @@ namespace Thief_Game
                 if ((pacmanY == monsterY) && (pacmanX == monsterX))
                 {
                     Energizers.RemoveAt(i);
-                    WorldStat.ScoreTotal += 10;
+                    WorldStat.ScoreTotal += 50;
                     break;
                 }
-            }
+            }   
         }
+
+        private bool CheckWin()
+        {
+            if (Energizers.Count == 0 && Points.Count == 0)
+                return true;
+
+            return false;
+        }
+
 
         //Произошло измнение - перерисовали карту
         public void Draw(Graphics graphics)

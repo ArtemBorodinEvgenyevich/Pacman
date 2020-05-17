@@ -25,6 +25,7 @@ namespace Thief_Game
         private Action<MoveIntensions> CheckPointsCollision;
         private Timer MonsterTimer;
         private Action SerializeStats;
+        private Func<bool> CheckWin;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -35,7 +36,8 @@ namespace Thief_Game
             Action<Graphics> Redraw, 
             Action MoveMonster,
             Action<MoveIntensions> CheckPointsCollision,
-            Action SerializeStats)
+            Action SerializeStats,
+            Func<bool> CheckWin)
         {
             Mode = GameMode.MENU;
             this.DrawMap = DrawMap;
@@ -49,15 +51,17 @@ namespace Thief_Game
             this.CheckPointsCollision = CheckPointsCollision;
 
             this.SerializeStats = SerializeStats;
+
+            this.CheckWin = CheckWin;
             
             SetupWindow();
-            
-            if(Mode == GameMode.MENU)
+
+            if (Mode == GameMode.MENU)
                 InitButtons();
 
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
-            FormClosing += FormCloseListener;
+            FormClosing += FormClosingListener;
 
             MonsterTimer = new Timer();
             MonsterTimer.Interval = 250;
@@ -98,20 +102,22 @@ namespace Thief_Game
                         break;
                 }
 
+                if (this.CheckWin())
+                    this.Close();
+
                 Invalidate();
             }
         }
 
         // Temporary solution. 
         // TODO: rewrite later...
-        private void FormCloseListener(object sender, FormClosingEventArgs closingEventArgs)
+        private void FormClosingListener(object sender, FormClosingEventArgs closingEventArgs)
         {
             SerializeStats();
 
-            // temporary
-            var NewStats = new WorldStatPickle().DataDeserialize();
-            string score = String.Format("Total Score: {0}", NewStats);
-            var messagebox = MessageBox.Show(score, "Score", MessageBoxButtons.OK);
+            // TODO: Open new window
+            this.Hide();
+            var scoreBoard = new ScoreBoard(this.Location.X, this.Location.Y).ShowDialog();
         }
 
 
@@ -187,6 +193,19 @@ namespace Thief_Game
 
             if (Mode == GameMode.MENU)
                 DrawButtonsBackground(e.Graphics);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Scene
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "Scene";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ResumeLayout(false);
+
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Thief_Game
+﻿using System.Collections.Generic;
+
+namespace Thief_Game
 {
     //Lev
     /// <summary>
@@ -6,9 +8,7 @@
     /// </summary>
     class WorldStat
     {
-        public int Level = 0;
-        public int ScoreTotal = 0;
-
-        public int getScoreTotal => ScoreTotal;
+        public int ScoreTotal { get; set; }
+        public List<int> ScoreRecord { get; set;}
     }
 }

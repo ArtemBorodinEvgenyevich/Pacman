@@ -19,7 +19,7 @@ namespace Thief_Game
         public int CurrentSpeed => Speed;
         public int CurrentLifes => Lifes;
 
-        public Pacman(int startX, int startY, int speed): base("Pacman.png")
+        public Pacman(int startX, int startY, int speed): base(Path.Combine(PathInfo.PlayerSpritesDir, "Pacman.png"))
         {
             Lifes = 3;
             X = startX;

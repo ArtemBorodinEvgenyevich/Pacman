@@ -28,7 +28,7 @@ namespace Thief_Game
             X = x;
             Y = y;
             Score = score;
-            View = Image.FromFile(Path.Combine(PathInfo.SourceDir, fileName));
+            View = Image.FromFile(Path.Combine(PathInfo.CoinsSpritesDir, fileName));
         }
     }
 
