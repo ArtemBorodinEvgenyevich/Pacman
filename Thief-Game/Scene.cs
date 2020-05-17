@@ -60,7 +60,7 @@ namespace Thief_Game
             FormClosing += FormCloseListener;
 
             MonsterTimer = new Timer();
-            MonsterTimer.Interval = 250;
+            MonsterTimer.Interval = 10;
             MonsterTimer.Tick += (s, e) =>
             {
                  MoveMonster();
