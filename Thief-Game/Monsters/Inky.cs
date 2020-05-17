@@ -12,7 +12,7 @@ namespace Thief_Game.Monsters
 
         }
 
-        public override void Move(int startX, int startY, int destinationX, int destinationY, Graph scheme)
+        public override void Move(int destinationX, int destinationY, Graph scheme)
         {
             if ((destinationX == X) && (destinationY == Y)) return;
 
@@ -30,13 +30,13 @@ namespace Thief_Game.Monsters
             var dx = step.X - X;
             var dy = step.Y - Y;
 
-            if (dx < 0)
+            if ((dx < 0) && (scheme.Contains(X - 1, Y)))
                 MoveLeft();
-            else if (dx > 0)
+            else if ((dx > 0) && (scheme.Contains(X + 1, Y)))
                 MoveRight();
-            else if (dy < 0)
+            else if ((dy < 0) && (scheme.Contains(X, Y - 1)))
                 MoveUp();
-            else
+            else if ((dy > 0) && (scheme.Contains(X, Y + 1)))
                 MoveDown();
         }
     }
