@@ -7,11 +7,23 @@ namespace Thief_Game.Monsters
 {
     public class Inky: Monster
     {
+        /// <summary>
+        /// Create Inky (monster, blue)
+        /// </summary>
+        /// <param name="startX">Start position X</param>
+        /// <param name="startY">Start position Y</param>
+        /// <param name="speed">Speen [obstacle]</param>
         public Inky(int startX, int startY, int speed):base(startX, startY, speed, @"Inky.png")
         {
 
         }
 
+        /// <summary>
+        /// Move Inky to target
+        /// </summary>
+        /// <param name="destinationX">Target position</param>
+        /// <param name="destinationY">Target position</param>
+        /// <param name="scheme">Graph of paths</param>
         public override void Move(int destinationX, int destinationY, Graph scheme)
         {
             if ((destinationX == X) && (destinationY == Y)) return;
@@ -21,7 +33,7 @@ namespace Thief_Game.Monsters
 
             var path = scheme.FindPath(start, destination);
 
-            Node step;
+            Waypoint step;
             if (path.Count > 1)
                 step = path[1];
             else

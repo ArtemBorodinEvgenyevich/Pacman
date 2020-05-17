@@ -22,7 +22,7 @@ namespace Thief_Game
         private Button ExitBTN;
         private GameMode Mode;
         private Action<Graphics> Redraw;
-        private Action<MoveIntensions> CheckPointsCollision;
+        private Action CheckPointsCollision;
         private Timer MonsterTimer;
         private Action SerializeStats;
 
@@ -34,7 +34,7 @@ namespace Thief_Game
             Action MoveLeft, 
             Action<Graphics> Redraw, 
             Action MoveMonster,
-            Action<MoveIntensions> CheckPointsCollision,
+            Action CheckPointsCollision,
             Action SerializeStats)
         {
             Mode = GameMode.MENU;
@@ -62,10 +62,10 @@ namespace Thief_Game
             MonsterTimer = new Timer();
             MonsterTimer.Interval = 250;
             MonsterTimer.Tick += (s, e) =>
-             {
+            {
                  MoveMonster();
                  Invalidate();
-             };
+            };
         }
 
         /// <summary>
@@ -81,22 +81,20 @@ namespace Thief_Game
                 switch (keyEventArgs.KeyValue)
                 {
                     case KeyCodes.KeyDown:
-                        CheckPointsCollision(MoveIntensions.DOWN);
                         MoveDown();
                         break;
                     case KeyCodes.KeyUp:
-                        CheckPointsCollision(MoveIntensions.UP);
                         MoveUp();
                         break;
                     case KeyCodes.KeyRight:
-                        CheckPointsCollision(MoveIntensions.RIGHT);
                         MoveRight();
                         break;
                     case KeyCodes.KeyLeft:
-                        CheckPointsCollision(MoveIntensions.LEFT);
                         MoveLeft();
                         break;
                 }
+
+                CheckPointsCollision();
 
                 Invalidate();
             }
@@ -113,7 +111,6 @@ namespace Thief_Game
             string score = String.Format("Total Score: {0}", NewStats);
             var messagebox = MessageBox.Show(score, "Score", MessageBoxButtons.OK);
         }
-
 
         /// <summary>
         /// Установка размеров окна
@@ -180,6 +177,10 @@ namespace Thief_Game
             graphics.FillRectangle(Brushes.Chartreuse, startX, startY, width, height);
         }
         
+        /// <summary>
+        /// Drawing!!!
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             DrawMap(e.Graphics);

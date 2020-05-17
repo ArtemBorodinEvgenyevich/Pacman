@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
+using Thief_Game.Monsters;
 
 namespace Thief_Game
 {
@@ -12,9 +13,6 @@ namespace Thief_Game
     /// </summary>
     public class Monster : MovableGameObject, IMovable
     {
-        //Позиция монстра на карте
-        
-        //Start position;
         //Where is the monster going
         public int destinationX;
         public int destinationY;
@@ -26,8 +24,6 @@ namespace Thief_Game
         public readonly int StartX;
         public readonly int StartY;
 
-        //Direction - возможно, понадобится для построения траекторий
-
         //Monster's behavior
         Behaviors currentBehavior;
 
@@ -35,8 +31,8 @@ namespace Thief_Game
         /// Базовый класс монстра
         /// </summary>
         /// <param name="startX">Стартовая позиция</param>
-        /// <param name="startY"></param>
-        /// <param name="speed"></param>
+        /// <param name="startY">Стартовая позиция</param>
+        /// <param name="speed">Скорость</param>
         public Monster(int startX, int startY, int speed, string spriteName): base(spriteName)
         {
             //Если будем делать другие типы монстров, то они появятся, как
@@ -55,7 +51,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Алгоритм движения монстра
+        /// Базовый алгоритм движения монстра (основан на Random)
         /// </summary>
         public virtual void Move(int destinationX, int destinationY, Graph scheme)
         {
@@ -78,10 +74,8 @@ namespace Thief_Game
             }
         }
 
-
         /// <summary>
         /// Изменение координат
-        /// Maybe Virtual
         /// </summary>
         public void MoveUp()
         {
@@ -90,7 +84,6 @@ namespace Thief_Game
 
         /// <summary>
         /// Изменение координат
-        /// Maybe Virtual
         /// </summary>
         public void MoveLeft()
         {
@@ -99,7 +92,6 @@ namespace Thief_Game
 
         /// <summary>
         /// Изменение координат
-        /// Maybe Virtual
         /// </summary>
         public void MoveRight()
         {
@@ -108,7 +100,6 @@ namespace Thief_Game
 
         /// <summary>
         /// Изменение координат
-        /// Maybe Virtual
         /// </summary>
         public void MoveDown()
         {
@@ -123,18 +114,10 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Вычисляем, куда будет двигатся монстр
-        /// Может быть тут и использовать MoveUp() и др.
-        /// </summary>
-        public void FindPath()
-        {
-        }
-
-        /// <summary>
         /// Изменение внешнего вида монстра
         /// </summary>
         /// <param name="path">Путь к файлу</param>
-        public void SetView(string path)
+        public void SetView()
         {
             View = MonsterViewLoader.LoadImage("Blinky.png");
         }
@@ -142,7 +125,7 @@ namespace Thief_Game
         /// <summary>
         /// Отрисовка монстра во время движения
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Use for drawing</param>
         public void Redraw(Graphics graphics)
         {
             graphics.DrawImage(
@@ -163,13 +146,5 @@ namespace Thief_Game
         }
     }
 
-    /// <summary>
-    /// Типы поведения
-    /// </summary>
-    enum Behaviors
-    {
-        PURSUITING,
-        DISPERSING,
-        FRIGHTNING
-    }
+    
 }
