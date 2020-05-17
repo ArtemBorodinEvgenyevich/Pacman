@@ -136,8 +136,8 @@ namespace Thief_Game
 
         private void MoveClyde()
         {
-            var clydePos = new Node(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
-            var pacmanPos = new Node(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+            var clydePos = new Waypoint(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
+            var pacmanPos = new Waypoint(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
 
             var dist = LevelScheme.Distance(clydePos, pacmanPos);
 
@@ -401,8 +401,8 @@ namespace Thief_Game
 
         private void DrawClydeIntension(Graphics graphics) 
         {
-            var clydePos = new Node(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
-            var pacmanPos = new Node(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
+            var clydePos = new Waypoint(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
+            var pacmanPos = new Waypoint(Pacman.CurrentPositionX, Pacman.CurrentPositionY);
 
             var dist = LevelScheme.Distance(clydePos, pacmanPos);
 

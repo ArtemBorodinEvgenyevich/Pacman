@@ -6,73 +6,83 @@ namespace PathFinder
 {
     public class Graph
     {
-        public List<Node> GraphNodes;
-        public Dictionary<int, Node> IncidentNodes;
-        private Dictionary<(int, int), Node> Nodes;
-        private Node LeftBottomCorner;
-        public Node GetLeftBottomCorner
+        public List<Waypoint> GraphNodes;
+        public Dictionary<int, Waypoint> IncidentNodes;
+        private Dictionary<(int, int), Waypoint> Nodes;
+        private Waypoint LeftBottomCorner;
+        public Waypoint GetLeftBottomCorner
         {
             get => LeftBottomCorner;
         }
 
+        /// <summary>
+        /// Using this type of data for finding paths 
+        /// </summary>
         public Graph()
         {
-            GraphNodes = new List<Node>();
-            IncidentNodes = new Dictionary<int, Node>();
-            Nodes = new Dictionary<(int, int), Node>();
+            GraphNodes = new List<Waypoint>();
+            IncidentNodes = new Dictionary<int, Waypoint>();
+            Nodes = new Dictionary<(int, int), Waypoint>();
         }
 
-        public void Add(Node newNode)
+        /// <summary>
+        /// Add waypoint to graph
+        /// </summary>
+        /// <param name="newWaypoint">Waypoint</param>
+        public void Add(Waypoint newWaypoint)
         {
-            IncidentNodes.Add(newNode.Id, newNode);
-            Nodes.Add((newNode.X, newNode.Y), newNode);
+            IncidentNodes.Add(newWaypoint.Id, newWaypoint);
+            Nodes.Add((newWaypoint.X, newWaypoint.Y), newWaypoint);
 
             if (GraphNodes.Count == 0)
             {
-                GraphNodes.Add(newNode);
-                LeftBottomCorner = newNode;
+                GraphNodes.Add(newWaypoint);
+                LeftBottomCorner = newWaypoint;
             }
             else
             {
-                if (((newNode.X < LeftBottomCorner.X) && (newNode.X > 0)) || (newNode.Y > LeftBottomCorner.Y))
-                    LeftBottomCorner = newNode;
+                if (((newWaypoint.X < LeftBottomCorner.X) && (newWaypoint.X > 0)) || (newWaypoint.Y > LeftBottomCorner.Y))
+                    LeftBottomCorner = newWaypoint;
 
-                GraphNodes.Add(newNode);
+                GraphNodes.Add(newWaypoint);
 
                 var neighbours = GraphNodes
                     .Select(x => x)
-                    .Where(x => ((x.X == newNode.X - 1) || (x.X == newNode.X + 1) || (x.Y == newNode.Y - 1) || (x.Y == newNode.Y + 1)))
+                    .Where(x => ((x.X == newWaypoint.X - 1) || (x.X == newWaypoint.X + 1) || (x.Y == newWaypoint.Y - 1) || (x.Y == newWaypoint.Y + 1)))
                     .ToList();
 
                 foreach (var node in neighbours)
                 {
-                    if ((node.X == newNode.X - 1) && (node.Y == newNode.Y))
+                    if ((node.X == newWaypoint.X - 1) && (node.Y == newWaypoint.Y))
                     {
-                        node.Right = newNode;
-                        newNode.Left = node;
+                        node.Right = newWaypoint;
+                        newWaypoint.Left = node;
                     }
 
-                    if ((node.X == newNode.X + 1) && (node.Y == newNode.Y))
+                    if ((node.X == newWaypoint.X + 1) && (node.Y == newWaypoint.Y))
                     {
-                        node.Left = newNode;
-                        newNode.Right = node;
+                        node.Left = newWaypoint;
+                        newWaypoint.Right = node;
                     }
 
-                    if ((node.Y == newNode.Y - 1) && (node.X == newNode.X))
+                    if ((node.Y == newWaypoint.Y - 1) && (node.X == newWaypoint.X))
                     {
-                        node.Down = newNode;
-                        newNode.Up = node;
+                        node.Down = newWaypoint;
+                        newWaypoint.Up = node;
                     }
 
-                    if ((node.Y == newNode.Y + 1) && (node.X == newNode.X))
+                    if ((node.Y == newWaypoint.Y + 1) && (node.X == newWaypoint.X))
                     {
-                        node.Up = newNode;
-                        newNode.Down = node;
+                        node.Up = newWaypoint;
+                        newWaypoint.Down = node;
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Use for drawing graph in console (some bugs)
+        /// </summary>
         public void Print()
         {
             var y = 0;
@@ -110,37 +120,17 @@ namespace PathFinder
             Console.WriteLine();
         }
 
-        public IEnumerable<Node> DepthSearch(Node startNode, Node finish)
+        /// <summary>
+        /// Use this algorythm for find path to waypoint
+        /// </summary>
+        /// <param name="start">Start waypoint</param>
+        /// <param name="end">End waypoint</param>
+        /// <returns></returns>
+        public List<Waypoint> FindPath(Waypoint start, Waypoint end)
         {
-            var visited = new HashSet<int>();
-            var stack = new Stack<int>();
-            stack.Push(startNode.Id);
-            while (stack.Count != 0)
-            {
-                var node = stack.Pop();
-                if (visited.Contains(node)) continue;
-                visited.Add(node);
-                yield return IncidentNodes[node];
-
-                if (IncidentNodes[node].Down != null)
-                    stack.Push(IncidentNodes[node].Down.Id);
-                if (IncidentNodes[node].Up != null)
-                    stack.Push(IncidentNodes[node].Up.Id);
-                if (IncidentNodes[node].Left != null)
-                    stack.Push(IncidentNodes[node].Left.Id);
-                if (IncidentNodes[node].Right != null)
-                    stack.Push(IncidentNodes[node].Right.Id);
-
-                if (node == finish.Id)
-                    break;
-            }
-        }
-
-        public List<Node> FindPath(Node start, Node end)
-        {
-            var track = new Dictionary<Node, Node>();
+            var track = new Dictionary<Waypoint, Waypoint>();
             track[start] = null;
-            var queue = new Queue<Node>();
+            var queue = new Queue<Waypoint>();
             queue.Enqueue(start);
             while (queue.Count != 0)
             {
@@ -157,7 +147,7 @@ namespace PathFinder
                 if (track.ContainsKey(end)) break;
             }
             var pathItem = end;
-            var result = new List<Node>();
+            var result = new List<Waypoint>();
             while (pathItem != null)
             {
                 result.Add(pathItem);
@@ -167,7 +157,13 @@ namespace PathFinder
             return result;
         }
 
-        public double Distance(Node first, Node second)
+        /// <summary>
+        /// Calculate distance between waypoints
+        /// </summary>
+        /// <param name="first">First waypoint</param>
+        /// <param name="second">Swcond waypoint</param>
+        /// <returns>Distance</returns>
+        public double Distance(Waypoint first, Waypoint second)
         {
             var dx = first.X - second.X;
             var dy = first.Y - second.Y;
@@ -175,14 +171,22 @@ namespace PathFinder
             return Math.Sqrt(dx * dx + dy * dy);
         }
 
-        public Node FindNearestNode(int x, int y)
+        /// <summary>
+        /// If you got waypoint with incorrect position
+        /// You can use this method for get nearest correct
+        /// waypoint
+        /// </summary>
+        /// <param name="x">New waypoint position X</param>
+        /// <param name="y">New waypoint position Y</param>
+        /// <returns>Correct waypoint</returns>
+        public Waypoint FindNearestNode(int x, int y)
         {
             var nodeId = 0;
             var minLength = double.MaxValue;
 
             foreach(var node in GraphNodes)
             {
-                var distance = Distance(node, new Node(x, y));
+                var distance = Distance(node, new Waypoint(x, y));
 
                 if(distance < minLength)
                 {
@@ -194,50 +198,26 @@ namespace PathFinder
             return IncidentNodes[nodeId];
         }
 
+        /// <summary>
+        /// Return true if graph contain waypoint
+        /// </summary>
+        /// <param name="x">Waypoint position X</param>
+        /// <param name="y">Waypoint position Y</param>
+        /// <returns>True if graph contains this waypoint</returns>
         public bool Contains(int x, int y)
         {
             return Nodes.ContainsKey((x, y));
         }
 
-        public Node this [int x, int y]
+        /// <summary>
+        /// You can get current waypoint by position
+        /// </summary>
+        /// <param name="x">Waypoint position X</param>
+        /// <param name="y">Waypoint position Y</param>
+        /// <returns></returns>
+        public Waypoint this [int x, int y]
         {
             get => Nodes[(x, y)];
-        }
-    }
-
-    public class Node
-    {
-        //ID - fast access
-        public readonly int Id;
-        public readonly int X;
-        public readonly int Y;
-        public Node Right;
-        public Node Left;
-        public Node Up;
-        public Node Down;
-        public List<Node> IncidentNodes
-        {
-            get => new List<Node> { Right, Left, Up, Down };
-        }
-
-        public Node(int x, int y)
-        {
-            X = x;
-            Y = y;
-
-            Id = IdGenerator.Generate();
-        }
-    }
-
-    public static class IdGenerator
-    {
-        public static int LastId = 0;
-
-        public static int Generate()
-        {
-            LastId++;
-
-            return LastId;
         }
     }
 }

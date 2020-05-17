@@ -85,7 +85,7 @@ namespace Thief_Game
 
         public void AddFloor(int x, int y)
         {
-            LevelScheme.Add(new Node(x, y));
+            LevelScheme.Add(new Waypoint(x, y));
         }
     }
 }

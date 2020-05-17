@@ -21,7 +21,7 @@ namespace Thief_Game.Monsters
 
             var path = scheme.FindPath(start, destination);
 
-            Node step;
+            Waypoint step;
             if (path.Count > 1)
                 step = path[1];
             else
