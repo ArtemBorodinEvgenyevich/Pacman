@@ -68,7 +68,7 @@ namespace Thief_Game
 
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX * Dimensions.SpriteWidthPixels, CurrentPositionY * Dimensions.SpriteHeightPixels, 30, 30);
+            graphics.DrawImage(View, CurrentPositionX * Dimensions.SpriteWidthPixels, CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight, 30, 30);
         }
 
         public void Respawn()

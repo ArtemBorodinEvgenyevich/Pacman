@@ -131,7 +131,7 @@ namespace Thief_Game
             graphics.DrawImage(
                 View, 
                 CurrentPositionX * Dimensions.SpriteWidthPixels, 
-                CurrentPositionY * Dimensions.SpriteHeightPixels, 
+                CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight, 
                 Dimensions.SpriteWidthPixels, 
                 Dimensions.SpriteHeightPixels);
         }
