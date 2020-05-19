@@ -38,7 +38,7 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin));
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace Thief_Game
                 if ((pacmanY == pointY) && (pacmanX == pointX))
                 {
                     Points.RemoveAt(i);
-                    WorldStat.ScoreTotal += 1;
+                    WorldStat.ScoreTotal += 10;
                     break;
                 }
             }
@@ -347,12 +347,22 @@ namespace Thief_Game
                 if ((pacmanY == energizerY) && (pacmanX == energizerX))
                 {
                     Energizers.RemoveAt(i);
-                    WorldStat.ScoreTotal += 10;
+                    WorldStat.ScoreTotal += 50;
                     break;
                 }
-            }
+            }   
         }
 
+        private bool CheckWin()
+        {
+            if (Energizers.Count == 0 && Points.Count == 0)
+                return true;
+
+            return false;
+        }
+
+
+        //Произошло измнение - перерисовали карту
         /// <summary>
         /// Redraw map and all objects in game
         /// </summary>
@@ -363,7 +373,7 @@ namespace Thief_Game
             {
                 var wall = Walls[i];
                 var posX = (float)(wall.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels);
+                var posY = (float)(wall.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight);
 
                 graphics.DrawImage(wall.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
@@ -372,7 +382,7 @@ namespace Thief_Game
             {
                 var energizer = Energizers[i];
                 var posX = (float)(energizer.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(energizer.CurrentPositionY * Dimensions.SpriteHeightPixels);
+                var posY = (float)(energizer.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight);
 
                 graphics.DrawImage(energizer.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
@@ -381,7 +391,7 @@ namespace Thief_Game
             {
                 var point = Points[i];
                 var posX = (float)(point.CurrentPositionX * Dimensions.SpriteWidthPixels);
-                var posY = (float)(point.CurrentPositionY * Dimensions.SpriteHeightPixels);
+                var posY = (float)(point.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight);
 
                 graphics.DrawImage(point.View, posX, posY, Dimensions.SpriteWidthPixels, Dimensions.SpriteHeightPixels);
             }
@@ -409,9 +419,9 @@ namespace Thief_Game
             graphics.DrawLine(
                 new Pen(Brushes.Red) { Width = 5 },
                 Monsters[0].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight,
                 Pacman.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+                Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
         }
 
         /// <summary>
@@ -436,9 +446,9 @@ namespace Thief_Game
             graphics.DrawLine(
                 new Pen(Brushes.Pink) { Width = 5 },
                 Monsters[2].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                Monsters[2].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                Monsters[2].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight,
                 (Pacman.CurrentPositionX + dx) * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                (Pacman.CurrentPositionY + dy) * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+                (Pacman.CurrentPositionY + dy) * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
         }
 
         /// <summary>
@@ -466,16 +476,16 @@ namespace Thief_Game
             graphics.DrawLine(
                 new Pen(Brushes.MediumBlue) { Width = 5 },
                 Monsters[1].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                Monsters[1].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                Monsters[1].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight,
                 hX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+                hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
 
             graphics.DrawLine(
                 new Pen(Brushes.MediumBlue) { Width = 5 },
                 Monsters[0].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                Monsters[0].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight,
                 hX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+                hY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
         }
 
         /// <summary>
@@ -496,9 +506,9 @@ namespace Thief_Game
                 graphics.DrawLine(
                     new Pen(Brushes.Orange) { Width = 5 },
                     Monsters[3].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                    Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                    Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight,
                     LevelScheme.GetLeftBottomCorner.X * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                    LevelScheme.GetLeftBottomCorner.Y * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+                    LevelScheme.GetLeftBottomCorner.Y * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
             }
             else
             {
@@ -506,9 +516,9 @@ namespace Thief_Game
                 graphics.DrawLine(
                     new Pen(Brushes.Orange) { Width = 5 },
                     Monsters[3].CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                    Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2,
+                    Monsters[3].CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight,
                     Pacman.CurrentPositionX * Dimensions.SpriteWidthPixels + Dimensions.SpriteWidthPixels / 2,
-                    Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2);
+                    Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
             }
         }
     }

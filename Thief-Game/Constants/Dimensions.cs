@@ -15,9 +15,12 @@
         public const int MapWidthSquare = 19;
         public const int MapHeightSquare = 22;
 
+        //LifeBar
+        public const int LifeBarHeight = 0;//SpriteHeightPixels;
+
         //Размеры окна в пикселях
         public const int WindowWidthPixels = SpriteWidthPixels * MapWidthSquare;
-        public const int WindowHeightPixels = SpriteHeightPixels * MapHeightSquare;
+        public const int WindowHeightPixels = SpriteHeightPixels * MapHeightSquare + LifeBarHeight;
 
         //Шаг пакмана и монстров
         public const int StepX = SpriteWidthPixels;

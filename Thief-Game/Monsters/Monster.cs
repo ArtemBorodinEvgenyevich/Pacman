@@ -33,7 +33,7 @@ namespace Thief_Game
         /// <param name="startX">Стартовая позиция</param>
         /// <param name="startY">Стартовая позиция</param>
         /// <param name="speed">Скорость</param>
-        public Monster(int startX, int startY, int speed, string spriteName): base(spriteName)
+        public Monster(int startX, int startY, int speed, string spriteName): base(Path.Combine(PathInfo.MonstersSpritesDir, spriteName))
         {
             //Если будем делать другие типы монстров, то они появятся, как
             //наследники этого класса
@@ -131,7 +131,7 @@ namespace Thief_Game
             graphics.DrawImage(
                 View, 
                 CurrentPositionX * Dimensions.SpriteWidthPixels, 
-                CurrentPositionY * Dimensions.SpriteHeightPixels, 
+                CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight, 
                 Dimensions.SpriteWidthPixels, 
                 Dimensions.SpriteHeightPixels);
         }

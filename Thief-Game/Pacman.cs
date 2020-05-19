@@ -22,7 +22,7 @@ namespace Thief_Game
         public int CurrentSpeed => Speed;
         public int CurrentLifes => Lifes;
 
-        public Pacman(int startX, int startY, int speed): base("Pacman.png")
+        public Pacman(int startX, int startY, int speed): base(Path.Combine(PathInfo.PlayerSpritesDir, "Pacman.png"))
         {
             Lifes = 3;
             X = startX;
@@ -68,7 +68,7 @@ namespace Thief_Game
 
         public void Redraw(Graphics graphics)
         {
-            graphics.DrawImage(View, CurrentPositionX * Dimensions.SpriteWidthPixels, CurrentPositionY * Dimensions.SpriteHeightPixels, 30, 30);
+            graphics.DrawImage(View, CurrentPositionX * Dimensions.SpriteWidthPixels, CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.LifeBarHeight, 30, 30);
         }
 
         public void Respawn()
