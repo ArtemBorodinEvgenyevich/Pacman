@@ -15,12 +15,14 @@ namespace Thief_Game
         public WorldStatPickle()
         {
             pathToFile = Path.Combine(PathInfo.WorkingDir, "ScoreRecord.json");
+            
             if (!File.Exists(pathToFile))
             {
-                File.Create(pathToFile);
-                string jsonString = @"{""ScoreTotal"":0,""ScoreRecord"":[11500, 11400]}";
+                File.Create(pathToFile).Close();
+                string jsonString = @"{""ScoreTotal"":0,""ScoreRecord"":[1500, 1400]}";
                 File.WriteAllText(pathToFile, jsonString);
             }
+            
                 
         }
 
