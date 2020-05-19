@@ -21,9 +21,7 @@ namespace Thief_Game
                 File.Create(pathToFile).Close();
                 string jsonString = @"{""ScoreTotal"":0,""ScoreRecord"":[1500, 1400]}";
                 File.WriteAllText(pathToFile, jsonString);
-            }
-            
-                
+            }              
         }
 
         public void DataSerialize(int score) 
