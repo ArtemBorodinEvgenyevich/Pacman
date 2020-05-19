@@ -14,6 +14,7 @@ namespace Thief_Game.Constants
         public const char PacmanSpawnSign = 'P';
         public const char EnergizerSpawnSign = 'E';
         public const char ScorePointSpawnSign = ' ';
+        public const char EmptySpaceSign = 'D';
         public const char BlinkySpawnSign = 'B';
         public const char InkySpawnSign = 'I';
         public const char PinkySpawnSign = 'K';

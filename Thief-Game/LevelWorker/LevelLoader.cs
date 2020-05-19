@@ -80,6 +80,9 @@ namespace Thief_Game
                             pattern.AddEnergizer(x, y);
                             pattern.AddFloor(x, y);
                             break;
+                        case LevelParser.EmptySpaceSign:
+                            pattern.AddFloor(x, y);
+                            break;
                     }
 
                     x++;

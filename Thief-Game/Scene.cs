@@ -22,7 +22,7 @@ namespace Thief_Game
         private Button ExitBTN;
         private GameMode Mode;
         private Action<Graphics> Redraw;
-        private Action<MoveIntensions> CheckPointsCollision;
+        private Action CheckPointsCollision;
         private Timer MonsterTimer;
         private Action SerializeStats;
         private Func<bool> CheckWin;
@@ -35,7 +35,7 @@ namespace Thief_Game
             Action MoveLeft, 
             Action<Graphics> Redraw, 
             Action MoveMonster,
-            Action<MoveIntensions> CheckPointsCollision,
+            Action CheckPointsCollision,
             Action SerializeStats,
             Func<bool> CheckWin)
         {
@@ -64,12 +64,12 @@ namespace Thief_Game
             FormClosing += FormClosingListener;
 
             MonsterTimer = new Timer();
-            MonsterTimer.Interval = 250;
+            MonsterTimer.Interval = 10;
             MonsterTimer.Tick += (s, e) =>
-             {
+            {
                  MoveMonster();
                  Invalidate();
-             };
+            };
         }
 
         /// <summary>
@@ -85,25 +85,23 @@ namespace Thief_Game
                 switch (keyEventArgs.KeyValue)
                 {
                     case KeyCodes.KeyDown:
-                        CheckPointsCollision(MoveIntensions.DOWN);
                         MoveDown();
                         break;
                     case KeyCodes.KeyUp:
-                        CheckPointsCollision(MoveIntensions.UP);
                         MoveUp();
                         break;
                     case KeyCodes.KeyRight:
-                        CheckPointsCollision(MoveIntensions.RIGHT);
                         MoveRight();
                         break;
                     case KeyCodes.KeyLeft:
-                        CheckPointsCollision(MoveIntensions.LEFT);
                         MoveLeft();
                         break;
                 }
 
                 if (this.CheckWin())
                     this.Close();
+
+                CheckPointsCollision();
 
                 Invalidate();
             }
@@ -119,7 +117,6 @@ namespace Thief_Game
             this.Hide();
             var scoreBoard = new ScoreBoard(this.Location.X, this.Location.Y).ShowDialog();
         }
-
 
         /// <summary>
         /// Установка размеров окна
@@ -186,6 +183,10 @@ namespace Thief_Game
             graphics.FillRectangle(Brushes.Chartreuse, startX, startY, width, height);
         }
         
+        /// <summary>
+        /// Drawing!!!
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             DrawMap(e.Graphics);

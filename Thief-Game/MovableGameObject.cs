@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Thief_Game
 {
+    /// <summary>
+    /// Base class for movable objects such as Monsters, Pacman
+    /// </summary>
     public class MovableGameObject
     {
         protected int X;

@@ -24,7 +24,6 @@ namespace Thief_Game
 
         public ScorePoint(int x, int y, int score, string fileName)
         {
-            //Точки, которые дают очки
             X = x;
             Y = y;
             Score = score;
