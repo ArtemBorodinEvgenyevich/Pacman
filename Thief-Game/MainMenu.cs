@@ -10,10 +10,14 @@ using System.Windows.Forms;
 
 namespace Thief_Game
 {
+
     public partial class MainMenu : Form
     {
+        // TDOD: Use enum
+        public string GetAppState { get; set; }
+
         public MainMenu()
-        {
+        {   
             InitializeComponent();
 
             var pfc = InitCustomLabelFont();
@@ -39,12 +43,15 @@ namespace Thief_Game
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-
+            this.GetAppState = "RUN";
+            Close();
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
+            this.GetAppState = "EXIT";
             Application.Exit();
         }
+
     }
 }

@@ -39,7 +39,10 @@ namespace Thief_Game
             Action SerializeStats,
             Func<bool> CheckWin)
         {
-            Mode = GameMode.MENU;
+            //Mode = GameMode.MENU;
+            
+            Mode = GameMode.GAME;
+            
             this.DrawMap = DrawMap;
 
             this.MoveDown = MoveDown;
@@ -56,8 +59,8 @@ namespace Thief_Game
             
             SetupWindow();
 
-            if (Mode == GameMode.MENU)
-                InitButtons();
+            //if (Mode == GameMode.MENU)
+                //InitButtons();
 
             //KeyPress += KeyPressListner;
             KeyDown += KeyPressListner;
@@ -70,6 +73,12 @@ namespace Thief_Game
                  MoveMonster();
                  Invalidate();
             };
+        
+        // Пока что переместил с InitButtons
+        // ----------------------------------
+            MonsterTimer.Start();
+            Invalidate();
+        // ----------------------------------
         }
 
         /// <summary>
@@ -111,11 +120,7 @@ namespace Thief_Game
         // TODO: rewrite later...
         private void FormClosingListener(object sender, FormClosingEventArgs closingEventArgs)
         {
-            SerializeStats();
-
-            // TODO: Open new window
-            this.Hide();
-            var scoreBoard = new ScoreBoard(this.Location.X, this.Location.Y).ShowDialog();
+            SerializeStats();          
         }
 
         /// <summary>

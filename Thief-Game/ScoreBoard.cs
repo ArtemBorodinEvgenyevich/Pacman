@@ -15,11 +15,11 @@ namespace Thief_Game
 
         public Font TextFont;
 
-        public ScoreBoard(int X, int Y)
+        public ScoreBoard()
         {
             // Почему-то не работает.
             //-----------------------------
-            this.SetDesktopLocation(X, Y);
+            //this.SetDesktopLocation(X, Y);
             //-----------------------------
 
             // Инициализируем собственный шрифт
@@ -67,7 +67,7 @@ namespace Thief_Game
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
     }
