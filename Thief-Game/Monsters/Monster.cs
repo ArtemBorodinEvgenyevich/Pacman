@@ -52,6 +52,7 @@ namespace Thief_Game
 
         /// <summary>
         /// Базовый алгоритм движения монстра (основан на Random)
+        /// Используется, если метод не переопределен наследником
         /// </summary>
         public virtual void Move(int destinationX, int destinationY, Graph scheme)
         {

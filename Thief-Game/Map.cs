@@ -288,7 +288,6 @@ namespace Thief_Game
         /// <summary>
         /// Check collisions with monsters
         /// </summary>
-        /// <param name="GameObject">Pacman or monster</param>
         /// <param name="Monsters">Monsters list</param>
         /// <param name="DimFlag">WHere you what to go</param>
         /// <param name="except">Number of monster in List of monsters (if pacman use -1)</param>
@@ -373,12 +372,10 @@ namespace Thief_Game
             return false;
         }
 
-
-        //Произошло измнение - перерисовали карту
         /// <summary>
         /// Redraw map and all objects in game
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         public void Draw(Graphics graphics)
         {
             for (int i = 0; i < Walls.Count; i++)
@@ -425,7 +422,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Bliny goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawBlinkyIntension(Graphics graphics)
         {
             graphics.DrawLine(
@@ -440,7 +437,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Pinky goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawPinkyIntension(Graphics graphics)
         {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
@@ -467,7 +464,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Inky goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawInkyIntension(Graphics graphics)
         {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
@@ -504,7 +501,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Clyde goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawClydeIntension(Graphics graphics) 
         {
             var clydePos = new Waypoint(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);

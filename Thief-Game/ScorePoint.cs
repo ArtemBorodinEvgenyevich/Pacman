@@ -31,6 +31,9 @@ namespace Thief_Game
         }
     }
 
+    /// <summary>
+    /// Big points
+    /// </summary>
     public class Energizer: ScorePoint
     {
         public Energizer(int x, int y): base(x, y, 10, @"Energizer.png")
@@ -38,6 +41,9 @@ namespace Thief_Game
         }
     }
 
+    /// <summary>
+    /// Small points
+    /// </summary>
     public class SmallPoint: ScorePoint
     {
         public SmallPoint(int x, int y): base(x, y, 50, @"Coin.png")
