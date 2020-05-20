@@ -10,29 +10,23 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Класс инициализации игрового уровня
+    /// Level and level objects init class
     /// </summary>
     class Map
     {
-        //private Action MainMenuClose;
-        
         private List<Wall> Walls;
         private List<Monster> Monsters;
         private Pacman Pacman;
         private List<SmallPoint> Points;
         private List<Energizer> Energizers;
-
         private Graph LevelScheme;
-        // temporary
         private WorldStat WorldStat;
 
         /// <summary>
-        /// Create map with monsters and others
+        /// Level initializer
         /// </summary>
         public Map()
-        {
-            //this.MainMenuClose = MenuClose;
-            
+        {            
             var pattern = new LevelLoader().ParseFile();
 
             InitAllLists(pattern);
@@ -44,13 +38,10 @@ namespace Thief_Game
 
             Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, 
                 Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin, CheckLoose));
-            //var scene = new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin);
-            //this.MainMenuClose();
-            //scene.ShowDialog();
         }
 
         /// <summary>
-        /// Init all lists
+        /// Init all lists of game objects and game stats
         /// </summary>
         /// <param name="pattern">Pattern of current level</param>
         private void InitAllLists(LevelPattern pattern)
@@ -64,7 +55,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// ???
+        /// Stats saving (serialization)
         /// </summary>
         private void SerializeStats()
         {
@@ -73,7 +64,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Init all walls
+        /// Wall list init
         /// </summary>
         /// <param name="pattern">Level patter</param>
         private void InitWalls(LevelPattern pattern)
@@ -85,7 +76,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Init all monsters
+        /// Monsters list init
         /// </summary>
         /// <param name="pattern">Level pattern</param>
         public void InitMonsters(LevelPattern pattern)
@@ -95,7 +86,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Init pacman
+        /// Player (pacman) init
         /// </summary>
         /// <param name="pattern">LevelPacman</param>
         public void InitPlayer(LevelPattern pattern)
@@ -373,8 +364,6 @@ namespace Thief_Game
             return false;
         }
 
-
-        //Произошло измнение - перерисовали карту
         /// <summary>
         /// Redraw map and all objects in game
         /// </summary>
@@ -412,17 +401,10 @@ namespace Thief_Game
                 monster.Redraw(graphics);
 
             Pacman.Redraw(graphics);
-
-            /*
-#if DEBUG
-            DrawBlinkyIntension(graphics);
-            DrawPinkyIntension(graphics);
-            DrawInkyIntension(graphics);
-            DrawClydeIntension(graphics);
-#endif
-            */
-
         }
+
+        // Use next section for DEBUG PURPOSE ONLY!
+        // ------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// DEBUG
@@ -536,5 +518,8 @@ namespace Thief_Game
                     Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
             }
         }
+        
+        // ------------------------------------------------------------------------------------------------------------------------
+    
     }
 }

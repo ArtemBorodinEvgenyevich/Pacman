@@ -4,7 +4,10 @@ using System;
 
 namespace Thief_Game
 {
-    // Artem
+
+    /// <summary>
+    /// Class for player object (Playable character)
+    /// </summary>
     class Pacman : MovableGameObject, IMovable
     {
         private int Speed;
@@ -22,6 +25,12 @@ namespace Thief_Game
         public int CurrentSpeed => Speed;
         public int CurrentLifes => Lifes;
 
+        /// <summary>
+        /// Init player with certain parameters
+        /// </summary>
+        /// <param name="startX"></param>
+        /// <param name="startY"></param>
+        /// <param name="speed"></param>
         public Pacman(int startX, int startY, int speed): base(Path.Combine(PathInfo.PlayerSpritesDir, "Pacman.png"))
         {
             Lifes = 3;

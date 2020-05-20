@@ -24,12 +24,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Pacman.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="menuPic1.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pacman
-   &#160;<span id="projectnumber">0.5.0</span>
+   &#160;<span id="projectnumber">1.0.0</span>
    </div>
-   <div id="projectbrief">Simple arcade game</div>
+   <div id="projectbrief">Pacman arcade game</div>
   </td>
  </tr>
  </tbody>
@@ -87,67 +87,228 @@ $(document).ready(function(){initNavTree('class_thief___game_1_1_score_point.htm
   <div class="summary">
 <a href="#pub-methods">Открытые члены</a> &#124;
 <a href="#pub-attribs">Открытые атрибуты</a> &#124;
-<a href="#pub-static-attribs">Статические открытые данные</a> &#124;
+<a href="#properties">Свойства</a> &#124;
+<a href="#pri-attribs">Закрытые данные</a> &#124;
 <a href="class_thief___game_1_1_score_point-members.html">Полный список членов класса</a>  </div>
   <div class="headertitle">
 <div class="title">Класс Thief_Game.ScorePoint</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Класс инициализации игровых очков  
+<p>Score point class init  
  <a href="class_thief___game_1_1_score_point.html#details">Подробнее...</a></p>
+<div class="dynheader">
+Граф наследования:Thief_Game.ScorePoint:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_thief___game_1_1_score_point.png" usemap="#Thief_5FGame.ScorePoint_map" alt=""/>
+  <map id="Thief_5FGame.ScorePoint_map" name="Thief_5FGame.ScorePoint_map">
+<area href="class_thief___game_1_1_energizer.html" title="Big coin init class" alt="Thief_Game.Energizer" shape="rect" coords="0,56,145,80"/>
+<area href="class_thief___game_1_1_small_point.html" title="Small coin init class" alt="Thief_Game.SmallPoint" shape="rect" coords="155,56,300,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:ae605253f40a5cd0cf1e6753779caaf59"><td class="memItemLeft" align="right" valign="top"><a id="ae605253f40a5cd0cf1e6753779caaf59"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ScorePoint</b> (int x, int y)</td></tr>
-<tr class="separator:ae605253f40a5cd0cf1e6753779caaf59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0562d90b54e92be124a12d58c42f6a80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#a0562d90b54e92be124a12d58c42f6a80">Eat</a> ()</td></tr>
-<tr class="memdesc:a0562d90b54e92be124a12d58c42f6a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Действия, при съедении точки  <a href="class_thief___game_1_1_score_point.html#a0562d90b54e92be124a12d58c42f6a80">Подробнее...</a><br /></td></tr>
-<tr class="separator:a0562d90b54e92be124a12d58c42f6a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60674ef5ea7d6a3cae1cd1ac99602712"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#a60674ef5ea7d6a3cae1cd1ac99602712">ScorePoint</a> (int x, int y, int score, string fileName)</td></tr>
+<tr class="memdesc:a60674ef5ea7d6a3cae1cd1ac99602712"><td class="mdescLeft">&#160;</td><td class="mdescRight">Score point object init  <a href="class_thief___game_1_1_score_point.html#a60674ef5ea7d6a3cae1cd1ac99602712">Подробнее...</a><br /></td></tr>
+<tr class="separator:a60674ef5ea7d6a3cae1cd1ac99602712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Открытые атрибуты</h2></td></tr>
-<tr class="memitem:a854fabc1c4ae57e25b576a8416a6218a"><td class="memItemLeft" align="right" valign="top"><a id="a854fabc1c4ae57e25b576a8416a6218a"></a>
-readonly int&#160;</td><td class="memItemRight" valign="bottom"><b>X</b></td></tr>
-<tr class="separator:a854fabc1c4ae57e25b576a8416a6218a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4baf3bf26be5e418f5e8e961b80cbade"><td class="memItemLeft" align="right" valign="top"><a id="a4baf3bf26be5e418f5e8e961b80cbade"></a>
-readonly int&#160;</td><td class="memItemRight" valign="bottom"><b>Y</b></td></tr>
-<tr class="separator:a4baf3bf26be5e418f5e8e961b80cbade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8728fc209831fe4aae1b70f0e87b663"><td class="memItemLeft" align="right" valign="top"><a id="ae8728fc209831fe4aae1b70f0e87b663"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b></td></tr>
-<tr class="separator:ae8728fc209831fe4aae1b70f0e87b663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa644d91c7e5e5fa72f6fece766b89d4d"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#aa644d91c7e5e5fa72f6fece766b89d4d">Score</a></td></tr>
+<tr class="separator:aa644d91c7e5e5fa72f6fece766b89d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b77dc9476ffbb62ab86fd6b59b6591e"><td class="memItemLeft" align="right" valign="top">readonly Image&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#a8b77dc9476ffbb62ab86fd6b59b6591e">View</a></td></tr>
+<tr class="separator:a8b77dc9476ffbb62ab86fd6b59b6591e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Статические открытые данные</h2></td></tr>
-<tr class="memitem:ab828d6dd69f9df7acfa0f2b22618250d"><td class="memItemLeft" align="right" valign="top"><a id="ab828d6dd69f9df7acfa0f2b22618250d"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>Score</b> = 10</td></tr>
-<tr class="separator:ab828d6dd69f9df7acfa0f2b22618250d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Свойства</h2></td></tr>
+<tr class="memitem:a00dda5d64a4086300e18107eb386204b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#a00dda5d64a4086300e18107eb386204b">CurrentPositionX</a><code> [get]</code></td></tr>
+<tr class="separator:a00dda5d64a4086300e18107eb386204b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa904c7609d6031e9c5d3f8c90db57d65"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#aa904c7609d6031e9c5d3f8c90db57d65">CurrentPositionY</a><code> [get]</code></td></tr>
+<tr class="separator:aa904c7609d6031e9c5d3f8c90db57d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:aadba6c2779db7138a9c078e93313c909"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#aadba6c2779db7138a9c078e93313c909">X</a></td></tr>
+<tr class="separator:aadba6c2779db7138a9c078e93313c909"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74657570e88427432604fa263b14223"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thief___game_1_1_score_point.html#ad74657570e88427432604fa263b14223">Y</a></td></tr>
+<tr class="separator:ad74657570e88427432604fa263b14223"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Класс инициализации игровых очков </p>
-</div><h2 class="groupheader">Методы</h2>
-<a id="a0562d90b54e92be124a12d58c42f6a80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0562d90b54e92be124a12d58c42f6a80">&#9670;&nbsp;</a></span>Eat()</h2>
+<div class="textblock"><p>Score point class init </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a60674ef5ea7d6a3cae1cd1ac99602712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60674ef5ea7d6a3cae1cd1ac99602712">&#9670;&nbsp;</a></span>ScorePoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Thief_Game.ScorePoint.Eat </td>
+          <td class="memname">Thief_Game.ScorePoint.ScorePoint </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>score</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Действия, при съедении точки </p>
+<p>Score point object init </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">score</td><td></td></tr>
+    <tr><td class="paramname">fileName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="aa644d91c7e5e5fa72f6fece766b89d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa644d91c7e5e5fa72f6fece766b89d4d">&#9670;&nbsp;</a></span>Score</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int Thief_Game.ScorePoint.Score</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b77dc9476ffbb62ab86fd6b59b6591e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b77dc9476ffbb62ab86fd6b59b6591e">&#9670;&nbsp;</a></span>View</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly Image Thief_Game.ScorePoint.View</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aadba6c2779db7138a9c078e93313c909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadba6c2779db7138a9c078e93313c909">&#9670;&nbsp;</a></span>X</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Thief_Game.ScorePoint.X</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad74657570e88427432604fa263b14223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74657570e88427432604fa263b14223">&#9670;&nbsp;</a></span>Y</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Thief_Game.ScorePoint.Y</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Полный список свойств</h2>
+<a id="a00dda5d64a4086300e18107eb386204b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00dda5d64a4086300e18107eb386204b">&#9670;&nbsp;</a></span>CurrentPositionX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Thief_Game.ScorePoint.CurrentPositionX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa904c7609d6031e9c5d3f8c90db57d65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa904c7609d6031e9c5d3f8c90db57d65">&#9670;&nbsp;</a></span>CurrentPositionY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Thief_Game.ScorePoint.CurrentPositionY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <hr/>Объявления и описания членов класса находятся в файле:<ul>
-<li>C:/Users/artem/source/repos/ArtemBorodinEvgenyevich/Thief-Game/Thief-Game/ScorePoint.cs</li>
+<li>C:/Users/artem/source/repos/ArtemBorodinEvgenyevich/Thief-Game/Thief-Game/<a class="el" href="_score_point_8cs.html">ScorePoint.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

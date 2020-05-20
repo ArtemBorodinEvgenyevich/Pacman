@@ -17,10 +17,7 @@ namespace Thief_Game
         public int destinationX;
         public int destinationY;
         private int speed;
-        public int Speed
-        {
-            get => speed;
-        }
+        public int Speed => speed;
         public readonly int StartX;
         public readonly int StartY;
 

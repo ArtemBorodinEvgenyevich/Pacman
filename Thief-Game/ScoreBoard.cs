@@ -10,21 +10,18 @@ using System.Windows.Forms;
 
 namespace Thief_Game
 {
+    /// <summary>
+    /// Scoreboard WinForm class
+    /// </summary>
     public partial class ScoreBoard : Form
     {
-
-        public Font TextFont;
-
+        /// <summary>
+        /// Scoreboard init
+        /// </summary>
         public ScoreBoard()
         {
-            // Почему-то не работает.
-            //-----------------------------
-            //this.SetDesktopLocation(X, Y);
-            //-----------------------------
-
-            // Инициализируем собственный шрифт
             var pfc = InitCustomLabelFont();
-            this.Font = new Font(pfc.Families[0], 10.2f); // maybe delete?
+            this.Font = new Font(pfc.Families[0], 10.2f);
             
             InitializeComponent();
 
@@ -37,6 +34,10 @@ namespace Thief_Game
 
         }
 
+        /// <summary>
+        /// External font loader
+        /// </summary>
+        /// <returns></returns>
         public PrivateFontCollection InitCustomLabelFont()
         {
             PrivateFontCollection pfc = new PrivateFontCollection();
@@ -45,6 +46,9 @@ namespace Thief_Game
             return pfc;
         }
 
+        /// <summary>
+        /// Scorebord results init and sort
+        /// </summary>
         public void CreateScoreList()
         {
             WorldStat results = new WorldStatPickle().DataDeserialize();
@@ -59,12 +63,21 @@ namespace Thief_Game
             }
         }
 
+        /// <summary>
+        /// Scoreboard load event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScoreBoard_Load(object sender, EventArgs e)
         {
             var stats = new WorldStatPickle().DataDeserialize();
         }
 
-
+        /// <summary>
+        /// Exit button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();

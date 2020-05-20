@@ -1,9 +1,8 @@
 ﻿namespace Thief_Game
 {
     //Lev
-    //Наследует все, что может двигаться, игрок, монстры
     /// <summary>
-    /// Интерфейс управления персонажем.    
+    /// Interface for character movement    
     /// </summary>
     public interface IMovable
     {

@@ -3,9 +3,18 @@ digraph "Thief_Game.Map"
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="Thief_Game.Map",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Класс инициализации игрового уровня"];
-  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Pacman" ,fontname="Helvetica"];
-  Node2 [label="Thief_Game.Pacman",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_pacman.html",tooltip=" "];
-  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IMovable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_thief___game_1_1_i_movable.html",tooltip="Интерфейс управления персонажем."];
+  Node1 [label="Thief_Game.Map",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Level and level objects init class"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" LevelScheme" ,fontname="Helvetica"];
+  Node2 [label="PathFinder.Graph",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_path_finder_1_1_graph.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" LeftBottomCorner" ,fontname="Helvetica"];
+  Node3 [label="PathFinder.Waypoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_path_finder_1_1_waypoint.html",tooltip=" "];
+  Node3 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Down\nLeft\nRight\nUp" ,fontname="Helvetica"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Pacman" ,fontname="Helvetica"];
+  Node4 [label="Thief_Game.Pacman",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_pacman.html",tooltip="Class for player object (Playable character)"];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MovableGameObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_movable_game_object.html",tooltip="Base class for movable objects such as Monsters, Pacman"];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IMovable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_thief___game_1_1_i_movable.html",tooltip="Interface for character movement"];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" WorldStat" ,fontname="Helvetica"];
+  Node7 [label="Thief_Game.WorldStat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_world_stat.html",tooltip="Game statistics class"];
 }

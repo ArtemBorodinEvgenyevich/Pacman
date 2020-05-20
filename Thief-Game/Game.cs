@@ -5,13 +5,16 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Класс инициализации игры
+    /// Game init class
     /// </summary>
     class Game
     {
         // TODO: Use enum
         private string State;
 
+        /// <summary>
+        /// Starting point for game running
+        /// </summary>
         public Game()
         {
             var mainMenu = new MainMenu();
@@ -27,11 +30,17 @@ namespace Thief_Game
             Application.Exit();
         }
 
+        /// <summary>
+        /// Start level initilizer
+        /// </summary>
         private void RunGame() 
         {
             var map = new Map();
         }
 
+        /// <summary>
+        /// Show score board with results
+        /// </summary>
         private void ShowScoreBoard()
         {
             Application.Run(new ScoreBoard());

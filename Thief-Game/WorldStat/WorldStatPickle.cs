@@ -6,12 +6,19 @@ using System.Linq;
 
 namespace Thief_Game
 {
+    /// <summary>
+    /// Game stats pickle (serialization) class
+    /// </summary>
     class WorldStatPickle
     {
         private string pathToFile;
         
         // Создает файл в папке ~/Thief-Game/bin/docs/netcoreapp3.1
         // тк в дебаг версии эта папка является рабочей
+        
+        /// <summary>
+        /// Init *.json stat file
+        /// </summary>
         public WorldStatPickle()
         {
             pathToFile = Path.Combine(PathInfo.WorkingDir, "ScoreRecord.json");
@@ -24,6 +31,10 @@ namespace Thief_Game
             }              
         }
 
+        /// <summary>
+        /// Game stats serialization
+        /// </summary>
+        /// <param name="score"></param>
         public void DataSerialize(int score) 
         {
             WorldStat worldStat = JsonSerializer.Deserialize<WorldStat>(File.ReadAllText(pathToFile));
@@ -42,6 +53,10 @@ namespace Thief_Game
             File.WriteAllText(pathToFile, jsonString);
         }
 
+        /// <summary>
+        /// Game stats deserialization
+        /// </summary>
+        /// <returns></returns>
         public WorldStat DataDeserialize() 
         {
             string jsonString = File.ReadAllText(pathToFile);

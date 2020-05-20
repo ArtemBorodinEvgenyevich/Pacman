@@ -11,11 +11,17 @@ using System.Windows.Forms;
 namespace Thief_Game
 {
 
+    /// <summary>
+    /// Main menu WinForm class
+    /// </summary>
     public partial class MainMenu : Form
     {
-        // TDOD: Use enum
+        // TODO: Use enum
         public string GetAppState { get; set; }
 
+        /// <summary>
+        /// Main menu init
+        /// </summary>
         public MainMenu()
         {   
             InitializeComponent();
@@ -28,11 +34,20 @@ namespace Thief_Game
             this.AnimTitle.ImageLocation = Path.Combine(PathInfo.GUISpritesDir, "gameAnimTitle.gif");
         }
 
+        /// <summary>
+        /// WinForm widget loading event (Do not delete!)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainMenu_Load(object sender, EventArgs e)
         {
-           
+            
         }
 
+        /// <summary>
+        /// External font loader
+        /// </summary>
+        /// <returns></returns>
         public PrivateFontCollection InitCustomLabelFont()
         {
             PrivateFontCollection pfc = new PrivateFontCollection();
@@ -41,12 +56,22 @@ namespace Thief_Game
             return pfc;
         }
 
+        /// <summary>
+        /// Start button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StartButton_Click(object sender, EventArgs e)
         {
             this.GetAppState = "RUN";
             Close();
         }
 
+        /// <summary>
+        /// Exit button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitBtn_Click(object sender, EventArgs e)
         {
             this.GetAppState = "EXIT";

@@ -23,8 +23,15 @@ namespace Thief_Game
             get => Y;
         }
 
+        /// <summary>
+        /// Game sprite for movable object
+        /// </summary>
         public Image View;
 
+        /// <summary>
+        /// Object view loader
+        /// </summary>
+        /// <param name="path"></param>
         public MovableGameObject(string path)
         {
             View = Image.FromFile(path);

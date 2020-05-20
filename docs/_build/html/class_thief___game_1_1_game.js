@@ -1,6 +1,7 @@
 var class_thief___game_1_1_game =
 [
     [ "Game", "class_thief___game_1_1_game.html#aa27c6af8c8affa6b30eaa1c5ce4ee010", null ],
-    [ "LoadPattern", "class_thief___game_1_1_game.html#a2664f3aaced74f8577161dca7b063fe3", null ],
-    [ "Player", "class_thief___game_1_1_game.html#af431d246d45e1e3b26f541b16e486c05", null ]
+    [ "RunGame", "class_thief___game_1_1_game.html#ad07925910dc673ef430e33c00642d0ee", null ],
+    [ "ShowScoreBoard", "class_thief___game_1_1_game.html#a61673deedf8eff9896f19fb40c4b9722", null ],
+    [ "State", "class_thief___game_1_1_game.html#a02083a5a85109e7424b3e10310b1dbdf", null ]
 ];

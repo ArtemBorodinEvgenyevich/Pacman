@@ -24,12 +24,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Pacman.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="menuPic1.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pacman
-   &#160;<span id="projectnumber">0.5.0</span>
+   &#160;<span id="projectnumber">1.0.0</span>
    </div>
-   <div id="projectbrief">Simple arcade game</div>
+   <div id="projectbrief">Pacman arcade game</div>
   </td>
  </tr>
  </tbody>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('interface_thief___game_1_1_i_movable.h
 </div><!--header-->
 <div class="contents">
 
-<p>Интерфейс управления персонажем. <br  />
+<p>Interface for character movement <br  />
   
  <a href="interface_thief___game_1_1_i_movable.html#details">Подробнее...</a></p>
 <div class="dynheader">
@@ -101,31 +101,108 @@ $(document).ready(function(){initNavTree('interface_thief___game_1_1_i_movable.h
  <div class="center">
   <img src="interface_thief___game_1_1_i_movable.png" usemap="#Thief_5FGame.IMovable_map" alt=""/>
   <map id="Thief_5FGame.IMovable_map" name="Thief_5FGame.IMovable_map">
-<area href="class_thief___game_1_1_monster.html" title="Класс инициализации противника" alt="Thief_Game.Monster" shape="rect" coords="0,56,135,80"/>
-<area href="class_thief___game_1_1_pacman.html" alt="Thief_Game.Pacman" shape="rect" coords="145,56,280,80"/>
+<area href="class_thief___game_1_1_monster.html" title="Класс инициализации противника" alt="Thief_Game.Monster" shape="rect" coords="273,56,445,80"/>
+<area href="class_thief___game_1_1_pacman.html" title="Class for player object (Playable character)" alt="Thief_Game.Pacman" shape="rect" coords="455,56,627,80"/>
+<area href="class_thief___game_1_1_blinky.html" alt="Thief_Game.Blinky" shape="rect" coords="0,112,172,136"/>
+<area href="class_thief___game_1_1_monsters_1_1_clyde.html" alt="Thief_Game.Monsters.Clyde" shape="rect" coords="182,112,354,136"/>
+<area href="class_thief___game_1_1_monsters_1_1_inky.html" alt="Thief_Game.Monsters.Inky" shape="rect" coords="364,112,536,136"/>
+<area href="class_thief___game_1_1_monsters_1_1_pinky.html" title="Pinky monster class" alt="Thief_Game.Monsters.Pinky" shape="rect" coords="546,112,718,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:a1c24be7b2d53d115471d4a3b0481683d"><td class="memItemLeft" align="right" valign="top"><a id="a1c24be7b2d53d115471d4a3b0481683d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveUp</b> ()</td></tr>
+<tr class="memitem:a1c24be7b2d53d115471d4a3b0481683d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_thief___game_1_1_i_movable.html#a1c24be7b2d53d115471d4a3b0481683d">MoveUp</a> ()</td></tr>
 <tr class="separator:a1c24be7b2d53d115471d4a3b0481683d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27a2d520c216cd351a238983a9bce0d9"><td class="memItemLeft" align="right" valign="top"><a id="a27a2d520c216cd351a238983a9bce0d9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveLeft</b> ()</td></tr>
+<tr class="memitem:a27a2d520c216cd351a238983a9bce0d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_thief___game_1_1_i_movable.html#a27a2d520c216cd351a238983a9bce0d9">MoveLeft</a> ()</td></tr>
 <tr class="separator:a27a2d520c216cd351a238983a9bce0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad304510e5f6584876efb1aa228d74d22"><td class="memItemLeft" align="right" valign="top"><a id="ad304510e5f6584876efb1aa228d74d22"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveRight</b> ()</td></tr>
+<tr class="memitem:ad304510e5f6584876efb1aa228d74d22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_thief___game_1_1_i_movable.html#ad304510e5f6584876efb1aa228d74d22">MoveRight</a> ()</td></tr>
 <tr class="separator:ad304510e5f6584876efb1aa228d74d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54d04d6ae4ca27806a15fe72e2f87adb"><td class="memItemLeft" align="right" valign="top"><a id="a54d04d6ae4ca27806a15fe72e2f87adb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveDown</b> ()</td></tr>
+<tr class="memitem:a54d04d6ae4ca27806a15fe72e2f87adb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_thief___game_1_1_i_movable.html#a54d04d6ae4ca27806a15fe72e2f87adb">MoveDown</a> ()</td></tr>
 <tr class="separator:a54d04d6ae4ca27806a15fe72e2f87adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Интерфейс управления персонажем. <br  />
+<div class="textblock"><p>Interface for character movement <br  />
  </p>
-</div><hr/>Объявления и описания членов интерфейса находятся в файле:<ul>
-<li>C:/Users/artem/source/repos/ArtemBorodinEvgenyevich/Thief-Game/Thief-Game/IMovable.cs</li>
+</div><h2 class="groupheader">Методы</h2>
+<a id="a54d04d6ae4ca27806a15fe72e2f87adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d04d6ae4ca27806a15fe72e2f87adb">&#9670;&nbsp;</a></span>MoveDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thief_Game.IMovable.MoveDown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Замещается в <a class="el" href="class_thief___game_1_1_monster.html#a4d7518a07083066393e94bb33bc4c9bb">Thief_Game.Monster</a> и <a class="el" href="class_thief___game_1_1_pacman.html#aa175b5584258ef2d6ca82a4903975c28">Thief_Game.Pacman</a>.</p>
+
+</div>
+</div>
+<a id="a27a2d520c216cd351a238983a9bce0d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a2d520c216cd351a238983a9bce0d9">&#9670;&nbsp;</a></span>MoveLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thief_Game.IMovable.MoveLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Замещается в <a class="el" href="class_thief___game_1_1_monster.html#a14c7afbb93ee2be9a2d8381ef9566ad4">Thief_Game.Monster</a> и <a class="el" href="class_thief___game_1_1_pacman.html#a29608c0c1166d30881a2b26542630356">Thief_Game.Pacman</a>.</p>
+
+</div>
+</div>
+<a id="ad304510e5f6584876efb1aa228d74d22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad304510e5f6584876efb1aa228d74d22">&#9670;&nbsp;</a></span>MoveRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thief_Game.IMovable.MoveRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Замещается в <a class="el" href="class_thief___game_1_1_monster.html#ac7a9bd2a502c1ae5b35114c8b16f1aa9">Thief_Game.Monster</a> и <a class="el" href="class_thief___game_1_1_pacman.html#acfa2185c075cb04165aff6b6fb7fd9a7">Thief_Game.Pacman</a>.</p>
+
+</div>
+</div>
+<a id="a1c24be7b2d53d115471d4a3b0481683d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c24be7b2d53d115471d4a3b0481683d">&#9670;&nbsp;</a></span>MoveUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thief_Game.IMovable.MoveUp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Замещается в <a class="el" href="class_thief___game_1_1_monster.html#a5b01922e82531fd26ba6c986d01a7abd">Thief_Game.Monster</a> и <a class="el" href="class_thief___game_1_1_pacman.html#a6cb93c8e246ec2fb0cf83c5a2a7195a0">Thief_Game.Pacman</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов интерфейса находятся в файле:<ul>
+<li>C:/Users/artem/source/repos/ArtemBorodinEvgenyevich/Thief-Game/Thief-Game/<a class="el" href="_i_movable_8cs.html">IMovable.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

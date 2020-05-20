@@ -7,6 +7,9 @@ using PathFinder;
 
 namespace Thief_Game.Monsters
 {
+    /// <summary>
+    /// Pinky monster class
+    /// </summary>
     public class Pinky: Monster
     {
         /// <summary>
