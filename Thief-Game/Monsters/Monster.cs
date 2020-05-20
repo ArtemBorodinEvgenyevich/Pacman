@@ -11,7 +11,7 @@ namespace Thief_Game
     /// <summary>
     /// Класс инициализации противника
     /// </summary>
-    public class Monster : MovableGameObject, IMovable
+    public class Monster : MovableGameObject
     {
         //Where is the monster going
         public int destinationX;
@@ -52,6 +52,7 @@ namespace Thief_Game
 
         /// <summary>
         /// Базовый алгоритм движения монстра (основан на Random)
+        /// Используется, если метод не переопределен наследником
         /// </summary>
         public virtual void Move(int destinationX, int destinationY, Graph scheme)
         {

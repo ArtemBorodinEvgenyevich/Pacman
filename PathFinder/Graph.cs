@@ -80,47 +80,7 @@ namespace PathFinder
                 }
             }
         }
-
-        /// <summary>
-        /// Use for drawing graph in console (some bugs)
-        /// </summary>
-        public void Print()
-        {
-            var y = 0;
-
-            foreach (var node in GraphNodes)
-            {
-                Console.SetCursorPosition(node.X * 2, node.Y * 2);
-                Console.Write(node.Id);
-
-                if (node.Y * 2 > y) y = node.Y * 2;
-
-                if (node.Right != null)
-                {
-                    Console.SetCursorPosition(node.X * 2 + 1, node.Y * 2);
-                    Console.Write('-');
-                }
-                if (node.Left != null)
-                {
-                    Console.SetCursorPosition(node.X * 2 - 1, node.Y * 2);
-                    Console.Write('-');
-                }
-                if (node.Up != null)
-                {
-                    Console.SetCursorPosition(node.X * 2, node.Y * 2 - 1);
-                    Console.Write('|');
-                }
-                if (node.Down != null)
-                {
-                    Console.SetCursorPosition(node.X * 2, node.Y * 2 + 1);
-                    Console.Write('|');
-                }
-            }
-
-            Console.SetCursorPosition(0, y);
-            Console.WriteLine();
-        }
-
+        
         /// <summary>
         /// Use this algorythm for find path to waypoint
         /// </summary>

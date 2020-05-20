@@ -17,7 +17,7 @@ namespace Thief_Game
         /// </summary>
         public LevelLoader()
         {
-            PathToPattern = GoToLevelPattern_ptrn();
+            PathToPattern = GoToLevelPattern();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Thief_Game
         /// </summary>
         /// <param name="path">Папка, где лежит файл</param>
         /// <returns>Путь к файлу</returns>
-        private string GoToLevelPattern_ptrn()
+        private string GoToLevelPattern()
         {
             return Path.Combine(PathInfo.SourceDir, "LevelPattern.ptrn");
         }

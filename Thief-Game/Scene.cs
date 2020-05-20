@@ -26,6 +26,7 @@ namespace Thief_Game
         private Timer MonsterTimer;
         private Action SerializeStats;
         private Func<bool> CheckWin;
+        private Func<bool> CheckLoose;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -37,7 +38,8 @@ namespace Thief_Game
             Action MoveMonster,
             Action CheckPointsCollision,
             Action SerializeStats,
-            Func<bool> CheckWin)
+            Func<bool> CheckWin,
+            Func<bool> CheckLoose)
         {
             //Mode = GameMode.MENU;
             
@@ -56,6 +58,7 @@ namespace Thief_Game
             this.SerializeStats = SerializeStats;
 
             this.CheckWin = CheckWin;
+            this.CheckLoose = CheckLoose;
             
             SetupWindow();
 
@@ -67,11 +70,13 @@ namespace Thief_Game
             FormClosing += FormClosingListener;
 
             MonsterTimer = new Timer();
-            MonsterTimer.Interval = 10;
+            MonsterTimer.Interval = 300;
             MonsterTimer.Tick += (s, e) =>
             {
                  MoveMonster();
                  Invalidate();
+                 if (CheckLoose())
+                    this.Close();
             };
         
         // Пока что переместил с InitButtons
@@ -134,59 +139,6 @@ namespace Thief_Game
             DoubleBuffered = true;
             KeyPreview = true;
         }
-
-        /// <summary>
-        /// Init buttons
-        /// </summary>
-        private void InitButtons()
-        {
-            var newGameButtonStartX = Dimensions.WindowWidthPixels / 2 - Dimensions.ButtonWidth / 2; 
-            var newGameButtonsStartY = Dimensions.WindowHeightPixels / 2 - Dimensions.ButtonHeight;
-            var exitButtonStartX = newGameButtonStartX;
-            var exitButtonStartY = newGameButtonsStartY + Dimensions.ButtonHeight;
-
-            NewGameBTN = new Button();
-            NewGameBTN.Width = Dimensions.ButtonWidth;
-            NewGameBTN.Height = Dimensions.ButtonHeight;
-            NewGameBTN.Text = "Start new game";
-            NewGameBTN.Location = new Point(newGameButtonStartX, newGameButtonsStartY);
-            NewGameBTN.Click += (sender, args) =>
-            {
-                Controls.Remove(ExitBTN);
-                Controls.Remove(NewGameBTN);
-                Mode = GameMode.GAME;
-                MonsterTimer.Start();
-                Invalidate();
-            };
-            NewGameBTN.BackColor = Color.WhiteSmoke;
-            Controls.Add(NewGameBTN);
-
-            ExitBTN = new Button();
-            ExitBTN.Width = Dimensions.ButtonWidth;
-            ExitBTN.Height = Dimensions.ButtonHeight;
-            ExitBTN.Text = "Exit";
-            ExitBTN.Location = new Point(exitButtonStartX, exitButtonStartY);
-            ExitBTN.Click += (sender, args) =>
-            {
-                Close();
-            };
-            ExitBTN.BackColor = Color.WhiteSmoke;
-            Controls.Add(ExitBTN);
-        }
-        
-        /// <summary>
-        /// Main menu background
-        /// </summary>
-        /// <param name="graphics"></param>
-        private void DrawButtonsBackground(Graphics graphics)
-        {
-            var startX = NewGameBTN.Location.X - Dimensions.Padding;
-            var startY = NewGameBTN.Location.Y - Dimensions.Padding;
-            var width = Dimensions.Padding * 2 + Dimensions.ButtonWidth;
-            var height = Dimensions.Padding * 2 + Dimensions.ButtonHeight * 2;
-
-            graphics.FillRectangle(Brushes.Chartreuse, startX, startY, width, height);
-        }
         
         /// <summary>
         /// Drawing!!!
@@ -196,11 +148,9 @@ namespace Thief_Game
         {
             DrawMap(e.Graphics);
             Redraw(e.Graphics);
-
-            if (Mode == GameMode.MENU)
-                DrawButtonsBackground(e.Graphics);
         }
 
+        /*
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -212,6 +162,6 @@ namespace Thief_Game
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
 
-        }
+        }*/
     }
 }

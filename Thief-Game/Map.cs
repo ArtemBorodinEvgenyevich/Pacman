@@ -42,7 +42,8 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, 
+                Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin, CheckLoose));
             //var scene = new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin);
             //this.MainMenuClose();
             //scene.ShowDialog();
@@ -209,7 +210,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanDown()
         {
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.DOWN))
+            if (CheckWallCollision(Pacman, MoveIntensions.DOWN))
                 Pacman.MoveDown();
         }
 
@@ -219,7 +220,7 @@ namespace Thief_Game
         public void MovePacmanUp()
         {
             //if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.UP))   
+            if (CheckWallCollision(Pacman, MoveIntensions.UP))   
                 Pacman.MoveUp();
         }
 
@@ -228,7 +229,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanRight()
         {
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.RIGHT))
+            if (CheckWallCollision(Pacman, MoveIntensions.RIGHT))
                 Pacman.MoveRight();
         }
 
@@ -237,7 +238,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanLeft()
         {
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.LEFT))
+            if (CheckWallCollision(Pacman, MoveIntensions.LEFT))
                 Pacman.MoveLeft();
         }
 
@@ -253,7 +254,7 @@ namespace Thief_Game
         /// <param name="Walls">List of walls</param>
         /// <param name="DimFlag">Where you want to move</param>
         /// <returns>Can you move or not</returns>
-        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, MoveIntensions DimFlag)
+        private bool CheckWallCollision(MovableGameObject GameObject, MoveIntensions DimFlag)
         {
             int pacmanX = GameObject.CurrentPositionX;
             int pacmanY = GameObject.CurrentPositionY;
@@ -287,30 +288,18 @@ namespace Thief_Game
         /// <summary>
         /// Check collisions with monsters
         /// </summary>
-        /// <param name="GameObject">Pacman or monster</param>
         /// <param name="Monsters">Monsters list</param>
         /// <param name="DimFlag">WHere you what to go</param>
         /// <param name="except">Number of monster in List of monsters (if pacman use -1)</param>
         /// <returns></returns>
-        private bool CheckMonsterCollision(MovableGameObject GameObject, List<Monster> Monsters, MoveIntensions DimFlag, int except)
+        private bool CheckPacmanMonsterCollision(MoveIntensions DimFlag)
         {
-            int pacmanX = GameObject.CurrentPositionX;
-            int pacmanY = GameObject.CurrentPositionY;
+            int pacmanX = Pacman.CurrentPositionX;
+            int pacmanY = Pacman.CurrentPositionY;
             bool moveFlag = true;
 
-            if (DimFlag == MoveIntensions.UP)
-                pacmanY -= 1;
-            else if (DimFlag == MoveIntensions.DOWN)
-                pacmanY += 1;
-            else if (DimFlag == MoveIntensions.RIGHT)
-                pacmanX += 1;
-            else
-                pacmanX -= 1;
-
             for(int i = 0; i < Monsters.Count; i++)
-            {
-                if (i == except) continue;
-
+            { 
                 int monsterX = Monsters[i].CurrentPositionX;
                 int monsterY = Monsters[i].CurrentPositionY;
 
@@ -368,12 +357,23 @@ namespace Thief_Game
             return false;
         }
 
+        private bool CheckLoose()
+        {
+            if (!CheckPacmanMonsterCollision(MoveIntensions.RIGHT) ||
+                !CheckPacmanMonsterCollision(MoveIntensions.LEFT) ||
+                !CheckPacmanMonsterCollision(MoveIntensions.UP) ||
+                !CheckPacmanMonsterCollision(MoveIntensions.DOWN))
+            {
+                return true;
+            }
 
-        //Произошло измнение - перерисовали карту
+            return false;
+        }
+
         /// <summary>
         /// Redraw map and all objects in game
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         public void Draw(Graphics graphics)
         {
             for (int i = 0; i < Walls.Count; i++)
@@ -420,7 +420,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Bliny goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawBlinkyIntension(Graphics graphics)
         {
             graphics.DrawLine(
@@ -435,7 +435,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Pinky goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawPinkyIntension(Graphics graphics)
         {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
@@ -462,7 +462,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Inky goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawInkyIntension(Graphics graphics)
         {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
@@ -499,7 +499,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Clyde goes
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">Instrument for drawing</param>
         private void DrawClydeIntension(Graphics graphics) 
         {
             var clydePos = new Waypoint(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
