@@ -139,47 +139,6 @@ namespace Thief_Game
             DoubleBuffered = true;
             KeyPreview = true;
         }
-
-        /*
-        /// <summary>
-        /// Init buttons
-        /// </summary>
-        private void InitButtons()
-        {
-            var newGameButtonStartX = Dimensions.WindowWidthPixels / 2 - Dimensions.ButtonWidth / 2; 
-            var newGameButtonsStartY = Dimensions.WindowHeightPixels / 2 - Dimensions.ButtonHeight;
-            var exitButtonStartX = newGameButtonStartX;
-            var exitButtonStartY = newGameButtonsStartY + Dimensions.ButtonHeight;
-
-            NewGameBTN = new Button();
-            NewGameBTN.Width = Dimensions.ButtonWidth;
-            NewGameBTN.Height = Dimensions.ButtonHeight;
-            NewGameBTN.Text = "Start new game";
-            NewGameBTN.Location = new Point(newGameButtonStartX, newGameButtonsStartY);
-            NewGameBTN.Click += (sender, args) =>
-            {
-                Controls.Remove(ExitBTN);
-                Controls.Remove(NewGameBTN);
-                Mode = GameMode.GAME;
-                MonsterTimer.Start();
-                Invalidate();
-            };
-            NewGameBTN.BackColor = Color.WhiteSmoke;
-            Controls.Add(NewGameBTN);
-
-            ExitBTN = new Button();
-            ExitBTN.Width = Dimensions.ButtonWidth;
-            ExitBTN.Height = Dimensions.ButtonHeight;
-            ExitBTN.Text = "Exit";
-            ExitBTN.Location = new Point(exitButtonStartX, exitButtonStartY);
-            ExitBTN.Click += (sender, args) =>
-            {
-                Close();
-            };
-            ExitBTN.BackColor = Color.WhiteSmoke;
-            Controls.Add(ExitBTN);
-        }
-        */
         
         /// <summary>
         /// Drawing!!!
@@ -191,6 +150,7 @@ namespace Thief_Game
             Redraw(e.Graphics);
         }
 
+        /*
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -202,6 +162,6 @@ namespace Thief_Game
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
 
-        }
+        }*/
     }
 }
