@@ -210,7 +210,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanDown()
         {
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.DOWN))
+            if (CheckWallCollision(Pacman, MoveIntensions.DOWN))
                 Pacman.MoveDown();
         }
 
@@ -220,7 +220,7 @@ namespace Thief_Game
         public void MovePacmanUp()
         {
             //if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.UP))   
+            if (CheckWallCollision(Pacman, MoveIntensions.UP))   
                 Pacman.MoveUp();
         }
 
@@ -229,7 +229,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanRight()
         {
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.RIGHT))
+            if (CheckWallCollision(Pacman, MoveIntensions.RIGHT))
                 Pacman.MoveRight();
         }
 
@@ -238,7 +238,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanLeft()
         {
-            if (CheckWallCollision(Pacman, Walls, MoveIntensions.LEFT))
+            if (CheckWallCollision(Pacman, MoveIntensions.LEFT))
                 Pacman.MoveLeft();
         }
 
@@ -254,7 +254,7 @@ namespace Thief_Game
         /// <param name="Walls">List of walls</param>
         /// <param name="DimFlag">Where you want to move</param>
         /// <returns>Can you move or not</returns>
-        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, MoveIntensions DimFlag)
+        private bool CheckWallCollision(MovableGameObject GameObject, MoveIntensions DimFlag)
         {
             int pacmanX = GameObject.CurrentPositionX;
             int pacmanY = GameObject.CurrentPositionY;
@@ -292,16 +292,14 @@ namespace Thief_Game
         /// <param name="DimFlag">WHere you what to go</param>
         /// <param name="except">Number of monster in List of monsters (if pacman use -1)</param>
         /// <returns></returns>
-        private bool CheckPacmanMonsterCollision(List<Monster> Monsters, MoveIntensions DimFlag, int except)
+        private bool CheckPacmanMonsterCollision(MoveIntensions DimFlag)
         {
             int pacmanX = Pacman.CurrentPositionX;
             int pacmanY = Pacman.CurrentPositionY;
             bool moveFlag = true;
 
             for(int i = 0; i < Monsters.Count; i++)
-            {
-                if (i == except) continue;
-
+            { 
                 int monsterX = Monsters[i].CurrentPositionX;
                 int monsterY = Monsters[i].CurrentPositionY;
 
@@ -361,10 +359,10 @@ namespace Thief_Game
 
         private bool CheckLoose()
         {
-            if (!CheckPacmanMonsterCollision(Monsters, MoveIntensions.RIGHT, 10) ||
-                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.LEFT, 10) ||
-                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.UP, 10) ||
-                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.DOWN, 10))
+            if (!CheckPacmanMonsterCollision(MoveIntensions.RIGHT) ||
+                !CheckPacmanMonsterCollision(MoveIntensions.LEFT) ||
+                !CheckPacmanMonsterCollision(MoveIntensions.UP) ||
+                !CheckPacmanMonsterCollision(MoveIntensions.DOWN))
             {
                 return true;
             }
