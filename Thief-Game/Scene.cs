@@ -26,6 +26,7 @@ namespace Thief_Game
         private Timer MonsterTimer;
         private Action SerializeStats;
         private Func<bool> CheckWin;
+        private Func<bool> CheckLoose;
 
         public Scene(
             Action<Graphics> DrawMap, 
@@ -37,7 +38,8 @@ namespace Thief_Game
             Action MoveMonster,
             Action CheckPointsCollision,
             Action SerializeStats,
-            Func<bool> CheckWin)
+            Func<bool> CheckWin,
+            Func<bool> CheckLoose)
         {
             //Mode = GameMode.MENU;
             
@@ -56,6 +58,7 @@ namespace Thief_Game
             this.SerializeStats = SerializeStats;
 
             this.CheckWin = CheckWin;
+            this.CheckLoose = CheckLoose;
             
             SetupWindow();
 
@@ -72,6 +75,8 @@ namespace Thief_Game
             {
                  MoveMonster();
                  Invalidate();
+                 if (CheckLoose())
+                    this.Close();
             };
         
         // Пока что переместил с InitButtons

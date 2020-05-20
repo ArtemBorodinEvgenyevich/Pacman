@@ -42,7 +42,8 @@ namespace Thief_Game
             InitSmallPoints(pattern);
             InitEnergizers(pattern);
 
-            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin));
+            Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, 
+                Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin, CheckLoose));
             //var scene = new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin);
             //this.MainMenuClose();
             //scene.ShowDialog();
@@ -202,11 +203,6 @@ namespace Thief_Game
             MovePinky();
             MoveInky();
             MoveClyde();
-
-            if (!CheckPacmanMonsterCollision(Monsters, MoveIntensions.RIGHT, 10))
-            {
-                MessageBox.Show("Fail!");
-            }
         }
 
         /// <summary>
@@ -364,6 +360,19 @@ namespace Thief_Game
             return false;
         }
 
+        private bool CheckLoose()
+        {
+            if (!CheckPacmanMonsterCollision(Monsters, MoveIntensions.RIGHT, 10) ||
+                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.LEFT, 10) ||
+                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.UP, 10) ||
+                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.DOWN, 10))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
 
         //Произошло измнение - перерисовали карту
         /// <summary>
@@ -404,12 +413,15 @@ namespace Thief_Game
 
             Pacman.Redraw(graphics);
 
+            /*
 #if DEBUG
             DrawBlinkyIntension(graphics);
             DrawPinkyIntension(graphics);
             DrawInkyIntension(graphics);
             DrawClydeIntension(graphics);
 #endif
+            */
+
         }
 
         /// <summary>
