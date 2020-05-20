@@ -13,4 +13,10 @@ namespace Thief_Game
         GAME,
         SCORE
     }
+
+    enum AppMode
+    {
+        RUN,
+        EXIT
+    }
 }

@@ -17,7 +17,9 @@ namespace Thief_Game
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             var game = new Game();
+            //Application.Run(game);
         }
     }
 }

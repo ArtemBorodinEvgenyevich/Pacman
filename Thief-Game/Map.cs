@@ -13,7 +13,9 @@ namespace Thief_Game
     /// Класс инициализации игрового уровня
     /// </summary>
     class Map
-    {   
+    {
+        //private Action MainMenuClose;
+        
         private List<Wall> Walls;
         private List<Monster> Monsters;
         private Pacman Pacman;
@@ -29,6 +31,8 @@ namespace Thief_Game
         /// </summary>
         public Map()
         {
+            //this.MainMenuClose = MenuClose;
+            
             var pattern = new LevelLoader().ParseFile();
 
             InitAllLists(pattern);
@@ -39,6 +43,9 @@ namespace Thief_Game
             InitEnergizers(pattern);
 
             Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin));
+            //var scene = new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin);
+            //this.MainMenuClose();
+            //scene.ShowDialog();
         }
 
         /// <summary>
