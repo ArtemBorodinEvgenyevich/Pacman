@@ -202,6 +202,11 @@ namespace Thief_Game
             MovePinky();
             MoveInky();
             MoveClyde();
+
+            if (!CheckPacmanMonsterCollision(Monsters, MoveIntensions.RIGHT, 10))
+            {
+                MessageBox.Show("Fail!");
+            }
         }
 
         /// <summary>
@@ -292,20 +297,11 @@ namespace Thief_Game
         /// <param name="DimFlag">WHere you what to go</param>
         /// <param name="except">Number of monster in List of monsters (if pacman use -1)</param>
         /// <returns></returns>
-        private bool CheckMonsterCollision(MovableGameObject GameObject, List<Monster> Monsters, MoveIntensions DimFlag, int except)
+        private bool CheckPacmanMonsterCollision(List<Monster> Monsters, MoveIntensions DimFlag, int except)
         {
-            int pacmanX = GameObject.CurrentPositionX;
-            int pacmanY = GameObject.CurrentPositionY;
+            int pacmanX = Pacman.CurrentPositionX;
+            int pacmanY = Pacman.CurrentPositionY;
             bool moveFlag = true;
-
-            if (DimFlag == MoveIntensions.UP)
-                pacmanY -= 1;
-            else if (DimFlag == MoveIntensions.DOWN)
-                pacmanY += 1;
-            else if (DimFlag == MoveIntensions.RIGHT)
-                pacmanX += 1;
-            else
-                pacmanX -= 1;
 
             for(int i = 0; i < Monsters.Count; i++)
             {
