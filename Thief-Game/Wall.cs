@@ -5,16 +5,21 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Класс загрузки спрайтов и инициализации игровых препятствий
+    /// Wall object init class
     /// </summary>
     public class Wall
     {
         public readonly int CurrentPositionX;
         public readonly int CurrentPositionY;
 
-        //make static
+        // TODO: make static
         public readonly Image View;
 
+        /// <summary>
+        /// Wall init
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public Wall(int x, int y)
         {
             View = Image.FromFile(Path.Combine(PathInfo.LevelSpritesDir, "Wall.png"));

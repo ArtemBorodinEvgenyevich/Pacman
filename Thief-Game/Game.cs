@@ -5,7 +5,7 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Класс инициализации игры
+    /// Game init class
     /// </summary>
     class Game
     {
@@ -13,7 +13,7 @@ namespace Thief_Game
         private string State;
 
         /// <summary>
-        /// Main game class
+        /// Starting point for game running
         /// </summary>
         public Game()
         {
@@ -31,7 +31,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Start game
+        /// Start level initilizer
         /// </summary>
         private void RunGame() 
         {
@@ -39,7 +39,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// At the end
+        /// Show score board with results
         /// </summary>
         private void ShowScoreBoard()
         {

@@ -25,10 +25,20 @@
 var NAVTREE =
 [
   [ "Pacman", "index.html", [
+    [ "README", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__r_e_a_d_m_e.html", null ],
+    [ "Structure", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__structure.html", [
+      [ "Призраки", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__structure.html#autotoc_md1", [
+        [ "Красный", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__structure.html#autotoc_md2", null ],
+        [ "Розовый", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__structure.html#autotoc_md3", null ],
+        [ "Голубой", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__structure.html#autotoc_md4", null ],
+        [ "Оранжевый", "md__c_1__users_artem_source_repos__artem_borodin_evgenyevich__thief-_game__structure.html#autotoc_md5", null ]
+      ] ]
+    ] ],
     [ "Пакеты", "namespaces.html", [
       [ "Пакеты", "namespaces.html", "namespaces_dup" ],
       [ "Функции с областью видимости пакета", "namespacemembers.html", [
         [ "Указатель", "namespacemembers.html", null ],
+        [ "Переменные", "namespacemembers_vars.html", null ],
         [ "Перечисления", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
@@ -37,16 +47,22 @@ var NAVTREE =
       [ "Алфавитный указатель классов", "classes.html", null ],
       [ "Иерархия классов", "hierarchy.html", "hierarchy" ],
       [ "Члены классов", "functions.html", [
-        [ "Указатель", "functions.html", null ],
-        [ "Функции", "functions_func.html", null ]
+        [ "Указатель", "functions.html", "functions_dup" ],
+        [ "Функции", "functions_func.html", null ],
+        [ "Переменные", "functions_vars.html", null ],
+        [ "Свойства", "functions_prop.html", null ]
       ] ]
+    ] ],
+    [ "Файлы", "files.html", [
+      [ "Файлы", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_behaviors_8cs.html",
+"class_thief___game_1_1_path_info.html#a2e60c73fc481544fb507dc1b69318486"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

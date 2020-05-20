@@ -4,7 +4,7 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Не знаю что это, не знаю как это...
+    /// Game statistics class
     /// </summary>
     class WorldStat
     {

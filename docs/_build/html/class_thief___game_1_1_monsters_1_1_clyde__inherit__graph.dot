@@ -1,0 +1,13 @@
+digraph "Thief_Game.Monsters.Clyde"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Thief_Game.Monsters.Clyde",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Monster",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_monster.html",tooltip="Класс инициализации противника"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MovableGameObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_movable_game_object.html",tooltip="Base class for movable objects such as Monsters, Pacman"];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IMovable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_thief___game_1_1_i_movable.html",tooltip="Interface for character movement"];
+}

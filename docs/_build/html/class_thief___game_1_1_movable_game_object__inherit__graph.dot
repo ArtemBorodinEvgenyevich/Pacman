@@ -1,0 +1,20 @@
+digraph "Thief_Game.MovableGameObject"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Thief_Game.MovableGameObject",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Base class for movable objects such as Monsters, Pacman"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Thief_Game.Monster",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_monster.html",tooltip="Класс инициализации противника"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Thief_Game.Blinky",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_blinky.html",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Thief_Game.Monsters.Clyde",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_monsters_1_1_clyde.html",tooltip=" "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Thief_Game.Monsters.Inky",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_monsters_1_1_inky.html",tooltip=" "];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Thief_Game.Monsters.Pinky",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_monsters_1_1_pinky.html",tooltip="Pinky monster class"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Thief_Game.Pacman",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_pacman.html",tooltip="Class for player object (Playable character)"];
+}

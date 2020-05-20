@@ -4,5 +4,5 @@ digraph "Иерархия классов. Графический вид."
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Thief_Game.LevelPattern",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_level_pattern.html",tooltip="Класс инициализаци элементов уровня по заданному паттерну"];
+  Node0 [label="Thief_Game.Constants.Level\lParser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_constants_1_1_level_parser.html",tooltip="Constans for LevelLoader"];
 }

@@ -5,23 +5,33 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Класс инициализации игровых очков
+    /// Score point class init
     /// </summary>
     public class ScorePoint
     {
         private int X;
         private int Y;
+        
         public int CurrentPositionX
         {
             get => X;
         }
+        
         public int CurrentPositionY
         {
             get => Y;
         }
+        
         public readonly int Score;
         public readonly Image View;
 
+        /// <summary>
+        /// Score point object init
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="score"></param>
+        /// <param name="fileName"></param>
         public ScorePoint(int x, int y, int score, string fileName)
         {
             X = x;
@@ -32,7 +42,7 @@ namespace Thief_Game
     }
 
     /// <summary>
-    /// Big points
+    /// Big coin init class
     /// </summary>
     public class Energizer: ScorePoint
     {
@@ -42,7 +52,7 @@ namespace Thief_Game
     }
 
     /// <summary>
-    /// Small points
+    /// Small coin init class
     /// </summary>
     public class SmallPoint: ScorePoint
     {

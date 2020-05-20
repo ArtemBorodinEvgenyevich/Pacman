@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['game_37',['Game',['../class_thief___game_1_1_game.html',1,'Thief_Game']]]
+  ['clyde_254',['Clyde',['../class_thief___game_1_1_monsters_1_1_clyde.html',1,'Thief_Game::Monsters']]]
 ];

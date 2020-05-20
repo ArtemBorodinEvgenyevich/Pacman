@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Thief_Game
 {
-        
-    // Enum as flags for CheckWallCollision method.
-    //Artem
+    /// <summary>
+    /// Flags for <see cref="Map.CheckWallCollision(MovableGameObject, List{Wall}, MoveIntensions)"/>
+    /// </summary>
     public enum MoveIntensions
     {
         UP,

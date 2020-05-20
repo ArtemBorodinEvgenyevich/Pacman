@@ -1,7 +1,28 @@
 var searchData=
 [
-  ['scene_29',['Scene',['../class_thief___game_1_1_scene.html',1,'Thief_Game']]],
-  ['scorepoint_30',['ScorePoint',['../class_thief___game_1_1_score_point.html',1,'Thief_Game']]],
-  ['setupwindow_31',['SetupWindow',['../class_thief___game_1_1_scene.html#ada607535401f99bb53a2a5b139a5755f',1,'Thief_Game::Scene']]],
-  ['setview_32',['SetView',['../class_thief___game_1_1_monster.html#a6d608668374fcb0c834507c3c1430c64',1,'Thief_Game::Monster']]]
+  ['pacman_154',['Pacman',['../class_thief___game_1_1_pacman.html',1,'Thief_Game.Pacman'],['../class_thief___game_1_1_map.html#a9d11a1c96e1844b27f48bfb8b3471404',1,'Thief_Game.Map.Pacman()'],['../class_thief___game_1_1_pacman.html#a5c34c847a8af5d4b2b9d4abce79409c9',1,'Thief_Game.Pacman.Pacman()']]],
+  ['pacman_2ecs_155',['Pacman.cs',['../_pacman_8cs.html',1,'']]],
+  ['pacmanspawnsign_156',['PacmanSpawnSign',['../class_thief___game_1_1_constants_1_1_level_parser.html#aaf4be03505b4ee1ef14c056486945487',1,'Thief_Game::Constants::LevelParser']]],
+  ['padding_157',['Padding',['../class_thief___game_1_1_dimensions.html#afb37b1ea309d23a2ab3ae1bacb59cd39',1,'Thief_Game::Dimensions']]],
+  ['parsefile_158',['ParseFile',['../class_thief___game_1_1_level_loader.html#a891a71bcd50dc9d469c5cd207f498b70',1,'Thief_Game::LevelLoader']]],
+  ['path_159',['PATH',['../namespaceopen__docs.html#a4409c72fbc5f48fffc2b0acd90f727ca',1,'open_docs']]],
+  ['pathfinder_160',['PathFinder',['../namespace_path_finder.html',1,'']]],
+  ['pathfinder_2eassemblyinfo_2ecs_161',['PathFinder.AssemblyInfo.cs',['../_debug_2netstandard2_80_2_path_finder_8_assembly_info_8cs.html',1,'(Глобальное пространство имён)'],['../_release_2netstandard2_80_2_path_finder_8_assembly_info_8cs.html',1,'(Глобальное пространство имён)']]],
+  ['pathfinder_2ecsproj_2efilelistabsolute_2etxt_162',['PathFinder.csproj.FileListAbsolute.txt',['../_debug_2netstandard2_80_2_path_finder_8csproj_8_file_list_absolute_8txt.html',1,'(Глобальное пространство имён)'],['../_release_2netstandard2_80_2_path_finder_8csproj_8_file_list_absolute_8txt.html',1,'(Глобальное пространство имён)']]],
+  ['pathinfo_163',['PathInfo',['../class_thief___game_1_1_path_info.html',1,'Thief_Game']]],
+  ['pathinfo_2ecs_164',['PathInfo.cs',['../_path_info_8cs.html',1,'']]],
+  ['pathtofile_165',['pathToFile',['../class_thief___game_1_1_world_stat_pickle.html#ab668230123914d30d055772f82daa495',1,'Thief_Game::WorldStatPickle']]],
+  ['pathtopattern_166',['PathToPattern',['../class_thief___game_1_1_level_loader.html#a4377bf176e61a3dbf4f0019e7a7ce0db',1,'Thief_Game::LevelLoader']]],
+  ['pinky_167',['Pinky',['../class_thief___game_1_1_monsters_1_1_pinky.html',1,'Thief_Game.Monsters.Pinky'],['../class_thief___game_1_1_monsters_1_1_pinky.html#a23e001052910658e8ee2e7f6634d57ec',1,'Thief_Game.Monsters.Pinky.Pinky()'],['../namespace_thief___game.html#a5ad9fd3de8a9bd665b44fbdf1e92762ea33257d86a4b1866bc300ca2c369eb098',1,'Thief_Game.PINKY()']]],
+  ['pinky_2ecs_168',['Pinky.cs',['../_pinky_8cs.html',1,'']]],
+  ['pinkyspawnsign_169',['PinkySpawnSign',['../class_thief___game_1_1_constants_1_1_level_parser.html#a0306f1212e2c84730a211cb050def62b',1,'Thief_Game::Constants::LevelParser']]],
+  ['playerspritesdir_170',['PlayerSpritesDir',['../class_thief___game_1_1_path_info.html#afcc9185cb2ee8f4472b40d69e1129613',1,'Thief_Game::PathInfo']]],
+  ['points_171',['Points',['../class_thief___game_1_1_map.html#aaae9e1af318c689bea0319d0a48160f8',1,'Thief_Game::Map']]],
+  ['previousx_172',['previousX',['../class_thief___game_1_1_pacman.html#a22ac33e5e5ffedfef620b649cd168e76',1,'Thief_Game::Pacman']]],
+  ['previousy_173',['previousY',['../class_thief___game_1_1_pacman.html#a9cfdabe8d3a4fff1847e832b15885e08',1,'Thief_Game::Pacman']]],
+  ['print_174',['Print',['../class_path_finder_1_1_graph.html#a756d663d6d6283723f95ff4591ea2d51',1,'PathFinder::Graph']]],
+  ['program_175',['Program',['../class_thief___game_1_1_program.html',1,'Thief_Game']]],
+  ['program_2ecs_176',['Program.cs',['../_program_8cs.html',1,'']]],
+  ['projectdir_177',['ProjectDir',['../class_thief___game_1_1_path_info.html#ae9193a8f26fdc1ec3dde7ff8b376d533',1,'Thief_Game::PathInfo']]],
+  ['pursuiting_178',['PURSUITING',['../namespace_thief___game_1_1_monsters.html#a6fd01b5707c1d4d9f0dc01b1355b4a10a25ee2cfda0331134393e7223fb750820',1,'Thief_Game::Monsters']]]
 ];

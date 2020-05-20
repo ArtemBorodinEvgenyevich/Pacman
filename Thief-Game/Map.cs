@@ -10,29 +10,23 @@ namespace Thief_Game
 {
     //Lev
     /// <summary>
-    /// Класс инициализации игрового уровня
+    /// Level and level objects init class
     /// </summary>
     class Map
     {
-        //private Action MainMenuClose;
-        
         private List<Wall> Walls;
         private List<Monster> Monsters;
         private Pacman Pacman;
         private List<SmallPoint> Points;
         private List<Energizer> Energizers;
-
         private Graph LevelScheme;
-        // temporary
         private WorldStat WorldStat;
 
         /// <summary>
-        /// Create map with monsters and others
+        /// Level initializer
         /// </summary>
         public Map()
-        {
-            //this.MainMenuClose = MenuClose;
-            
+        {            
             var pattern = new LevelLoader().ParseFile();
 
             InitAllLists(pattern);
@@ -44,13 +38,10 @@ namespace Thief_Game
 
             Application.Run(new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, 
                 Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin, CheckLoose));
-            //var scene = new Scene(Draw, MovePacmanUp, MovePacmanDown, MovePacmanRight, MovePacmanLeft, Redraw, Move, CheckPointsCollision, SerializeStats, CheckWin);
-            //this.MainMenuClose();
-            //scene.ShowDialog();
         }
 
         /// <summary>
-        /// Init all lists
+        /// Init all lists of game objects and game stats
         /// </summary>
         /// <param name="pattern">Pattern of current level</param>
         private void InitAllLists(LevelPattern pattern)
@@ -64,7 +55,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// ???
+        /// Stats saving (serialization)
         /// </summary>
         private void SerializeStats()
         {
@@ -73,7 +64,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Init all walls
+        /// Wall list init
         /// </summary>
         /// <param name="pattern">Level patter</param>
         private void InitWalls(LevelPattern pattern)
@@ -85,7 +76,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Init all monsters
+        /// Monsters list init
         /// </summary>
         /// <param name="pattern">Level pattern</param>
         public void InitMonsters(LevelPattern pattern)
@@ -95,7 +86,7 @@ namespace Thief_Game
         }
 
         /// <summary>
-        /// Init pacman
+        /// Player (pacman) init
         /// </summary>
         /// <param name="pattern">LevelPacman</param>
         public void InitPlayer(LevelPattern pattern)
@@ -210,7 +201,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanDown()
         {
-            if (CheckWallCollision(Pacman, MoveIntensions.DOWN))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.DOWN))
                 Pacman.MoveDown();
         }
 
@@ -220,7 +211,7 @@ namespace Thief_Game
         public void MovePacmanUp()
         {
             //if (CheckWallCollision(Pacman, Walls, Dimension.mvUp))
-            if (CheckWallCollision(Pacman, MoveIntensions.UP))   
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.UP))   
                 Pacman.MoveUp();
         }
 
@@ -229,7 +220,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanRight()
         {
-            if (CheckWallCollision(Pacman, MoveIntensions.RIGHT))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.RIGHT))
                 Pacman.MoveRight();
         }
 
@@ -238,7 +229,7 @@ namespace Thief_Game
         /// </summary>
         public void MovePacmanLeft()
         {
-            if (CheckWallCollision(Pacman, MoveIntensions.LEFT))
+            if (CheckWallCollision(Pacman, Walls, MoveIntensions.LEFT))
                 Pacman.MoveLeft();
         }
 
@@ -254,7 +245,7 @@ namespace Thief_Game
         /// <param name="Walls">List of walls</param>
         /// <param name="DimFlag">Where you want to move</param>
         /// <returns>Can you move or not</returns>
-        private bool CheckWallCollision(MovableGameObject GameObject, MoveIntensions DimFlag)
+        private bool CheckWallCollision(MovableGameObject GameObject , List<Wall> Walls, MoveIntensions DimFlag)
         {
             int pacmanX = GameObject.CurrentPositionX;
             int pacmanY = GameObject.CurrentPositionY;
@@ -288,18 +279,21 @@ namespace Thief_Game
         /// <summary>
         /// Check collisions with monsters
         /// </summary>
+        /// <param name="GameObject">Pacman or monster</param>
         /// <param name="Monsters">Monsters list</param>
         /// <param name="DimFlag">WHere you what to go</param>
         /// <param name="except">Number of monster in List of monsters (if pacman use -1)</param>
         /// <returns></returns>
-        private bool CheckPacmanMonsterCollision(MoveIntensions DimFlag)
+        private bool CheckPacmanMonsterCollision(List<Monster> Monsters, MoveIntensions DimFlag, int except)
         {
             int pacmanX = Pacman.CurrentPositionX;
             int pacmanY = Pacman.CurrentPositionY;
             bool moveFlag = true;
 
             for(int i = 0; i < Monsters.Count; i++)
-            { 
+            {
+                if (i == except) continue;
+
                 int monsterX = Monsters[i].CurrentPositionX;
                 int monsterY = Monsters[i].CurrentPositionY;
 
@@ -359,10 +353,10 @@ namespace Thief_Game
 
         private bool CheckLoose()
         {
-            if (!CheckPacmanMonsterCollision(MoveIntensions.RIGHT) ||
-                !CheckPacmanMonsterCollision(MoveIntensions.LEFT) ||
-                !CheckPacmanMonsterCollision(MoveIntensions.UP) ||
-                !CheckPacmanMonsterCollision(MoveIntensions.DOWN))
+            if (!CheckPacmanMonsterCollision(Monsters, MoveIntensions.RIGHT, 10) ||
+                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.LEFT, 10) ||
+                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.UP, 10) ||
+                !CheckPacmanMonsterCollision(Monsters, MoveIntensions.DOWN, 10))
             {
                 return true;
             }
@@ -373,7 +367,7 @@ namespace Thief_Game
         /// <summary>
         /// Redraw map and all objects in game
         /// </summary>
-        /// <param name="graphics">Instrument for drawing</param>
+        /// <param name="graphics"></param>
         public void Draw(Graphics graphics)
         {
             for (int i = 0; i < Walls.Count; i++)
@@ -407,20 +401,16 @@ namespace Thief_Game
                 monster.Redraw(graphics);
 
             Pacman.Redraw(graphics);
-
-#if DEBUG
-            DrawBlinkyIntension(graphics);
-            DrawPinkyIntension(graphics);
-            DrawInkyIntension(graphics);
-            DrawClydeIntension(graphics);
-#endif
         }
+
+        // Use next section for DEBUG PURPOSE ONLY!
+        // ------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// DEBUG
         /// Shows where Bliny goes
         /// </summary>
-        /// <param name="graphics">Instrument for drawing</param>
+        /// <param name="graphics"></param>
         private void DrawBlinkyIntension(Graphics graphics)
         {
             graphics.DrawLine(
@@ -435,7 +425,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Pinky goes
         /// </summary>
-        /// <param name="graphics">Instrument for drawing</param>
+        /// <param name="graphics"></param>
         private void DrawPinkyIntension(Graphics graphics)
         {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
@@ -462,7 +452,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Inky goes
         /// </summary>
-        /// <param name="graphics">Instrument for drawing</param>
+        /// <param name="graphics"></param>
         private void DrawInkyIntension(Graphics graphics)
         {
             var dx = Pacman.CurrentPositionX - Pacman.previousX;
@@ -499,7 +489,7 @@ namespace Thief_Game
         /// DEBUG
         /// Shows where Clyde goes
         /// </summary>
-        /// <param name="graphics">Instrument for drawing</param>
+        /// <param name="graphics"></param>
         private void DrawClydeIntension(Graphics graphics) 
         {
             var clydePos = new Waypoint(Monsters[3].CurrentPositionX, Monsters[3].CurrentPositionY);
@@ -528,5 +518,8 @@ namespace Thief_Game
                     Pacman.CurrentPositionY * Dimensions.SpriteHeightPixels + Dimensions.SpriteHeightPixels / 2 + Dimensions.LifeBarHeight);
             }
         }
+        
+        // ------------------------------------------------------------------------------------------------------------------------
+    
     }
 }

@@ -4,5 +4,11 @@ digraph "Ð˜ÐµÑ€Ð°Ñ€Ñ…Ð¸Ñ ÐºÐ»Ð°ÑÑÐ¾Ð². Ð“Ñ€Ð°Ñ„Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ð²Ð¸Ð´."
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Thief_Game.Program",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_program.html",tooltip="Êëàññ èíèöèàëèçàöèè ïðîãðàììû"];
+  Node29 [label="Form",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node29 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="Thief_Game.MainMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_main_menu.html",tooltip="Main menu WinForm class"];
+  Node29 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="Thief_Game.Scene",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_scene.html",tooltip="Level WinForm class"];
+  Node29 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="Thief_Game.ScoreBoard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_thief___game_1_1_score_board.html",tooltip="Scoreboard WinForm class"];
 }
