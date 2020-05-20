@@ -140,6 +140,7 @@ namespace Thief_Game
             KeyPreview = true;
         }
 
+        /*
         /// <summary>
         /// Init buttons
         /// </summary>
@@ -178,20 +179,7 @@ namespace Thief_Game
             ExitBTN.BackColor = Color.WhiteSmoke;
             Controls.Add(ExitBTN);
         }
-        
-        /// <summary>
-        /// Main menu background
-        /// </summary>
-        /// <param name="graphics"></param>
-        private void DrawButtonsBackground(Graphics graphics)
-        {
-            var startX = NewGameBTN.Location.X - Dimensions.Padding;
-            var startY = NewGameBTN.Location.Y - Dimensions.Padding;
-            var width = Dimensions.Padding * 2 + Dimensions.ButtonWidth;
-            var height = Dimensions.Padding * 2 + Dimensions.ButtonHeight * 2;
-
-            graphics.FillRectangle(Brushes.Chartreuse, startX, startY, width, height);
-        }
+        */
         
         /// <summary>
         /// Drawing!!!
@@ -201,9 +189,6 @@ namespace Thief_Game
         {
             DrawMap(e.Graphics);
             Redraw(e.Graphics);
-
-            if (Mode == GameMode.MENU)
-                DrawButtonsBackground(e.Graphics);
         }
 
         private void InitializeComponent()

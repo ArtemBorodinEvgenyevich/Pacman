@@ -25,12 +25,5 @@
         //Шаг пакмана и монстров
         public const int StepX = SpriteWidthPixels;
         public const int StepY = SpriteHeightPixels;
-
-        //Размеры кнопок главного меню
-        public const int ButtonWidth = 140;
-        public const int ButtonHeight = 40;
-
-        //Размеры фона для кнопок
-        public const int Padding = 10;
     }
 }
