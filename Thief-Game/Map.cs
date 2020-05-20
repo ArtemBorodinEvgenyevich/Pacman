@@ -413,15 +413,12 @@ namespace Thief_Game
 
             Pacman.Redraw(graphics);
 
-            /*
 #if DEBUG
             DrawBlinkyIntension(graphics);
             DrawPinkyIntension(graphics);
             DrawInkyIntension(graphics);
             DrawClydeIntension(graphics);
 #endif
-            */
-
         }
 
         /// <summary>

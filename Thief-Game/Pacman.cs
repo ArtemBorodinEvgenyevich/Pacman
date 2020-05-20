@@ -5,7 +5,7 @@ using System;
 namespace Thief_Game
 {
     // Artem
-    class Pacman : MovableGameObject, IMovable
+    class Pacman : MovableGameObject
     {
         private int Speed;
         private int Lifes;

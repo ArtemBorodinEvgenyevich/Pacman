@@ -11,7 +11,7 @@ namespace Thief_Game
     /// <summary>
     /// Класс инициализации противника
     /// </summary>
-    public class Monster : MovableGameObject, IMovable
+    public class Monster : MovableGameObject
     {
         //Where is the monster going
         public int destinationX;
